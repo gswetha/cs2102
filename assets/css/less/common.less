@@ -1,0 +1,36 @@
+// Variables
+@import "variables.less";
+
+// Mixins
+@import "mixins.less";
+
+// Import General styles
+@import "general.less";
+
+// Import Bootstrap Extras
+@import "bootstrap_extras.less";
+
+// Import Landscape phone to portrait tablet
+@media (max-width: 767px) {
+	@import "media-767.less";
+}
+
+// Import Portrait tablet to landscape and desktop
+@media (min-width: 768px) and (max-width: 979px) {
+	@import "media-979.less";
+}
+
+// Import default desktop
+@media (min-width: 980px) and (max-width: 1200px) {
+	@import "media-1200.less";
+}
+
+// Import Large desktop
+@media (min-width: 1200px) {
+	@import "media-infinity.less";
+}
+
+// Import phones
+@media (max-width: 480px) {
+	@import "media-480.less";
+}

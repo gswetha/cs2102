@@ -1,0 +1,7 @@
+.container.mini {
+  padding: 0;
+  width: 40%;
+}
+.container.mini .content {
+  min-height: 0px;
+}

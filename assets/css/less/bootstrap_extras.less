@@ -1,0 +1,198 @@
+// Hero-units
+.hero-unit-top {
+	margin-bottom: 0px;
+	border-radius: 6px 6px 0 0;
+}
+.hero-unit-bottom {
+	margin-top: 0px;
+	border-radius: 0 0 6px 6px;
+}
+.hero-unit-no-margin {
+	margin:0px;
+}
+.hero-unit-text-dash {
+	background-color:@lightblue;
+	& a {
+		color:#333333;
+	}
+}
+.hero-unit {
+	position: relative;
+	&.indent {
+		-moz-box-shadow: inset 0 0 5px #888;
+		-webkit-box-shadow: inset 0 0 5px #888;
+		box-shadow: inset 0 0 5px #888;
+		& .label {
+			&.top-right {
+				box-shadow: inset -1px 1px 5px #888;
+
+			}
+			&.bottom-right {
+				box-shadow: inset -1px -2px 5px #888;
+
+			}
+
+		}
+	}
+	&.hero-unit-success {
+		background-color: @lightgreen;
+		& .label {
+			background-color: @darkgreen;
+		}
+	}
+	&.error .label {
+		background-color: darken(@error, 30%);
+	}
+	&.sky .label {
+		background-color: #027FB7;
+	}
+	& p {
+		margin: 10px 0;
+	}
+	& ol {
+		margin: 20px 50px;
+	}
+	& li {
+		color: inherit;
+		font-size: 18px;
+		font-weight: 200;
+		line-height: 30px;
+	}
+}
+.hero-unit form {
+	margin-top:20px;
+	& label {
+		font-size: 18px;
+		font-weight: 200;
+		line-height: 30px;
+	}
+	& input[type="checkbox"] {
+		margin-top:8px;
+	}
+	& input[type="text"] {
+		background-color:white;
+	}
+}
+
+// Alerts & Error
+.alert-message {
+    background-color: #EEDC94;
+    background-image: -moz-linear-gradient(center top , #FCEEC1, #EEDC94);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+    color: #404040;
+    margin-bottom: 18px;
+    padding: 7px 15px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+// .alert-message.block-message{
+// 	.error, .success, .info {
+// 	    color: #404040;
+// 	    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+// 	}
+// }
+.alert-message.block-message {
+    background-color: #FDF5D9;
+    background-image: none;
+    border-color: #FCEEC1;
+    box-shadow: none;
+    padding: 14px;
+}
+.alert-message.block-message {
+	&.error {
+		background-color: @error;
+		border-color: darken(@error, 10%);
+	}
+	&.success {
+		background-color: @success;
+		border-color: darken(@success, 10%);
+	}
+	&.info {
+		background-color: @info;
+		border-color: darken(@info, 10%);
+	}
+	&.warning {
+		background-color: @warning;
+		border-color: darken(@warning, 10%);
+	}
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+// Containers
+// .container.mini {
+// 	width: 30%;
+//  	.content {
+// 		min-height: 0px;
+// 		form {
+// 			margin-bottom: 0px;
+// 		}
+// 		.well {
+// 			margin-bottom: 0px;
+// 		}
+// 	}
+// }
+
+// Dropdowns
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+	background-color: @vlightblue;
+	background-image: linear-gradient(to bottom, @vlightblue, darken(@vlightblue, 20%));
+	//background-image: none;
+}
+
+//Tables
+table.table-bordered thead tr, table.table-bordered tfoot tr {
+    background-color: #EEEEEE;
+    color: black;
+}
+form table input[type="text"] {margin-bottom:0px;}
+
+form .input-prepend.error {
+	& .add-on, input {
+		border-color: #B94A48;
+    	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    	color: #B94A48;
+	}
+}
+
+.well input {background-color:white;}
+
+nav .pill-progress {
+	float: right;
+    list-style: none outside none;
+    margin: 10px 0 0;
+    padding: 0;
+	& li {
+		float:left;
+
+    	& span {
+    		display: block;
+			border-radius: 15px 15px 15px 15px;
+	    	line-height: 30px;
+	    	margin: 5px 3px 5px 0;
+	    	padding: 0 15px;
+	    	text-shadow: 0 1px 1px #FFFFFF;
+    	}
+		&.active span {
+			background: none repeat scroll 0 0 #00438A;
+			color: #FFFFFF;
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+	    }
+		&.complete span {
+			background: none repeat scroll 0 0 #0088CC;
+			color: #FFFFFF;
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+	    }
+	   	&.pending span {
+	   		background: none repeat scroll 0 0 white;
+	   		box-shadow: 0 1px 2px #CECECE;
+	   		color: gray;
+	   		text-shadow: 0 1px 1px white;
+	    } 
+    }
+	
+}

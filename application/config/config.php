@@ -356,6 +356,7 @@ $config['rewrite_short_tags'] = FALSE;
 |
 */
 $config['proxy_ips'] = '';
+$config['assets_path'] = 'http://localhost/cs2102/assets/';
 
 
 /* End of file config.php */

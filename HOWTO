@@ -1,0 +1,4 @@
+Default MAMP port is 8888, set to 80 to only type localhost
+
+test the database
+http://localhost/cs2102/index.php/blog/details/123

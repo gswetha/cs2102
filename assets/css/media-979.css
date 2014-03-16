@@ -1,0 +1,16 @@
+.container .content {
+  padding-top: 20px;
+  margin-top: 0px;
+}
+.container.mini {
+  padding: 0;
+  width: 60%;
+}
+.container.mini .content {
+  padding-top: 20px;
+  margin-top: 0px;
+}
+.container .background-house,
+.container .background-computer {
+  background-image: none;
+}

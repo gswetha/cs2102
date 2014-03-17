@@ -17,7 +17,7 @@ CREATE TABLE Song (
 		songImg 	VARCHAR(96),
 		songGenre	VARCHAR(64),
 		songLength  DOUBLE,
-		FOREIGN KEY (sAlbumTitle, sAlbumYear) REFERENCES album (albumTitle, albumYear),
+		FOREIGN KEY (sAlbumTitle, sAlbumYear) REFERENCES Album (albumTitle, albumYear),
 		PRIMARY KEY (sAlbumTitle, sAlbumYear, songTitle, songYear));
 
 CREATE TABLE Singer (

@@ -5,6 +5,7 @@
 	<link href="<?= $this->config->item('assets_path'); ?>css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="<?= $this->config->item('assets_path'); ?>css/dashboard.css" rel="stylesheet">
+  <link href="<?= $this->config->item('assets_path'); ?>css/carousel.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 

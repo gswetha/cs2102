@@ -1,4 +1,4 @@
-CREATE TABLE Album (
+CREATE TABLE album (
 		albumTitle 	VARCHAR(100),
 		albumYear 	DATE,
 		numSongs 	INT,
@@ -8,7 +8,7 @@ CREATE TABLE Album (
 		albumDescrip VARCHAR(1064),
 		PRIMARY KEY(albumTitle, albumYear));	
 
-CREATE TABLE Song (
+CREATE TABLE song (
 		sAlbumTitle VARCHAR(100),
 		sAlbumYear 	DATE,
 		songTitle 	VARCHAR(100),
@@ -17,10 +17,10 @@ CREATE TABLE Song (
 		songImg 	VARCHAR(96),
 		songGenre	VARCHAR(64),
 		songLength  DOUBLE,
-		FOREIGN KEY (sAlbumTitle, sAlbumYear) REFERENCES Album (albumTitle, albumYear) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (sAlbumTitle, sAlbumYear) REFERENCES album (albumTitle, albumYear) ON UPDATE CASCADE ON DELETE CASCADE,
 		PRIMARY KEY (sAlbumTitle, sAlbumYear, songTitle, songYear));
 
-CREATE TABLE Singer (
+CREATE TABLE singer (
 		singerFirstName VARCHAR(64),
 		singerLastName 	VARCHAR(64),
 		stageName 		VARCHAR(64),
@@ -29,7 +29,7 @@ CREATE TABLE Singer (
 		singerImg		VARCHAR(96),
 		PRIMARY KEY (singerFirstName, singerLastName, stageName));
 
-CREATE TABLE SingerSingsSong (
+CREATE TABLE singersingssong (
 		sssAlbumTitle 		VARCHAR(100),
 		sssAlbumYear 		DATE,
 		sssSongTitle 		VARCHAR(100),
@@ -37,18 +37,18 @@ CREATE TABLE SingerSingsSong (
 		sssSingerFirstName 	VARCHAR(64),
 		sssSingerLastName 	VARCHAR(64),
 		sssSingerStageName	VARCHAR(64),
-		FOREIGN KEY (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear) REFERENCES Song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
-		FOREIGN KEY (sssSingerFirstName, sssSingerLastName, sssSingerStageName) REFERENCES Singer (singerFirstName, singerLastName, stageName) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear) REFERENCES song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (sssSingerFirstName, sssSingerLastName, sssSingerStageName) REFERENCES singer (singerFirstName, singerLastName, stageName) ON UPDATE CASCADE ON DELETE CASCADE,
 		PRIMARY KEY (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear, sssSingerFirstName, sssSingerLastName, sssSingerStageName));	
 
-CREATE TABLE Composer (
+CREATE TABLE composer (
 		composerFirstName 	VARCHAR(64),
 		composerLastName 	VARCHAR(64),
 		composerBirthday 	DATE,
 		composerDescrip 	VARCHAR(564),
 		PRIMARY KEY (composerFirstName, composerLastName, composerBirthday));
 	
-CREATE TABLE ComposerComposesSong (
+CREATE TABLE composercomposessong (
 		ccsAlbumTitle 			VARCHAR(100),
 		ccsAlbumYear 			DATE,
 		ccsSongTitle 			VARCHAR(100),
@@ -56,11 +56,11 @@ CREATE TABLE ComposerComposesSong (
 		ccsComposerFirstName 	VARCHAR(64),
 		ccsComposerLastName 	VARCHAR(64),
 		ccsComposerBirthday		DATE,
-		FOREIGN KEY (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear) REFERENCES Song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
-		FOREIGN KEY (ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday) REFERENCES Composer (composerFirstName, composerLastName, composerBirthday) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear) REFERENCES song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday) REFERENCES composer (composerFirstName, composerLastName, composerBirthday) ON UPDATE CASCADE ON DELETE CASCADE,
 		PRIMARY KEY (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear, ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday));
 
-CREATE TABLE User (
+CREATE TABLE user (
 		userName 		VARCHAR(64) NOT NULL,
 		email 			VARCHAR(64) PRIMARY KEY,
 		userFirstName 	VARCHAR(64) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE User (
 		paypalEmail 	VARCHAR(64),
 		role			VARCHAR(12) CHECK (role = "admin" or role = "user"));
 
-CREATE TABLE Purchases (
+CREATE TABLE purchases (
 		pAlbumTitle 	VARCHAR(100),
 		pAlbumYear 		DATE,
 		pSongTitle 		VARCHAR(100),
@@ -79,8 +79,8 @@ CREATE TABLE Purchases (
 		transactionDate	DATE,
 		amountPaid		DOUBLE,
 		quantity		INT,
-		FOREIGN KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear) REFERENCES Song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
-		FOREIGN KEY (pEmail) REFERENCES User (email) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear) REFERENCES song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
+		FOREIGN KEY (pEmail) REFERENCES user (email) ON UPDATE CASCADE ON DELETE CASCADE,
 		PRIMARY KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail),
 		KEY (transactionId));
 

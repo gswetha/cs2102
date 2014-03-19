@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-	<title>CS2102 Project - Music Catalogue</title>
+	<title>CS2102 - Music Catalogue</title>
 
 	<style type="text/css">
 	</style>
@@ -22,12 +22,24 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">CS2102 - Music Catalogue</a>
+        <a class="navbar-brand" href="#">Welcome, User!</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Settings</a></li>
-          <li><a href="#">Help</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Sign up</a></li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" role="button" id="drop1" data-toggle="dropdown">
+                My Account
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Purchases</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+              </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -114,81 +126,91 @@
                 <th>Title</th>
                 <th>Composer</th>
                 <th>Artist</th>
+                <th>Album</th>
                 <th>Genre</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
-                <td>amet</td>
-                <td>consectetur</td>
-                <td>adipiscing</td>
-              </tr>
               <tr>
                 <td>1,003</td>
                 <td>Integer</td>
                 <td>nec</td>
                 <td>odio</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,003</td>
                 <td>libero</td>
                 <td>Sed</td>
                 <td>cursus</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,004</td>
                 <td>dapibus</td>
                 <td>diam</td>
                 <td>Sed</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,005</td>
                 <td>Nulla</td>
                 <td>quis</td>
                 <td>sem</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,006</td>
                 <td>nibh</td>
                 <td>elementum</td>
                 <td>imperdiet</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,007</td>
                 <td>sagittis</td>
                 <td>ipsum</td>
                 <td>Praesent</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,008</td>
                 <td>Fusce</td>
                 <td>nec</td>
                 <td>tellus</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,009</td>
                 <td>augue</td>
                 <td>semper</td>
+                <td>adipiscing</td>
                 <td>porta</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,010</td>
                 <td>massa</td>
                 <td>Vestibulum</td>
                 <td>lacinia</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
               <tr>
                 <td>1,011</td>
                 <td>eget</td>
                 <td>nulla</td>
                 <td>Class</td>
+                <td>adipiscing</td>
+                <td><button>Buy!</button></td>
               </tr>
             </tbody>
           </table>

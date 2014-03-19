@@ -5,5 +5,13 @@
 <script type="text/javascript" src="<?= $this->config->item('assets_path'); ?>js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="<?= $this->config->item('assets_path'); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?= $this->config->item('assets_path'); ?>js/docs.min.js"></script>
+<script type="text/javascript" src="<?= $this->config->item('assets_path'); ?>js/dropdown.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#drop1').click(function() {
+    $(this).dropdown();
+  })
+})
+</script>
 </body>
 </html>

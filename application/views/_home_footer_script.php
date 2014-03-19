@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<?= $this->config->item('assets_path'); ?>js/dropdown.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $('#drop1').click(function() {
+  $('.dropdown-toggle').click(function() {
     $(this).dropdown();
   })
 })

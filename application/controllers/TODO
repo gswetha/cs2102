@@ -1,0 +1,8 @@
+1) Have a My Account dropdown on the top bar with the options "My Profile", "My
+Purchases". Will only show when logged in. Else, show a "Login" button
+2) In the Vertical Menu, have Catalogue and Most Popular for songs, album,
+singer, composer, genre
+3) An "Add" button will be shown in vertical menu if user is admin
+4) add column in the catalogue table that has a button to "Buy". If the user is
+admin, then have buttons "Delete" and "Edit"
+5) Search bar searches all the columns displayed

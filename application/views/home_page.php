@@ -53,7 +53,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="dropdown">
+          <!-- <li class="dropdown">
               <a href="#" class="dropdown-toggle" role="button" id="drop2" data-toggle="dropdown">
                 Catalogue
                 <b class="caret"></b>
@@ -78,7 +78,51 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
               </ul>
-          </li>
+          </li> -->
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Catalogue
+                  </a>
+                  </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <ul role="menu" aria-labelledby="drop3">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    Most Popular
+                  </a>
+                  </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <ul role="menu" aria-labelledby="drop3">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">What's Trending</h1>

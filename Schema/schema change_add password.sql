@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD `password` VARCHAR( 128 ) NOT NULL AFTER `email`;

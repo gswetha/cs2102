@@ -26,20 +26,24 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Sign up</a></li>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" role="button" id="drop1" data-toggle="dropdown">
-                My Account
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Purchases</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
-              </ul>
-          </li>
+          <?php if(!$logged_in){ ?>
+            <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
+            <li><a href="#">Sign up</a></li>
+          <?php } ?>
+          <?php if($logged_in){ ?>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" role="button" id="drop1" data-toggle="dropdown">
+                  My Account
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Purchases</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
+                </ul>
+            </li>
+          <?php } ?>
         </ul>
       </div>
     </div>

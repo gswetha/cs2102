@@ -155,7 +155,7 @@
                 <td>nec</td>
                 <td>odio</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,003</td>
@@ -163,7 +163,7 @@
                 <td>Sed</td>
                 <td>cursus</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,004</td>
@@ -171,7 +171,7 @@
                 <td>diam</td>
                 <td>Sed</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,005</td>
@@ -179,7 +179,7 @@
                 <td>quis</td>
                 <td>sem</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,006</td>
@@ -187,7 +187,7 @@
                 <td>elementum</td>
                 <td>imperdiet</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,007</td>
@@ -195,7 +195,7 @@
                 <td>ipsum</td>
                 <td>Praesent</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,008</td>
@@ -203,7 +203,7 @@
                 <td>nec</td>
                 <td>tellus</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,009</td>
@@ -211,7 +211,7 @@
                 <td>semper</td>
                 <td>adipiscing</td>
                 <td>porta</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,010</td>
@@ -219,7 +219,7 @@
                 <td>Vestibulum</td>
                 <td>lacinia</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
               <tr>
                 <td>1,011</td>
@@ -227,7 +227,7 @@
                 <td>nulla</td>
                 <td>Class</td>
                 <td>adipiscing</td>
-                <td><button>Delete</button></td>
+                <td><button>Edit</button><button>Delete</button></td>
               </tr>
             </tbody>
           </table>

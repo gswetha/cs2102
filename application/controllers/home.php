@@ -24,14 +24,17 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "home page";
-		
-		if ($this->isLoggedIn())
+		$data['username'] = "Guest";
+		if ($this->isLoggedIn()) {
 			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+		}
 		else
 			$data['logged_in'] = FALSE;
 
 		$this->load->view('_home_header_styles');
-		$this->load->view('guest_home_page',$data);
+		$this->load->view('home_page',$data);
 		$this->load->view('_home_footer_script');
 	}
 

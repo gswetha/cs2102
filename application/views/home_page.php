@@ -22,7 +22,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Welcome, User!</a>
+        <a class="navbar-brand" href="#">Welcome, <?php echo $username; ?>!</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -53,14 +53,32 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="#">Catalogue of Songs</a></li>
-          <li><a href="#">Catalogue of Albums</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="">Unregistered User View</a></li>
-          <li><a href="">Registered User View</a></li>
-          <li><a href="">Admin View</a></li>
-        </ul>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" role="button" id="drop2" data-toggle="dropdown">
+                Catalogue
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
+              </ul>
+          </li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" role="button" id="drop3" data-toggle="dropdown">
+                Most Popular
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
+              </ul>
+          </li>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">What's Trending</h1>

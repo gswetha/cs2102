@@ -28,7 +28,7 @@
         <ul class="nav navbar-nav navbar-right">
           <?php if(!$logged_in){ ?>
             <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
-            <li><a href="#">Sign up</a></li>
+            <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
           <?php } ?>
           <?php if($logged_in){ ?>
             <li class="dropdown">

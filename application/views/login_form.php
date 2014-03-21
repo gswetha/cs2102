@@ -43,8 +43,11 @@ $login_label = 'Email';
        		</div>
        		<br>
        		<div class="<?php echo strlen(form_error('password')) ? 'control-group error' : 'control-group'; ?>">
-				<span>Password<input type="password" class="form-control" placeholder="Password" name="password" id="password"></span>
-				<?php echo form_error('password','<span class="help-inline">', '</span>'); ?>
+				<?php echo form_label('Password', $password['id'], $arrayName = array('class' => 'control-label')); ?>
+					<div class="controls">
+						<input type="password" id="password" name="password" class="form-control" />
+						<?php echo form_error('password','<span class="help-inline">', '</span>'); ?>
+					</div>
        		</div>
        		<br>
        		<input type="submit" id="submit_login" name="submit_login" value="Sign in" class="btn btn-primary btn-large" />

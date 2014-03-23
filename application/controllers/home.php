@@ -25,10 +25,12 @@ class Home extends CI_Controller {
 	{
 		$data['title'] = "home page";
 		$data['username'] = "Guest";
+		$data['role'] = "guest";
 		if ($this->isLoggedIn()) {
 			$data['logged_in'] = TRUE;
 			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
 			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
 		}
 		else
 			$data['logged_in'] = FALSE;

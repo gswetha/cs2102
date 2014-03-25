@@ -24,28 +24,29 @@ class SongController extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
-	function getSong(){
-
+	function getAllSongs(){
+		//display songs in catalogue
+		$this->song_model->getAllSongs();
 	}
 
-	function addSong(){
-
+	function addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength){
+		$this->song_model->addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength);
 	}
 
-	function searchSongbyTitle(){
-
+	function searchSongbyTitle($title){
+		$this->song_model->searchSongbyTitle($title);
 	}
 
-	function searchSongbyYear(){
-
+	function searchSongbyYear($year){
+		$this->song_model->searchSongbyYear($year);
 	}
 
-	function searchSongbyGenre(){
-
+	function searchSongbyGenre($genre){
+		$this->song_model->searchSongbyGenre($genre);
 	}
 
-	function searchSongbyPriceRange(){
-
+	function searchSongbyPriceRange($lower, $upper){
+		$this->song_model->searchSongbyPriceRange($lower, $upper);
 	}
 }
 

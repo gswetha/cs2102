@@ -25,27 +25,31 @@ class AlbumController extends CI_Controller {
 	}
 
 	function getAlbum(){
-
+		$this->album_model->getAlbum();
 	}
 
-	function addAlbum(){
-
+	function addAlbum($albumTitle, $albumYear, $numSongs, $genre, $price, $img, $descrip){
+		$this->album_model->addAlbum($albumTitle, $albumYear, $numSongs, $genre, $price, $img, $descrip);
 	}
 
-	function searchAlbumbyTitle(){
-
+	function searchAlbumbyTitle($title){
+		$this->album_model->searchAlbumbyTitle(($title);
 	}
 
-	function searchAlbumbyYear(){
-
+	function searchAlbumbyYear($year){
+		$this->album_model->searchAlbumbyYear($year);
 	}
 
-	function searchAlbumbyGenre(){
-
+	function searchAlbumbyGenre($genre){
+		$this->album_model->searchAlbumbyGenre($genre);
 	}
 
-	function searchAlbumbyPriceRange(){
+	function searchAlbumbyPriceRange($lowerPrice,$upperPrice){
+		$this->album_model->searchAlbumbyPriceRange($lowerPrice,$upperPrice);
+	}
 
+	function searchAlbumbyArtist($name, $firstName, $lastName){
+		$this->album_model->searchAlbumbyArtist($name, $firstName, $lastName);
 	}
 }
 

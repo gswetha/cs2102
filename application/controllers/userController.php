@@ -51,6 +51,7 @@ class UserController extends CI_Controller {
 			 		 	log_message('info', 'user info is '.print_r($user_info,TRUE));
 			 			 $this->session->set_userdata(array(
 								'name'	=> $user_info['userName'],
+								'email'	=> $user_info['email'],
 								'status'	=> 'logged_in',
 								'role'	=> $user_info['role'],
 						));
@@ -92,11 +93,13 @@ class UserController extends CI_Controller {
 	}
 
 	function getUserByName($name){
-
+		$result = $this->user_model->getUserByName($name);
+		return $result;
 	}
 
 	function getUserByEmail($email){
-
+		$result = $this->user_model->getUserByEmail($email);
+		return $result;
 	}
 
 	function logout(){
@@ -110,6 +113,21 @@ class UserController extends CI_Controller {
 			return TRUE;
 		else
 			return FALSE;
+	}
+
+	function deleteUser(){
+		//get input from form
+		$email = $this->session->userdata('email');
+		$result = $this->user_model->deleteUser($email);
+		return $result;
+	}
+
+	function updateUser(){
+		//get input from form
+		$data = NULL;
+		$email = $this->session->userdata('email');
+		$result = $this->user_model->updateUser($data, $email);
+		return $result;
 	}
 
 }

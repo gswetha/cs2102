@@ -18,7 +18,7 @@ class Song_model extends CI_Model {
 	}
 
 	function getAllSongs(){
-		$SQL = "SELECT songTitle, songLength, songYear, songPrice, songGenre sAlbumTitle FROM song";
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle FROM song s";
 		$query = $this->db->query($SQL);
 		log_message('info', 'song_model - getting all songs query '.$this->db->last_query());
 		$result = NULL;
@@ -33,9 +33,21 @@ class Song_model extends CI_Model {
 		return $result;
 	}
 
-	function addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength){
+	function addSong($data){
 		$SQL = "INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength
-				VALUES ("."'".$sAlbumTitle."',".$sAlbumYear.",'".$songTitle."','".$songYear."',".$songPrice.",'".$songImg."','".$songGenre."',".$songLength.")";
+				VALUES ("."'".$data['sAlbumTitle']."',".$data['sAlbumYear'].",'".$data['songTitle']."','".$data['songYear']."',".$data['songPrice'].",'".$data['songImg']."','".$data['songGenre']."',".$data['songLength'].")";
+
+		//need to create trigger to insert into album, singer, singersingssong, composercomposessong
+		$query = $this->db->query($SQL);
+		log_message("debug","add song SQL " . $this->db->last_query());
+		if($query)
+			return TRUE;
+		else
+			return FALSE;
+	}
+
+	function deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear){
+		$SQL = "DELETE FROM song s WHERE s.sAlbumTitle= "."'".$sAlbumTitle."'"." AND s.sAlbumYear= "."'".$sAlbumYear."'"." AND s.songTitle= "."'".$songTitle."'"." AND s.songYear= "."'".$songYear."'";
 
 		$query = $this->db->query($SQL);
 		if($query)
@@ -44,8 +56,23 @@ class Song_model extends CI_Model {
 			return FALSE;
 	}
 
+ 	function updateSong($update_data, $song_identifier) {
+ 		if(is_array($update_data) && count($update_data)){
+ 			$data = array();
+ 			foreach ($update_data as $key=>$value) {
+ 				$SQL = "UPDATE song s SET s.".$key."= "."'".$value."'"." WHERE s.sAlbumTitle= "."'".$song_identifier['sAlbumTitle']."'"." AND s.sAlbumYear= "."'".$song_identifier['sAlbumYear']."'"." AND s.songTitle= "."'".$song_identifier['songTitle']."'"." AND s.songYear= "."'".$song_identifier['songYear']."'";
+ 				$query = $this->db->query($SQL);
+ 				log_message("debug","update song SQL " . $this->db->last_query());
+ 			}
+ 			
+ 			return (true);
+
+ 		}
+ 		return false;
+ 	}
+
 	function searchSongbyTitle($title){
-		$SQL = "SELECT songTitle, songLength, songYear, songPrice, songGenre sAlbumTitle FROM song
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle FROM song s
 				WHERE LOWER(s.sssSingerFirstName) LIKE LOWER('%taylor%')";
 		$query = $this->db->query($SQL);
 		log_message('info', 'song_model - getting all songs query '.$this->db->last_query());
@@ -62,7 +89,7 @@ class Song_model extends CI_Model {
 	}
 
 	function searchSongbyYear($year){
-		$SQL = "SELECT songTitle, songLength, songYear, songPrice, songGenre sAlbumTitle FROM song
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle FROM song s
 				WHERE songYear = "."'".$year."'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'song_model - search song by year'.$this->db->last_query());
@@ -80,7 +107,7 @@ class Song_model extends CI_Model {
 	}
 
 	function searchSongbyGenre($genre){
-		$SQL = "SELECT songTitle, songLength, songYear, songPrice, songGenre sAlbumTitle FROM song
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle FROM song s
 				WHERE songGenre LIKE "."'%".$genre."%'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'song_model - search song by genre'.$this->db->last_query());
@@ -98,7 +125,7 @@ class Song_model extends CI_Model {
 	}
 
 	function searchSongbyPriceRange($lower, $upper){
-		$SQL = "SELECT songTitle, songLength, songYear, songPrice, songGenre sAlbumTitle FROM song
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle FROM song s
 				WHERE songPrice BETWEEN ".$lower." AND ".$upper;
 		$query = $this->db->query($SQL);
 		log_message('info', 'song_model - search song by price range'.$this->db->last_query());
@@ -147,8 +174,40 @@ class Song_model extends CI_Model {
 		return $result;
 	}
 
-	function searchSongbyComposer(){
-		
+	function searchSongbyComposer($name){
+		$SQL = "SELECT so.songTitle, so.songLength, so.songYear, so.songPrice, so.songGenre, so.sAlbumTitle FROM song so, composercomposessong ccs
+				WHERE ccs.ccsAlbumTitle = so.sAlbumTitle AND ccs.ccsAlbumYear = so.sAlbumYear AND ccs.ccsSongTitle = so.songTitle AND ccs.ccsSongYear = so.songYear
+				AND ((LOWER(ccs.ccsComposerFirstName) LIKE LOWER('%".$name."%') OR LOWER(ccs.ccsComposerLastName) LIKE LOWER('%".$name."%'))";
+		$result = NULL;
+		$query = $this->db->query($SQL);
+		log_message('info', 'song_model - search song by composer'.$this->db->last_query());
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		log_message('info', 'song_model - search by composer result is '.print_r($result,TRUE));
+		return $result;
+	}
+
+	function searchGeneric($term){
+		$SQL = "SELECT DISTINCT so.songTitle, so.songYear, so.songLength, so.songGenre, so.songImg, so.songPrice FROM song so WHERE so.songTitle IN (
+					SELECT sss.sssSongTitle FROM singersingssong sss WHERE  LOWER(sss.sssSingerFirstName) LIKE LOWER('%".$term."%') OR LOWER(sss.sssSingerLastName) LIKE LOWER('%".$term."%') OR LOWER(sss.sssSingerStageName) LIKE LOWER('%".$term."%')) OR LOWER(so.songTitle) LIKE LOWER('%".$term."%') OR so.songLength LIKE '%".$term."%' OR LOWER(so.songGenre) LIKE LOWER('%".$term."%') OR so.songPrice<='".$term."' OR LOWER(so.sAlbumTitle) LIKE LOWER('%".$term."%') OR so.sAlbumYear LIKE '%".$term."%' OR so.songTitle IN (
+					SELECT ccs.ccsSongTitle FROM composercomposessong ccs WHERE  LOWER(ccs.ccsComposerFirstName) LIKE LOWER('%".$term."%') OR LOWER(ccs.ccsComposerLastName) LIKE LOWER('%".$term."%'))";
+		$result = NULL;
+		$query = $this->db->query($SQL);
+		log_message('info', 'song_model - search song generic'.$this->db->last_query());
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		log_message('info', 'song_model - search generic result is '.print_r($result,TRUE));
+		return $result;
 	}
 
 ?>

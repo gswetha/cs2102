@@ -30,7 +30,22 @@ class SongController extends CI_Controller {
 	}
 
 	function addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength){
-		$this->song_model->addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength);
+		//get form input (album info, song info, singer info, composer info)
+		$result = $this->song_model->addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength);
+		return $result;
+	}
+
+	function deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear){
+		//get form input
+		$result = $this->song_model->deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear);
+		return $result;
+	}
+
+	function updateSong(){
+		//get form input
+		$update_data = NULL;
+		$song_identifier = NULL;
+		$result = $this->song_model->updateSong($update_data, $song_identifier)
 	}
 
 	function searchSongbyTitle($title){

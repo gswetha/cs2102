@@ -34,11 +34,25 @@ class Song_model extends CI_Model {
 	}
 
 	function addSong($data){
+		//need to create trigger to insert into album, singer, singersingssong, composercomposessong
+		$SQL_trigger = "CREATE TRIGGER song_trigger AFTER INSERT ON song s
+						BEGIN
+							INSERT INTO album (albumTitle, albumYear, numSongs, albumGenre, albumPrice, albumImg, albumDescrip) VALUES ('".$data['albumTitle']."','".$data['albumYear']."',".$data['numSongs'].",'".$data['albumGenre']."',".$data['albumPrice'].",'".$data['albumImg']."','".$data['albumDescrip']."');
+							INSERT INTO singer (singerFirstName, singerLastName, stageName, singerBirthday, singerDescrip, singerImg) VALUES ('".$data['singerFirstName']."','".$data['singerLastName']."','".$data['stageName']."','".$data['singerBirthday']."','".$data['singerDescrip']."','".$data['singerImg']."');
+							INSERT INTO singersingssong sss (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear, sssSingerFirstName, sssSingerLastName, sssSingerStageName) VALUES ('".$data['sssAlbumTitle']."','".$data['sssAlbumYear']."','".$data['sssSongTitle']."','".$data['sssSongYear']."','".$data['sssSingerFirstName']."','".$data['sssSingerLastName']."','".$data['sssSingerStageName']."');
+							INSERT INTO composercomposessong ccs (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear, ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday) VALUES ('".$data['ccsAlbumTitle']."','".$data['ccsAlbumYear']."','".$data['ccsSongTitle']."','".$data['ccsSongYear']."','".$data['ccsComposerFirstName']."','".$data['ccsComposerLastName']."','".$data['ccsComposerBirthday']."'); 
+						END";
+
+		$query_trigger = $this->db->query($SQL_trigger);
+
 		$SQL = "INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength)
 				VALUES ("."'".$data['sAlbumTitle']."',".$data['sAlbumYear'].",'".$data['songTitle']."','".$data['songYear']."',".$data['songPrice'].",'".$data['songImg']."','".$data['songGenre']."',".$data['songLength'].")";
 
-		//need to create trigger to insert into album, singer, singersingssong, composercomposessong
 		$query = $this->db->query($SQL);
+
+		$SQL_delete_trigger = "DROP TRIGGER song_trigger";
+		$query_delete_trigger = $this->db->query($SQL_delete_trigger);
+
 		log_message("debug","add song SQL " . $this->db->last_query());
 		if($query)
 			return TRUE;

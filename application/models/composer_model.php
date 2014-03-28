@@ -131,7 +131,7 @@ class Song_model extends CI_Model {
 		}
 		elseif ($lower && $higher) {
 			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday < '".$lower."'".
-					"INTERSECTION SELECT * FROM composer c WHERE c.composerBirthday > '".$higher."'";
+					"UNION ALL SELECT * FROM composer c WHERE c.composerBirthday > '".$higher."'";
 		}
 		else
 			return FALSE;

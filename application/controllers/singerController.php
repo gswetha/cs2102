@@ -55,6 +55,30 @@ class SingerController extends CI_Controller {
 	function searchSingerbyName($name, $firstName, $lastName){
 		$this->singer_model->searchSingerbyName($name, $firstName, $lastName);
 	}
+	
+	function updateSingerName($newFirstName, $newLastName, $oldFirstName, $oldLastName, $stageName){
+		$this->singer_model->updateSingerName($newFirstName, $newLastName, $oldFirstName, $oldLastName, $stageName);
+	}
+
+	function updateSingerBirthday($birthday, $firstName, $lastName, $stageName){
+		$this->singer_model->updateSingerBirthday($birthday, $firstName, $lastName, $stageName);
+	}
+
+	function updateSingerStageName($newStageName, $firstName, $lastName, $oldStageName){
+		$this->singer_model->updateSingerStageName($newStageName, $firstName, $lastName, $oldStageName);
+	}
+
+	function deleteSinger($firstName, $lastName, $stageName){
+		$this->singer_model->searchSingerbyName($name, $firstName, $lastName);
+	}
+
+	function singerGenericSearch(){
+		$this->singer_model->singerGenericSearch();
+	}
+
+	function searchMostPopular(){
+		$this->singer_model->searchMostPopular();
+	}
 
 }
 

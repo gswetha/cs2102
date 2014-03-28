@@ -162,4 +162,61 @@ class Singer_model extends CI_Model {
 		return $result;
 	}
 
+	function singerGenericSearch(){
+
+	}
+
+	function searchMostPopular(){
+
+	}
+
+	function updateSingerName($newFirstName, $newLastName, $oldFirstName, $oldLastName, $stageName){
+		//need to update both first and last name together. Therefore need to have checks to make sure the user enter two names
+		$SQL = "UPDATE singer s SET s.singerFirstName = ".$newFirstName." , s.singerLastName = ".$newLastName." 
+				WHERE LOWER(s.singerLastName) LIKE LOWER("."'%".$oldLastName."%') and LOWER(s.singerFirstName) LIKE LOWER("."'%".$oldFirstName."%') AND 
+				LOWER(s.stageName) LIKE LOWER("."'%".$stageName."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - update album title '.$this->db->last_query());
+		if($query)
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
+	function updateSingerBirthday($birthday, $firstName, $lastName, $stageName){
+		$SQL = "UPDATE singer s SET s.singerBirthday = ".$birthday." WHERE LOWER(s.singerLastName) LIKE LOWER("."'%".$lastName."%') and 
+				LOWER(s.singerFirstName) LIKE LOWER("."'%".$firstName."%') AND 
+				LOWER(s.stageName) LIKE LOWER("."'%".$stageName."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - dupdate album price '.$this->db->last_query());
+		if($query)
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
+	function updateSingerStageName($newStageName, $firstName, $lastName, $oldStageName){
+		$SQL = "UPDATE singer s SET s.stageName = ".$newStageName."  WHERE LOWER(s.singerLastName) LIKE LOWER("."'%".$lastName."%') and 
+				LOWER(s.singerFirstName) LIKE LOWER("."'%".$firstName."%') AND 
+				LOWER(s.stageName) LIKE LOWER("."'%".$oldStageName."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - update album genre '.$this->db->last_query());
+		if($query)
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
+	function deleteSinger($firstName, $lastName, $stageName){
+		$SQL = "DELETE FROM singer s WHERE LOWER(s.singerLastName) LIKE LOWER("."'%".$lastName."%') and 
+				LOWER(s.singerFirstName) LIKE LOWER("."'%".$firstName."%') AND 
+				LOWER(s.stageName) LIKE LOWER("."'%".$stageName."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - delete album by title and year '.$this->db->last_query());
+		if($query)
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
 ?>

@@ -161,43 +161,60 @@ class Album_model extends CI_Model {
 		return $result;
 	}
 
-	function albumGenericSearch(){
+	function albumGenericSearch($searchCheck){
+		$SQL = "SELECT DISTINCT * FROM album a WHERE a.albumTitle IN (
+				SELECT ss.sssAlbumTitle FROM singersingssong ss WHERE  LOWER(ss.sssSingerFirstName) LIKE LOWER('%".$searchCheck."%') OR LOWER(ss.sssSingerLastName) LIKE LOWER('%".$searchCheck."%') OR 
+				LOWER(ss.sssSingerStageName) LIKE LOWER('%".$searchCheck."%') OR LOWER(ss.sssSongTitle) LIKE LOWER('%".$searchCheck."%') OR ss.sssSongYear LIKE '%".$searchCheck."%') OR LOWER(a.albumTitle) LIKE 
+				LOWER('%".$searchCheck."%') OR a.albumYear LIKE '%".$searchCheck."%' OR a.numSongs<='%".$searchCheck."%' OR a.albumPrice<='%".$searchCheck."%' OR LOWER(a.albumGenre) LIKE LOWER('%".$searchCheck."%') OR LOWER(a.albumDescrip) 
+				LIKE LOWER('%".$searchCheck."%') OR a.albumTitle IN (SELECT cc.ccsAlbumTitle FROM composercomposessong cc WHERE  LOWER(cc.ccsComposerFirstName) LIKE LOWER('%".$searchCheck."%') OR 
+				LOWER(cc.ccsComposerLastName) LIKE LOWER('%".$searchCheck."%'))";
+
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - generic search'.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		log_message('info', 'album_model - result is '.print_r($result,TRUE));
+		return $result;
 
 	}
 
 	function searchMostPopular(){
+		$SQL = "SELECT p.pAlbumTitle, p.pAlbumYear, a.albumImg FROM purchases p, album a WHERE a.albumTitle=p.pAlbumTItle AND a.albumYear=p.pAlbumYear GROUP BY p.pAlbumTitle, p.pAlbumYear, a.albumImg ORDER BY COUNT(*) DESC";
 
-	}
-
-	function updateAlbumTitle($newTitle, $oldTitle, $albumYear){
-		$SQL = "UPDATE album a SET a.albumTitle = ".$newTitle." WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$oldTitle."%') and a.albumYear = ".$albumYear.;
 		$query = $this->db->query($SQL);
-		log_message('info', 'album_model - update album title '.$this->db->last_query());
-		if($query)
-			return TRUE;
-		else 
-			return FALSE;
+		log_message('info', 'album_model - popular search'.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		log_message('info', 'album_model - result is '.print_r($result,TRUE));
+		return $result;
 	}
 
-	function updateAlbumPrice($price,$albumTitle, $albumYear){
-		$SQL = "UPDATE album a SET a.albumPrice = ".$price." WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = ".$albumYear.;
-		$query = $this->db->query($SQL);
-		log_message('info', 'album_model - dupdate album price '.$this->db->last_query());
-		if($query)
-			return TRUE;
-		else 
-			return FALSE;
-	}
+	function updateAlbum($update_data, $album_identifier) {
+ 		if(is_array($update_data) && count($update_data)){
+ 			$data = array();
+ 			foreach ($update_data as $key=>$value) {
+ 				$SQL = "UPDATE album a SET a.".$key."= "."'".$value."'"." WHERE a.albumTitle= "."'".$album_identifier['albumTitle']."'"." AND a.albumYear= "."'".$album_identifier['albumYear']."'";
+ 				$query = $this->db->query($SQL);
+ 				log_message("debug","update singer SQL " . $this->db->last_query());
+ 			}
+ 			
+ 			return (true);
 
-	function updateAlbumGenre($genre, $albumTitle, $albumYear){
-		$SQL = "UPDATE album a SET a.albumGenre = ".$genre."  WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = ".$albumYear.;
-		$query = $this->db->query($SQL);
-		log_message('info', 'album_model - update album genre '.$this->db->last_query());
-		if($query)
-			return TRUE;
-		else 
-			return FALSE;
-	}
+ 		}
+ 		return false;
+ 	}
 
 	function deleteAlbum($albumTitle, $albumYear){
 		$SQL = "DELETE FROM album a WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = ".$albumYear.;

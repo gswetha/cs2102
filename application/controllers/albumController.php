@@ -52,24 +52,16 @@ class AlbumController extends CI_Controller {
 		$this->album_model->searchAlbumbyArtist($name, $firstName, $lastName);
 	}
 
-	function updateAlbumTitle($newTitle, $oldTitle, $albumYear){
-		$this->album_model->updateAlbumTitle($newTitle, $oldTitle, $albumYear);
-	}
-
-	function updateAlbumPrice($price,$albumTitle, $albumYear){
-		$this->album_model->updateAlbumPrice($price,$albumTitle, $albumYear);
-	}
-
-	function updateAlbumGenre($genre, $albumTitle, $albumYear){
-		$this->album_model->updateAlbumGenre($genre, $albumTitle, $albumYear);
+	function updateAlbum($update_data, $album_identifier){
+		$this->album_model->updateAlbum($update_data, $album_identifier);
 	}
 
 	function deleteAlbum($albumTitle, $albumYear){
 		$this->album_model->deleteAlbum($albumTitle, $albumYear);
 	}
 
-	function albumGenericSearch(){
-		$this->album_model->albumGenericSearch();
+	function albumGenericSearch($searchCheck){
+		$this->album_model->albumGenericSearch($searchCheck);
 	}
 
 	function searchMostPopular(){

@@ -1,7 +1,7 @@
 CREATE TABLE album (
 		albumTitle 	VARCHAR(100),
 		albumYear 	DATE,
-		numSongs 	INT,
+		numSongs 	INT (CHECK numSongs>0),
 		albumGenre 	VARCHAR(64),
 		albumPrice 	DOUBLE,
 		albumImg 	VARCHAR(96),

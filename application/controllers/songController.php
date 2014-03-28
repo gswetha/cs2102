@@ -63,6 +63,18 @@ class SongController extends CI_Controller {
 	function searchSongbyPriceRange($lower, $upper){
 		$this->song_model->searchSongbyPriceRange($lower, $upper);
 	}
+
+	function searchSongbySinger($name, $firstname, $lastname){
+		$this->song_model->searchSongbySinger($name, $firstname, $lastname);
+	}
+
+	function searchSongbyComposer($name){
+		$this->song_model->searchSongbyComposer($name);
+	}
+
+	function searchSongGeneric($term){
+		$this->song_model->searchGeneric($term);
+	}
 }
 
 ?>

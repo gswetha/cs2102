@@ -34,7 +34,7 @@ class Song_model extends CI_Model {
 	}
 
 	function addSong($data){
-		$SQL = "INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength
+		$SQL = "INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength)
 				VALUES ("."'".$data['sAlbumTitle']."',".$data['sAlbumYear'].",'".$data['songTitle']."','".$data['songYear']."',".$data['songPrice'].",'".$data['songImg']."','".$data['songGenre']."',".$data['songLength'].")";
 
 		//need to create trigger to insert into album, singer, singersingssong, composercomposessong
@@ -142,7 +142,7 @@ class Song_model extends CI_Model {
 
 	}
 
-	function searchSongbyArtist($name=FALSE, $firstname=FALSE, $lastname=FALSE){
+	function searchSongbySinger($name=FALSE, $firstname=FALSE, $lastname=FALSE){
 		//this function receives $name if only one word was typed. eg. Taylor. 
 		//if 2 words were given, it is assumed to be in the format "firstname lastname". So this function will not receive $name. it will only receive $firstname and $lastname.
 		if(!$firstname && !$lastname) {

@@ -25,6 +25,68 @@ class UserController extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function songmenu() {
+		$this->load->view('_home_header_styles');
+		$this->load->view('songmenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function albummenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('albummenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function singermenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('singermenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function composermenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('composermenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function genremenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('genremenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function singlealbumview()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('singlealbumview');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function top10songs()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10songs');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function top10albums()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10albums');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function top10singers()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10singers');
+		$this->load->view('_home_footer_script');
+	}
+
 	function login(){
 		$data['start'] = $this->uri->segment(3);
 		$data['error'] = "no error";

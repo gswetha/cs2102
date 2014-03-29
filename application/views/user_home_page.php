@@ -26,6 +26,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD:application/views/home_page.php
           <?php if(!$logged_in){ ?>
             <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
             <li><a href="#">Sign up</a></li>
@@ -44,6 +45,20 @@
                 </ul>
             </li>
           <?php } ?>
+=======
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" role="button" id="drop1" data-toggle="dropdown">
+                My Account
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Purchases</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+              </ul>
+          </li>
+>>>>>>> FETCH_HEAD:application/views/user_home_page.php
         </ul>
       </div>
     </div>

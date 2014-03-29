@@ -25,6 +25,76 @@ class UserController extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function songmenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('songmenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function albummenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('albummenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function artistmenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('artistmenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function composermenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('composermenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function genremenu()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('genremenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function singlealbumview()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('singlealbummenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function top10songs()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10songs');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function top10albums()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10albums');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function top10singers()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10singers');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function purchases()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('top10singers');
+		$this->load->view('_home_footer_script');
+	}
+
 	function login(){
 		$data['start'] = $this->uri->segment(3);
 		$data['error'] = "no error";
@@ -51,7 +121,6 @@ class UserController extends CI_Controller {
 			 		 	log_message('info', 'user info is '.print_r($user_info,TRUE));
 			 			 $this->session->set_userdata(array(
 								'name'	=> $user_info['userName'],
-								'email'	=> $user_info['email'],
 								'status'	=> 'logged_in',
 								'role'	=> $user_info['role'],
 						));
@@ -93,13 +162,11 @@ class UserController extends CI_Controller {
 	}
 
 	function getUserByName($name){
-		$result = $this->user_model->getUserByName($name);
-		return $result;
+
 	}
 
 	function getUserByEmail($email){
-		$result = $this->user_model->getUserByEmail($email);
-		return $result;
+
 	}
 
 	function logout(){
@@ -113,21 +180,6 @@ class UserController extends CI_Controller {
 			return TRUE;
 		else
 			return FALSE;
-	}
-
-	function deleteUser(){
-		//get input from form
-		$email = $this->session->userdata('email');
-		$result = $this->user_model->deleteUser($email);
-		return $result;
-	}
-
-	function updateUser(){
-		//get input from form
-		$data = NULL;
-		$email = $this->session->userdata('email');
-		$result = $this->user_model->updateUser($data, $email);
-		return $result;
 	}
 
 }

@@ -22,7 +22,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href=<?php echo $this->config->item('base_url')."home"?>>Welcome, <?php echo $username; ?>!</a>
+        <a class="navbar-brand" href="#">Welcome, <?php echo $username; ?>!</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -88,16 +88,12 @@
                   </a>
                   </h4>
               </div>
-              <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <ul role="menu" aria-labelledby="drop3">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
-                  </ul>
-                </div>
+              <div class="list-group">
+                <a href="./home/songmenu" class="list-group-item">All Songs</a>
+                <a href="./home/albummenu" class="list-group-item">All Albums</a>
+                <a href="./home/singermenu" class="list-group-item">All Singers</a>
+                <a href="./home/composermenu" class="list-group-item">All Composers</a>
+                <a href="./home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
 
@@ -109,41 +105,13 @@
                   </a>
                   </h4>
               </div>
-              <div id="collapseTwo" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <ul role="menu" aria-labelledby="drop3">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
-                  </ul>
-                </div>
+              <div class="list-group">
+                <a href="./home/top10songs" class="list-group-item">Top 10 Songs</a>
+                <a href="./home/top10albums" class="list-group-item">Top 10 Albums</a>
+                <a href="./home/top10singers" class="list-group-item">Top 10 Singers</a>
+                <a href="./home/top100" class="list-group-item">Top 100 of all Time</a>
               </div>
             </div>
-
-            <?php if($role == "admin"){ ?>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                      Admin
-                    </a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse in">
-                  <div class="panel-body">
-                    <ul role="menu" aria-labelledby="drop3">
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Song</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Album</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Singer</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Composer</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>View all purchases</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            <?php } ?>
 
           </div>
       </div>
@@ -204,105 +172,142 @@
         </div><!-- /.carousel -->
         </div>
 
+        
+
         <h2 class="sub-header">Music Catalogue</h2>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
-        </form>
+
+        <div style="font-size:18px;"><select>
+          <option>Search By..</option>
+          <option>Song</option>
+          <option>Album</option>
+          <option>Year</option>
+          <option>Composer</option>
+          <option>Genre</option>
+        </select></div>
+
+        <div class="col-m-12" >
+          <div class="input-group">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+
+
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Composer</th>
-                <th>Artist</th>
-                <th>Album</th>
-                <th>Genre</th>
-                <th></th>
+                <th><a style="text-decoration:none">Song</a></th>
+                <th><a style="text-decoration:none">Artist</a></th>
+                <th><a style="text-decoration:none">Album</a></th>
+                <th><a style="text-decoration:none">Genre</a></th>
+                <th><a style="text-decoration:none">Year</a></th>
+                <th><a style="text-decoration:none">Price</a></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1,003</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>Integer</td>
                 <td>nec</td>
                 <td>odio</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,003</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>libero</td>
                 <td>Sed</td>
                 <td>cursus</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,004</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>dapibus</td>
                 <td>diam</td>
                 <td>Sed</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,005</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>Nulla</td>
                 <td>quis</td>
                 <td>sem</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,006</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>nibh</td>
                 <td>elementum</td>
                 <td>imperdiet</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,007</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>sagittis</td>
                 <td>ipsum</td>
                 <td>Praesent</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,008</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>Fusce</td>
                 <td>nec</td>
                 <td>tellus</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,009</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>augue</td>
                 <td>semper</td>
                 <td>adipiscing</td>
                 <td>porta</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,010</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>massa</td>
                 <td>Vestibulum</td>
                 <td>lacinia</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
               <tr>
-                <td>1,011</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
                 <td>eget</td>
                 <td>nulla</td>
                 <td>Class</td>
                 <td>adipiscing</td>
-                <td><button>Buy!</button></td>
+                <td><button>Insert Price</button></td>
               </tr>
             </tbody>
           </table>
+
+          <div id="songinfo" class="modal fade">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Song Title</h4>
+                </div>
+                <div class="modal-body">
+                  <p><img data-src="holder.js/200x180" align="middle"></p>
+                  <p>asd dfsdf ew weqwe qwe wef df df dfdas dsad sads ddfdf df df gtr t rt rtrtrt r t sa dasd s dsd asd 
+                    dfsdf ew weqwe qwe wef df df dfdas dsad sads ddfdf df df gtr t rt rtrtrt r t asd dfsdf ew weqwe qwe wef df df dfd
+                    as dsad sads ddfdf df df gtr t rt rtrtrt r t sa dasd s dsdsa dasd s dsd</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">$1.99</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
         </div>
       </div>
     </div>

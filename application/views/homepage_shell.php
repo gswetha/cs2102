@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-	<title>CS2102 - Music Catalogue</title>
+  <title>CS2102 - Music Catalogue</title>
 
-	<style type="text/css">
-	</style>
+  <style type="text/css">
+  </style>
 </head>
-
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -30,6 +27,7 @@
             <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
             <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
           <?php } ?>
+          <li><a href=<?php echo $this->config->item('base_url')."userController/feedback"?>>Leave us a feedback!</a></li>
           <?php if($logged_in){ ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" role="button" id="drop1" data-toggle="dropdown">
@@ -49,36 +47,11 @@
     </div>
   </div>
 
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <!-- <li class="dropdown">
-              <a href="#" class="dropdown-toggle" role="button" id="drop2" data-toggle="dropdown">
-                Catalogue
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
-              </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" role="button" id="drop3" data-toggle="dropdown">
-                Most Popular
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
-              </ul>
-          </li> -->
           <div class="panel-group" id="accordion">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -121,33 +94,13 @@
                 </div>
               </div>
             </div>
-
-            <?php if($role == "admin"){ ?>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                      Admin
-                    </a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse in">
-                  <div class="panel-body">
-                    <ul role="menu" aria-labelledby="drop3">
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Song</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Album</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Singer</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>Add Composer</a></li>
-                      <li role="presentation"><a href=<?php echo $this->config->item('base_url')?>>View all purchases</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            <?php } ?>
-
           </div>
+        </ul>
       </div>
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    </div>
+  </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">What's Trending</h1>
 
         <div class="row placeholders">
@@ -204,108 +157,19 @@
         </div><!-- /.carousel -->
         </div>
 
-        <h2 class="sub-header">Music Catalogue</h2>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
-        </form>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Composer</th>
-                <th>Artist</th>
-                <th>Album</th>
-                <th>Genre</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1,003</td>
-                <td>Integer</td>
-                <td>nec</td>
-                <td>odio</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>libero</td>
-                <td>Sed</td>
-                <td>cursus</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,004</td>
-                <td>dapibus</td>
-                <td>diam</td>
-                <td>Sed</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,005</td>
-                <td>Nulla</td>
-                <td>quis</td>
-                <td>sem</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,006</td>
-                <td>nibh</td>
-                <td>elementum</td>
-                <td>imperdiet</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,007</td>
-                <td>sagittis</td>
-                <td>ipsum</td>
-                <td>Praesent</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,008</td>
-                <td>Fusce</td>
-                <td>nec</td>
-                <td>tellus</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,009</td>
-                <td>augue</td>
-                <td>semper</td>
-                <td>adipiscing</td>
-                <td>porta</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,010</td>
-                <td>massa</td>
-                <td>Vestibulum</td>
-                <td>lacinia</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-              <tr>
-                <td>1,011</td>
-                <td>eget</td>
-                <td>nulla</td>
-                <td>Class</td>
-                <td>adipiscing</td>
-                <td><button>Buy!</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+         <!-- START WITH A <DIV> YOUR STUFF HERE!!!!!!-->
+        <!-- ADD YOUR STUFF HERE!!!!!!-->
+         <!-- ADD YOUR STUFF HERE!!!!!!-->
+          <!-- ADD YOUR STUFF HERE!!!!!!-->
+           <!-- ADD YOUR STUFF HERE!!!!!!-->
+            <!-- ADD YOUR STUFF HERE!!!!!!-->
+             <!-- ADD YOUR STUFF HERE!!!!!!-->
+              <!-- ADD YOUR STUFF HERE!!!!!!-->
+               <!-- ADD YOUR STUFF HERE!!!!!!-->
+                <!-- ADD YOUR STUFF HERE!!!!!!-->
+                 <!-- ADD YOUR STUFF HERE!!!!!!-->
+                 <!-- END WITH A <\DIV> YOUR STUFF HERE!!!!!!-->
+
       </div>
-    </div>
-  </div>
+
 </body>
-</html>

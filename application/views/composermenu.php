@@ -104,52 +104,25 @@
             <thead>
               <tr>
                 <th><a style="text-decoration:none">No.</a></th>
-                <th><a style="text-decoration:none">All Composers</a></th> 
+                <th><a style="text-decoration:none">First Name</a></th> 
+                <th><a style="text-decoration:none">Last Name</a></th> 
+                <th><a style="text-decoration:none">Birthday</a></th> 
+                <th><a style="text-decoration:none">Description</a></th> 
               </tr>
             </thead>
             <tbody>
-              <tr>
-                
-                <td width="10%">1</td>
-                <td>Jason Yu</td>
-                
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Jason Yu</td>
-              </tr>
+              <?php 
+                  foreach ($composers_list as $key => $value) {
+                    echo '<tr>';
+                    echo '<td>'; echo ($key+1); echo '</td>';
+                    echo '<td>'; echo $value['composerFirstName']; echo '</td>';
+                    echo '<td>'; echo $value['composerLastName']; echo '</td>';
+                    echo '<td>'; echo $value['composerBirthday']; echo '</td>';
+                    echo '<td>'; echo $value['composerDescrip']; echo '</td>';
+                    echo '</tr>';
+                  }
+              ?>
+              
             </tbody>
           </table>
         </div

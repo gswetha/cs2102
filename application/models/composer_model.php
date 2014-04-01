@@ -1,19 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Song_model extends CI_Model {
-
+class Composer_model extends CI_Model {
+	 	
 	/*
 	 | CLASS DATA
 	 |
 	 */
-	 	var $table_name     = 'song'; //model queries from song table.
+	 	var $table_name     = 'composer'; //model queries from song table.
 
 		var $composerFirstName = '';
 		var $composerLastName  = '';
 		var $composerBirthday  = '';
 		var $composerDescrip   = '';
-	}
+
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
+	
 
 	function getAllComposers(){
 		$SQL = "SELECT * FROM composer";
@@ -122,8 +128,10 @@ class Song_model extends CI_Model {
 		return $result;
 	}
 
-	function searchComposerByBirthday($lower, $higher){
+	function searchComposerByBirthday($birthday, $lower = '0000-00-00', $higher = '0001-01-01'){
 		//have ranges (can use union in the SQL)
+		if ($birthday && $lower > '0000-00-00' && $higher > '0001-01-01')
+			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday = '".$birthday."'";
 		if($lower && !$higher)
 			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday < '".$lower."'";
 		elseif (!$lower && $higher) {
@@ -181,6 +189,6 @@ class Song_model extends CI_Model {
 		log_message('info', 'composer_model - search composer by genre result is '.print_r($result,TRUE));
 		return $result;
 	}
-
+}
 
 ?>

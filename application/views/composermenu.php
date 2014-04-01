@@ -98,6 +98,23 @@
             </div>
           </div>
       </div>
+
+      <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
+
+        
+        <div style="font-size:18px;"><select>
+          <option>Search By..</option>
+          <option>Composer Name</option>
+          <option>Composed Song Title</option>
+        </select></div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div class="table-responsive">
           <table class="table table-striped">

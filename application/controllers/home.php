@@ -120,6 +120,34 @@ class Home extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function purchases()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('purchases');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function admin_edit()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('admin_edit');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function add_song_album()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('add_song_album');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function add_artist_composer()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('add_artist_composer');
+		$this->load->view('_home_footer_script');
+	}
+
 	function isLoggedIn(){
 		if($this->session->userdata('status') == 'logged_in')
 			return TRUE;

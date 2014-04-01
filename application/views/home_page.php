@@ -37,7 +37,7 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/admin_edit">My Profile</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/purchases">My Purchases</a></li>
                   <li role="presentation" class="divider"></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>

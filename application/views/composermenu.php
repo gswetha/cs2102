@@ -101,19 +101,25 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-        
-        <div style="font-size:18px;"><select>
-          <option>Search By..</option>
-          <option>Composer Name</option>
-          <option>Composed Song Title</option>
-        </select></div>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-        </div><!-- /input-group -->
-      </div><!-- /.col-lg-6 -->
+      <form method="post" action="./search">  
+        <div style="font-size:18px;">
+          <select name="search_option" id="search_option">
+            <option>Search By..</option>
+            <option>Composer Name</option>
+            <option>Composer Birthday</option>
+            <option>Song</option>
+            <option>Album</option>
+            <option>Genre</option>
+          </select>
+        </div>
+          <div class="input-group">
+            <input type="text" class="form-control" name="search_term" id="search_term" placeholder="Search...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" name="search_submit" id="search_submit" value="Submit" type="submit">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </form>
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div class="table-responsive">
@@ -129,14 +135,17 @@
             </thead>
             <tbody>
               <?php 
-                  foreach ($composers_list as $key => $value) {
-                    echo '<tr>';
-                    echo '<td>'; echo ($key+1); echo '</td>';
-                    echo '<td>'; echo $value['composerFirstName']; echo '</td>';
-                    echo '<td>'; echo $value['composerLastName']; echo '</td>';
-                    echo '<td>'; echo $value['composerBirthday']; echo '</td>';
-                    echo '<td>'; echo $value['composerDescrip']; echo '</td>';
-                    echo '</tr>';
+                  log_message('info', 'composers_list in view is '.print_r($composers_list,true));
+                   if(count($composers_list)){
+                    foreach ($composers_list as $key => $value) {
+                      echo '<tr>';
+                      echo '<td>'; echo ($key+1); echo '</td>';
+                      echo '<td>'; echo $value['composerFirstName']; echo '</td>';
+                      echo '<td>'; echo $value['composerLastName']; echo '</td>';
+                      echo '<td>'; echo $value['composerBirthday']; echo '</td>';
+                      echo '<td>'; echo $value['composerDescrip']; echo '</td>';
+                      echo '</tr>';
+                    }
                   }
               ?>
               

@@ -38,7 +38,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Purchases</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/purchases">My Purchases</a></li>
                   <li role="presentation" class="divider"></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
                 </ul>
@@ -206,84 +206,84 @@
             </thead>
             <tbody>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>Integer</td>
-                <td>nec</td>
-                <td>odio</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Let It Go</a></td>
+                <td>Edina Menzel</td>
+                <td>Frozen OST</td>
+                <td>Pop</td>
+                <td>2014</td>
+                <td><button>$1.50</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>libero</td>
-                <td>Sed</td>
-                <td>cursus</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Do You Wanna Build a Snowman?</a></td>
+                <td>Kirsten Bell</td>
+                <td>Never Again</td>
+                <td>Pop</td>
+                <td>2014</td>
+                <td><button>$0.99</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>dapibus</td>
-                <td>diam</td>
-                <td>Sed</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">All Of Me</a></td>
+                <td>John Legend</td>
+                <td>Love in the Future</td>
+                <td>Pop</td>
+                <td>2013</td>
+                <td><button>$0.99</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>Nulla</td>
-                <td>quis</td>
-                <td>sem</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Love is An Open Door</a></td>
+                <td>Kristen Bell</td>
+                <td>Frozen OST</td>
+                <td>Pop</td>
+                <td>2013</td>
+                <td><button>$1.19</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>nibh</td>
-                <td>elementum</td>
-                <td>imperdiet</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Dark Horse</a></td>
+                <td>Katy Perry</td>
+                <td>Prism</td>
+                <td>Pop</td>
+                <td>2013</td>
+                <td><button>$0.79</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>sagittis</td>
-                <td>ipsum</td>
-                <td>Praesent</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Happy</a></td>
+                <td>Pharrel Williams</td>
+                <td>Despicable Me 2: OST</td>
+                <td>Pop</td>
+                <td>2013</td>
+                <td><button>$0.79</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>Fusce</td>
-                <td>nec</td>
-                <td>tellus</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">A Thousand Years</a></td>
+                <td>Christina Perri</td>
+                <td>Twilight</td>
+                <td>Pop</td>
+                <td>2011</td>
+                <td><button>$0.50</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>augue</td>
-                <td>semper</td>
-                <td>adipiscing</td>
-                <td>porta</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Wake Me Up!</a></td>
+                <td>Avicii</td>
+                <td>True</td>
+                <td>Electonics</td>
+                <td>2013</td>
+                <td><button>$0.99</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>massa</td>
-                <td>Vestibulum</td>
-                <td>lacinia</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Counting Stars</a></td>
+                <td>One Republic</td>
+                <td>Native</td>
+                <td>Pop</td>
+                <td>2013</td>
+                <td><button>$1.29</button></td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">1,00000000000003</a></td>
-                <td>eget</td>
-                <td>nulla</td>
-                <td>Class</td>
-                <td>adipiscing</td>
-                <td><button>Insert Price</button></td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Roar</a></td>
+                <td>Katy Perry</td>
+                <td>Prism</td>
+                <td>Pop</td>
+                <td>2013</td>
+                <td><button>$1.09</button></td>
               </tr>
             </tbody>
           </table>

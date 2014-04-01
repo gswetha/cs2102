@@ -37,7 +37,6 @@ class Home extends CI_Controller {
 
 		$this->load->view('_home_header_styles');
 		$this->load->view('home_page',$data);
-		$this->load->view('user_home_page',$data);
 		$this->load->view('_home_footer_script');
 	}
 

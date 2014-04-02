@@ -40,20 +40,20 @@ class PurchasesController extends CI_Controller {
 		$this->singer_model->getRevenueBySinger($firstName, $lastName);
 	}
 
-	function getRevenueByGenre($genre){
-		$this->singer_model->getRevenueByGenre($genre);
+	function getRevenueByGenre(){
+		$this->singer_model->getRevenueByGenre();
 	}
 
-	function getRevenueByAlbum($title, $year){
-		$this->singer_model->getRevenueByAlbum($title, $year);
+	function getRevenueByAlbum(){
+		$this->singer_model->getRevenueByAlbum();
 	}
 
-	function getRevenueByComposer($firstName, $lastName){
-		$this->singer_model->getRevenueByComposer($firstName, $lastName);
+	function getRevenueByComposer(){
+		$this->singer_model->getRevenueByComposer();
 	}
 
-	function getRevenueBySong($songTitle, $songYear, $albumTitle, $albumYear){
-		$this->singer_model->getRevenueBySong($songTitle, $songYear, $albumTitle, $albumYear);
+	function getRevenueBySong(){
+		$this->singer_model->getRevenueBySong();
 	}
 
 	

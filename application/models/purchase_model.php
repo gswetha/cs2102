@@ -25,9 +25,9 @@ class Purchase_model extends CI_Model {
 		
 	}
 
-	function getRevenueByGenre($genre){
-		$SQL = "SELECT a.albumGenre, SUM(p.amountPaid) FROM album a, purchases p WHERE a.albumTitle = p.pAlbumTitle AND a.albumYear = p.pAlbumYear AND
-				LOWER(a.albumGenre) LIKE LOWER('%".$genre."%') GROUP BY a.albumGenre, SUM(p.amountPaid) ORDER BY SUM(p.amountPaid) DESC";
+	function getRevenueByGenre(){
+		$SQL = "SELECT a.albumGenre, SUM(p.amountPaid) FROM album a, purchases p WHERE a.albumTitle = p.pAlbumTitle AND a.albumYear = p.pAlbumYear
+				GROUP BY a.albumGenre, SUM(p.amountPaid) ORDER BY SUM(p.amountPaid) DESC";
 
 		$query = $this->db->query($SQL);
 		log_message('info', 'purchase_model - get revenue by genre'.$this->db->last_query());
@@ -43,9 +43,8 @@ class Purchase_model extends CI_Model {
 		return $result;
 	}
 
-	function getRevenueByAlbum($title, $year){
-		$SQL = "SELECT p.pAlbumTitle, p.pAlbumYear, SUM(p.amountPaid) FROM purchases p WHERE 
-				LOWER(p.pAlbumTitle) LIKE LOWER('%".$title."%') AND p.pAlbumYear = $year GROUP BY p.pAlbumTitle, p.pAlbumYear, SUM(p.amountPaid)
+	function getRevenueByAlbum(){
+		$SQL = "SELECT p.pAlbumTitle, p.pAlbumYear, SUM(p.amountPaid) FROM purchases p GROUP BY p.pAlbumTitle, p.pAlbumYear, SUM(p.amountPaid)
 				ORDER BY SUM(p.amountPaid) DESC";
 
 		$query = $this->db->query($SQL);
@@ -62,10 +61,9 @@ class Purchase_model extends CI_Model {
 		return $result;
 	}
 
-	function getRevenueByComposer($firstName, $lastName){
+	function getRevenueByComposer(){
 		$SQL = "SELECT ccs.ccsComposerFirstName, ccs.ccsComposerLastName, SUM(p.amountPaid) FROM composercomposessong ccs, purchases p WHERE 
-				ccs.ccsAlbumTitle = p.pAlbumTitle AND ccs.ccsAlbumYear = p.pAlbumYear AND
-				LOWER(ccs.ccsComposerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(ccs.ccs.ccsComposerLastName) LIKE LOWER('%".$lastName."%')
+				ccs.ccsAlbumTitle = p.pAlbumTitle AND ccs.ccsAlbumYear = p.pAlbumYear
 				GROUP BY ccs.ccsComposerFirstName, ccs.ccsComposerLastName, SUM(p.amountPaid) ORDER BY SUM(p.amountPaid) DESC";
 
 		$query = $this->db->query($SQL);
@@ -82,10 +80,8 @@ class Purchase_model extends CI_Model {
 		return $result;
 	}
 
-	function getRevenueBySong($songTitle, $songYear, $albumTitle, $albumYear){
-		$SQL = "SELECT p.pSongTitle, p.pSongYear, SUM(p.amountPaid) FROM purchases p WHERE 
-				LOWER(p.pAlbumTitle) LIKE LOWER('%".$albumTitle."%') AND p.pAlbumYear = $albumYear AND
-				LOWER(p.pSongTitle) LIKE LOWER('%".$songTitle."%') AND p.pSongYear = $songYear AND
+	function getRevenueBySong(){
+		$SQL = "SELECT p.pSongTitle, p.pSongYear, SUM(p.amountPaid) FROM purchases p
 				GROUP BY p.pSongTitle, p.pSongYear, SUM(p.amountPaid)
 				ORDER BY SUM(p.amountPaid) DESC";
 

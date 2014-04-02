@@ -1,19 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Song_model extends CI_Model {
-
+class Composer_model extends CI_Model {
+	 	
 	/*
 	 | CLASS DATA
 	 |
 	 */
-	 	var $table_name     = 'song'; //model queries from song table.
+	 	var $table_name     = 'composer'; //model queries from song table.
 
 		var $composerFirstName = '';
 		var $composerLastName  = '';
 		var $composerBirthday  = '';
 		var $composerDescrip   = '';
-	}
+
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
+	
 
 	function getAllComposers(){
 		$SQL = "SELECT * FROM composer";
@@ -72,8 +78,8 @@ class Song_model extends CI_Model {
  	}
 
 	function searchGeneric($term){
-		$SQL = "SELECT DISTINCT * FROM composer c WHERE LOWER(c.ccomposerFirstName) LIKE LOWER('%".$term."%') OR c.composerBirthday LIKE '%".$term."%' OR LOWER(c.composerLastName) LIKE LOWER('%".$term."%') OR LOWER(c.composerDescrip) LIKE LOWER('%".$term."%') OR c.composerFirstName IN (
-				SELECT ccs.ccsComposerFirstName FROM composercomposessong ccs WHERE  LOWER(ccs.ccsAlbumTitle) LIKE LOWER('%".$term."%') OR ccs.ccsAlbumYear LIKE '%".$term."%' OR LOWER(ccs.ccsSongTitle) LIKE LOWER('%".$term."%') OR ccs.ccsSongYear LIKE '%".$term."%')";
+		$SQL = "SELECT DISTINCT * FROM composer c WHERE LOWER(c.composerFirstName) LIKE LOWER('%".$term."%') OR c.composerBirthday LIKE ('%".$term."%') OR LOWER(c.composerLastName) LIKE LOWER('%".$term."%') OR LOWER(c.composerDescrip) LIKE LOWER('%".$term."%') OR c.composerFirstName IN (
+				SELECT ccs.ccsComposerFirstName FROM composercomposessong ccs WHERE  LOWER(ccs.ccsAlbumTitle) LIKE LOWER('%".$term."%') OR ccs.ccsAlbumYear LIKE ('%".$term."%') OR LOWER(ccs.ccsSongTitle) LIKE LOWER('%".$term."%') OR ccs.ccsSongYear LIKE ('%".$term."%'))";
 		$result = NULL;
 		$query = $this->db->query($SQL);
 		log_message('info', 'composer_model - search composer generic'.$this->db->last_query());
@@ -122,19 +128,24 @@ class Song_model extends CI_Model {
 		return $result;
 	}
 
-	function searchComposerByBirthday($lower, $higher){
+	function searchComposerByBirthday($birthday, $lower, $higher){
 		//have ranges (can use union in the SQL)
-		if($lower && !$higher)
+		$result = NULL;	
+		log_message('info', 'in composer model searching composer by birthday. parameters are '.print_r($birthday,true).' and '.print_r($lower,true).' and '.print_r($higher,true));
+		if ($birthday)
+			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday = '".$birthday."'";
+		elseif($lower && !$higher)
 			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday < '".$lower."'";
 		elseif (!$lower && $higher) {
 			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday > '".$higher."'";
 		}
 		elseif ($lower && $higher) {
-			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday < '".$lower."'".
-					"INTERSECTION SELECT * FROM composer c WHERE c.composerBirthday > '".$higher."'";
+			$SQL = "SELECT * FROM composer c WHERE c.composerBirthday BETWEEN '".$lower."'"." AND '".$higher."'";
 		}
-		else
+		else {
+			log_message('info', 'all of the conditions failed');
 			return FALSE;
+		}
 
 		$query = $this->db->query($SQL);
 		log_message('info', 'composer_model - search composer by bday'.$this->db->last_query());
@@ -151,7 +162,7 @@ class Song_model extends CI_Model {
 	}
 
 	function searchComposerByAlbum($album){
-		$SQL = "SELECT DISTINCT c.ccsComposerFirstName, c.ccsComposerLastName FROM composercomposessong c WHERE LOWER(c.ccsAlbumTitle) LIKE LOWER('%".$album."%')";
+		$SQL = "SELECT DISTINCT c.composerFirstName, c.composerLastName, c.composerBirthday, c.composerDescrip FROM composercomposessong ccs, composer c WHERE ccs.ccsComposerFirstName= c.composerFirstName AND ccs.ccsComposerLastName = c.composerLastName AND ccs.ccsComposerBirthday = c.composerBirthday AND LOWER(ccs.ccsAlbumTitle) LIKE LOWER('%".$album."%')";
 		$result = NULL;
 		$query = $this->db->query($SQL);
 		log_message('info', 'composer_model - search composer by album'.$this->db->last_query());
@@ -167,7 +178,7 @@ class Song_model extends CI_Model {
 	}
 
 	function searchComposerByGenre($genre){
-		$SQL = "SELECT DISTINCT c.ccsComposerFirstName, c.ccsComposerLastName FROM composercomposessong c, song s WHERE LOWER(s.songGenre) LIKE LOWER('%".$genre."%') AND c.ccsSongTitle=s.songTitle";
+		$SQL = "SELECT DISTINCT c.composerFirstName, c.composerLastName, c.composerBirthday, c.composerDescrip FROM composercomposessong ccs, composer c, song s WHERE ccs.ccsComposerFirstName= c.composerFirstName AND ccs.ccsComposerLastName = c.composerLastName AND ccs.ccsComposerBirthday = c.composerBirthday AND LOWER(s.songGenre) LIKE LOWER('%".$genre."%') AND ccs.ccsSongTitle=s.songTitle";
 		$result = NULL;
 		$query = $this->db->query($SQL);
 		log_message('info', 'composer_model - search composer by genre'.$this->db->last_query());
@@ -181,6 +192,6 @@ class Song_model extends CI_Model {
 		log_message('info', 'composer_model - search composer by genre result is '.print_r($result,TRUE));
 		return $result;
 	}
-
+}
 
 ?>

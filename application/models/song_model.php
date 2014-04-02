@@ -39,7 +39,7 @@ class Song_model extends CI_Model {
 		$SQL_delete_trigger = "DROP TRIGGER IF EXISTS song_trigger";
 		$query_delete_trigger = $this->db->query($SQL_delete_trigger);
 
-		$SQL_trigger = "CREATE TRIGGER song_trigger BEFORE INSERT ON song s
+		$SQL_trigger = "CREATE TRIGGER song_trigger AFTER INSERT ON album 
 						BEGIN
 							INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength) VALUES ("."'".$data['sAlbumTitle']."',".$data['sAlbumYear'].",'".$data['songTitle']."','".$data['songYear']."',".$data['songPrice'].",'".$data['songImg']."','".$data['songGenre']."',".$data['songLength'].");
 							INSERT INTO singer (singerFirstName, singerLastName, stageName, singerBirthday, singerDescrip, singerImg) VALUES ('".$data['singerFirstName']."','".$data['singerLastName']."','".$data['stageName']."','".$data['singerBirthday']."','".$data['singerDescrip']."','".$data['singerImg']."');

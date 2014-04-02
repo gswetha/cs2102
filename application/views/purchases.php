@@ -34,8 +34,8 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" >My Profile</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/purchases">My Purchases</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/admin_edit">My Profile</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1">My Purchases</a></li>
                   <li role="presentation" class="divider"></li>
                   
                 </ul>
@@ -114,11 +114,7 @@
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Your Dashboard</h2>
-
-        <div><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addinfo">To Add an Entry, Click Here</button></div>
-        </br>
-        </br>
+        <h2 class="sub-header">Already Purchases Songs</h2>
 
         <div style="font-size:18px;"><select>
           <option>Search By..</option>
@@ -140,95 +136,48 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><a style="text-decoration:none">Song</a></th>
+                <th><a style="text-decoration:none">Category</a></th>
+                <th><a style="text-decoration:none">Title</a></th>
                 <th><a style="text-decoration:none">Artist</a></th>
-                <th><a style="text-decoration:none">Album</a></th>
-                <th><a style="text-decoration:none">Genre</a></th>
-                <th><a style="text-decoration:none">Year</a></th>
-                <th><a style="text-decoration:none">Delete Entry</a></th>
+                <th><a style="text-decoration:none">Purchased Price</a></th>
+                <th><a style="text-decoration:none">Purchased Date</a></th>
+                <th><a style="text-decoration:none">Order ID</a></th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>Song</td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Let It Go</a></td>
                 <td>Edina Menzel</td>
-                <td>Frozen OST</td>
-                <td>Pop</td>
                 <td>2014</td>
-                <td><button>Delete</button></td>
+                <td>$1.50</td>
+                <td>20/2/2014</td>
               </tr>
               <tr>
+                <td>Song</td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Do You Wanna Build a Snowman?</a></td>
                 <td>Kirsten Bell</td>
-                <td>Never Again</td>
-                <td>Pop</td>
                 <td>2014</td>
-                <td><button>Delete</button></td>
+                <td>$0.99</td>
+                <td>20/2/2014</td>
               </tr>
               <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">All Of Me</a></td>
-                <td>John Legend</td>
-                <td>Love in the Future</td>
-                <td>Pop</td>
+                <td>Album</td>
+                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Love in the Future</a></td>
+                <td>John Legend</td>              
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td>$15.99</td>
+                <td>18/2/2014</td>
               </tr>
               <tr>
+                <td>Song</td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Love is An Open Door</a></td>
                 <td>Kristen Bell</td>
-                <td>Frozen OST</td>
-                <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td>$1.19</td>
+                <td>15/2/2014</td>
               </tr>
-              <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Dark Horse</a></td>
-                <td>Katy Perry</td>
-                <td>Prism</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button></td>
-              </tr>
-              <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Happy</a></td>
-                <td>Pharrel Williams</td>
-                <td>Despicable Me 2: OST</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button></td>
-              </tr>
-              <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">A Thousand Years</a></td>
-                <td>Christina Perri</td>
-                <td>Twilight</td>
-                <td>Pop</td>
-                <td>2011</td>
-                <td><button>Delete</button></td>
-              </tr>
-              <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Wake Me Up!</a></td>
-                <td>Avicii</td>
-                <td>True</td>
-                <td>Electonics</td>
-                <td>2013</td>
-                <td><button>Delete</button></td>
-              </tr>
-              <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Counting Stars</a></td>
-                <td>One Republic</td>
-                <td>Native</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button></td>
-              </tr>
-              <tr>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Roar</a></td>
-                <td>Katy Perry</td>
-                <td>Prism</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button></td>
-              </tr>
+              
             </tbody>
           </table>
 
@@ -247,32 +196,6 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Delete</button>
-                </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
-
-          <div id="addinfo" class="modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title">Please Select Category to Edit:</h4>
-                </div>
-                <div class="modal-body">
-                
-                </br>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Album</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Artist</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
-
-                  
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Confirm Entry</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

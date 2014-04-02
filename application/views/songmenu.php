@@ -79,7 +79,14 @@
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
         
-
+        <div style="font-size:18px;"><select>
+          <option>Search By..</option>
+          <option>Song Title</option>
+          <option>Artist</option>
+          <option>Year</option>
+          <option>Composer</option>
+          <option>Genre</option>
+        </select></div>
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search...">
           <span class="input-group-btn">

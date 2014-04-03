@@ -7,6 +7,10 @@ class Album_model extends CI_Model {
 	 | CLASS DATA
 	 |
 	 */
+<<<<<<< HEAD
+=======
+	var $table_name     = 'album';
+>>>>>>> FETCH_HEAD
 
 	function __construct()
     {
@@ -127,7 +131,12 @@ class Album_model extends CI_Model {
 			$SQL = "SELECT s.sssAlbumTitle, s.sssAlbumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE (
 						(LOWER(s.sssSingerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(s.sssSingerLastName) LIKE LOWER('%".$lastName."%'))
+<<<<<<< HEAD
 						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName"%'))";
+=======
+						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))
+						)";
+>>>>>>> FETCH_HEAD
 		}
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - search album by singer name '.$this->db->last_query());
@@ -154,7 +163,12 @@ class Album_model extends CI_Model {
 			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.cssAlbumYear = a.albumYear WHERE ((LOWER(c.ccsSingerFirstName) LIKE LOWER('%".$firstName."%') 
 						AND LOWER(c.ccsSingerLastName) LIKE LOWER('%".$lastName."%'))
+<<<<<<< HEAD
 						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName"%'))";
+=======
+						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))
+						)";
+>>>>>>> FETCH_HEAD
 		}
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - search album by compoer name '.$this->db->last_query());
@@ -226,7 +240,7 @@ class Album_model extends CI_Model {
  	}
 
 	function deleteAlbum($albumTitle, $albumYear){
-		$SQL = "DELETE FROM album a WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = ".$albumYear.;
+		$SQL = "DELETE FROM album a WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = '".$albumYear."'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - delete album by title and year '.$this->db->last_query());
 		if($query)

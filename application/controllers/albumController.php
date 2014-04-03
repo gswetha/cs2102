@@ -14,7 +14,11 @@ class AlbumController extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		// Models
+<<<<<<< HEAD
 		// $this->load->model('album_model');
+=======
+		 $this->load->model('album_model');
+>>>>>>> FETCH_HEAD
 	 }
 	 
 	public function index()
@@ -42,7 +46,12 @@ class AlbumController extends CI_Controller {
 	}
 
 	function searchAlbumbyTitle($title){
+<<<<<<< HEAD
 		$result = $this->album_model->searchAlbumbyTitle(($title);
+=======
+		$title = "feel";
+		$result = $this->album_model->searchAlbumbyTitle($title);
+>>>>>>> FETCH_HEAD
 		return $result;
 	}
 

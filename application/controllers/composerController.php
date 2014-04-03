@@ -38,7 +38,7 @@ class ComposerController extends CI_Controller {
 		$this->composer_model->addComposer($data_insert);
 	}
 
-	function updateSinger(){
+	function updateComposer(){
 		//get info from form
 		$this->composer_model->updateComposer($update_data, $composer_identifier);
 	}

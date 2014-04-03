@@ -7,18 +7,31 @@ class Album_model extends CI_Model {
 	 | CLASS DATA
 	 |
 	 */
-	 	var $table_name     = 'album'; //model queries from album table.
+	var $table_name     = 'album';
 
-		var $album_title 	= '';
-		var $album_year	 	= '';
-		var $album_genre 	= '';
-		var $album_price 	= '';
-		var $album_length 	= '';
-		var $album_img_url 	= '';
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
+
+	function getAllAlbumImg(){
+		$SQL = "SELECT albumImg FROM album";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - getting all album query '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
 	}
 
 	function getAlbum(){
-		$SQL = "SELECT * FROM ".$this->table_name;
+		$SQL = "SELECT * FROM album";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query '.$this->db->last_query());
 		$result = NULL;
@@ -33,8 +46,7 @@ class Album_model extends CI_Model {
 	}
 
 	function addAlbum($albumTitle, $albumYear, $numSongs, $genre, $price, $img, $descrip){
-		$SQL = "INSERT INTO album (albumTitle, albumYear, numSongs, albumGenre, albumPrice, albumImg, albumDescrip
-				VALUES ("."'".$albumTitle."',".$albumYear.",'".$numSongs."','".$genre."',".$price.",'".$img."','".$descrip.")";
+		$SQL = "INSERT INTO album (albumTitle, albumYear, numSongs, albumGenre, albumPrice, albumImg, albumDescrip) VALUES ("."'".$albumTitle."',".$albumYear.",'".$numSongs."','".$genre."',".$price.",'".$img."','".$descrip."')";
 
 		$query = $this->db->query($SQL);
 		if($query)
@@ -44,7 +56,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchAlbumbyTitle($title){
-		$SQL = "SELECT * FROM ".$this->table_name." WHERE LOWER(albumTitle) LIKE LOWER("."'%".$title."%')";
+		$SQL = "SELECT * FROM album WHERE LOWER(albumTitle) LIKE LOWER('%".$title."%')";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by title '.$this->db->last_query());
 		$result = NULL;
@@ -59,7 +71,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchAlbumbyYear($year){
-		$SQL = "SELECT * FROM ".$this->table_name." WHERE albumYear = "."'".$year."'";
+		$SQL = "SELECT * FROM album WHERE albumYear = '".$year."'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by year '.$this->db->last_query());
 		$result = NULL;
@@ -74,7 +86,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchAlbumbyGenre($genre){
-		$SQL = "SELECT * FROM ".$this->table_name." WHERE LOWER(albumGenre) LIKE LOWER("."'%".$genre."%')";
+		$SQL = "SELECT * FROM album WHERE LOWER(albumGenre) LIKE LOWER('%".$genre."%')";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by genre '.$this->db->last_query());
 		$result = NULL;
@@ -89,7 +101,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchAlbumbyPriceRange($lowerPrice,$upperPrice){
-		$SQL = "SELECT * FROM album	WHERE albumPrice BETWEEN ".$lower." AND ".$upper;
+		$SQL = "SELECT * FROM album	WHERE albumPrice BETWEEN ".$lowerPrice." AND ".$upperPrice;
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by price range'.$this->db->last_query());
 		$result = NULL;
@@ -116,7 +128,7 @@ class Album_model extends CI_Model {
 			$SQL = "SELECT s.sssAlbumTitle, s.sssAlbumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE (
 						(LOWER(s.sssSingerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(s.sssSingerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName"%'))
+						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))
 						)";
 		}
 		$query = $this->db->query($SQL);
@@ -144,7 +156,7 @@ class Album_model extends CI_Model {
 			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.cssAlbumYear = a.albumYear WHERE ((LOWER(c.ccsSingerFirstName) LIKE LOWER('%".$firstName."%') 
 						AND LOWER(c.ccsSingerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName"%'))
+						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))
 						)";
 		}
 		$query = $this->db->query($SQL);
@@ -217,7 +229,7 @@ class Album_model extends CI_Model {
  	}
 
 	function deleteAlbum($albumTitle, $albumYear){
-		$SQL = "DELETE FROM album a WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = ".$albumYear.;
+		$SQL = "DELETE FROM album a WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = '".$albumYear."'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - delete album by title and year '.$this->db->last_query());
 		if($query)
@@ -225,4 +237,5 @@ class Album_model extends CI_Model {
 		else 
 			return FALSE;
 	}
+}
 ?>

@@ -94,8 +94,10 @@
       </div><!-- /.col-lg-6 -->
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+       
         <div class="row">
+
+    
           <div class="col-xs-6 col-md-3">
             <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
               <img data-src="holder.js/200x180">
@@ -108,55 +110,30 @@
           </div>
           <div class="col-xs-6 col-md-3">
             <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
+              <img data-src="holder.js/200x180">  
             </a>
           </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-           <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
+
         </div>
+
+         <div class="row">
+                <tbody>
+                  <?php
+                    log_message('info', 'album_list in view is '.print_r($albumImg,true));
+                    if(count($albumImg)){
+                          foreach ($albumImg as $key => $value) {
+                        
+                            echo '<div class="col-xs-6 col-md-3">';
+                            echo '<a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">';
+                            echo '<img src="'; echo $value['albumImg']; echo'>';
+                            echo '</a>';
+                            echo '</div>';
+                          }
+                      }
+                  ?>
+                </tbody> 
+       </div>
+        
       </div>
 
       <div id="albuminfo" class="modal fade">

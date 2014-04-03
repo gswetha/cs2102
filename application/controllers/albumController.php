@@ -14,18 +14,27 @@ class AlbumController extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		// Models
-		$this->load->model('album_model');
+		 $this->load->model('album_model');
 	 }
 	 
 	public function index()
 	{
+		$data['albumImg'] = $this->getAllAlbumImg();
+		log_message('debug','creating something here in album');
 		$this->load->view('_home_header_styles');
-		$this->load->view('home_page');
+		$this->load->view('albummenu',$data);
 		$this->load->view('_home_footer_script');
 	}
 
 	function getAlbum(){
-		$this->album_model->getAlbum();
+		$albums = $this->album_model->getAlbum();
+		return $albums;
+	}
+
+	function getAllAlbumImg(){
+		log_message('info', 'entered the getAllComposers function in composer controller');
+		$img = $this->album_model->getAllAlbumImg();
+		return $img;
 	}
 
 	function addAlbum($albumTitle, $albumYear, $numSongs, $genre, $price, $img, $descrip){
@@ -33,7 +42,9 @@ class AlbumController extends CI_Controller {
 	}
 
 	function searchAlbumbyTitle($title){
-		$this->album_model->searchAlbumbyTitle(($title);
+		$title = "feel";
+		$result = $this->album_model->searchAlbumbyTitle($title);
+		return $result;
 	}
 
 	function searchAlbumbyYear($year){

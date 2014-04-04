@@ -8,17 +8,31 @@ class Singer_model extends CI_Model {
 	 |
 	 */
 	 	var $table_name     = 'singer'; //model queries from singer table.
+	
 
-		var $album_title 	= '';
-		var $album_year	 	= '';
-		var $album_genre 	= '';
-		var $album_price 	= '';
-		var $album_length 	= '';
-		var $album_img_url 	= '';
-	}
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
 
 	function getSinger(){
-		$SQL = "SELECT * FROM ".$this->table_name;
+		$SQL = "SELECT * FROM singer";
+		$query = $this->db->query($SQL);
+		log_message('info', 'singer_model - getting all singer query '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
+
+	function getAllSingerImg(){
+		$SQL = "SELECT singerImg FROM singer";
 		$query = $this->db->query($SQL);
 		log_message('info', 'singer_model - getting all singer query '.$this->db->last_query());
 		$result = NULL;
@@ -33,7 +47,7 @@ class Singer_model extends CI_Model {
 	}
 
 	function addSinger($firstName,$lastName,$stageName,$birthday,$descrip, $img){
-		$SQL = "INSERT INTO singer (singerFistName, singerLastName, stageName, singerBirthday, singerDescrip, singerImg
+		$SQL = "INSERT INTO singer (singerFistName, singerLastName, stageName, singerBirthday, singerDescrip, singerImg)
 				VALUES ('".$firstName."','".$lastName."','".$stageName."','".$birthday."','".$descrip.",'".$img."'')";
 
 		$query = $this->db->query($SQL);
@@ -112,11 +126,11 @@ class Singer_model extends CI_Model {
 	function searchSingerbyBirthday($birthday=FALSE,$lowerBirthday=FALSE,$upperBirthday=FALSE){
 
 		if(!$lowerBirthday && !$upperBirthday) {
-			$SQL = "SELECT * FROM song
+			$SQL = "SELECT * FROM singer
 					WHERE singerBirthday = ".$birthday;
 		}	
 		else{
-			$SQL = "SELECT * FROM song
+			$SQL = "SELECT * FROM singer
 					WHERE singerBirthday BETWEEN ".$lowerBirthday." AND ".$upperBirthday;
 		}
 		$query = $this->db->query($SQL);
@@ -136,16 +150,15 @@ class Singer_model extends CI_Model {
 		//this function receives $name if only one word was typed. eg. Taylor. 
 		//if 2 words were given, it is assumed to be in the format "firstname lastname". So this function will not receive $name. it will only receive $firstname and $lastname.
 		if(!$firstName && !$lastName) {
-			$SQL = "SELECT * FROM song
+			$SQL = "SELECT * FROM singer
 					WHERE ((LOWER(singerFistName) LIKE LOWER('%".$name."%'))
 					OR (LOWER(singerLastName) LIKE LOWER('%".$name."%'))
-					OR (LOWER(singerStageName) LIKE LOWER('%".$name."%')))";
+					OR (LOWER(singerStageName) LIKE LOWER('%".$name."%'))";
 		}	
 		else{
-			$SQL = "SELECT * FROM song
-					WHERE (
-						(LOWER(singerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(singerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(singerStageName) LIKE LOWER('%".$firstName." ".$lastName"%')))";
+			$SQL = "SELECT * FROM singer
+					WHERE ((LOWER(singerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(singerLastName) LIKE LOWER('%".$lastName."%'))
+						OR (LOWER(singerStageName) LIKE LOWER('%".$firstName." ".$lastName."%')))";
 		}
 		$query = $this->db->query($SQL);
 		log_message('info', 'singer_model - search album by singer name '.$this->db->last_query());
@@ -165,10 +178,10 @@ class Singer_model extends CI_Model {
 		$SQL = "SELECT DISTINCT * FROM album a WHERE a.albumTitle IN (
 				SELECT ss. sssAlbumTitle FROM singersingssong ss WHERE  LOWER(ss.sssSingerFirstName) LIKE LOWER('%".$searchCheck."%') OR 
 				LOWER(ss.sssSingerLastName) LIKE LOWER('%".$searchCheck."%') OR LOWER(ss.sssSingerStageName) LIKE LOWER('%".$searchCheck."%') OR 
-				LOWER(ss.sssSongTitle) LIKE LOWER('%".$searchCheck."%') OR ss.sssSongYear LIKE '%".$searchCheck."%') OR LOWER('%".$searchCheck."%') LIKE LOWER('%".$searchCheck."%') OR
+				LOWER(ss.sssSongTitle) LIKE LOWER('%".$searchCheck."%') OR ss.sssSongYear LIKE '%".$searchCheck."%' OR LOWER('%".$searchCheck."%') LIKE LOWER('%".$searchCheck."%') OR
 				a.albumYear LIKE ''%".$searchCheck."%' OR a.numSongs<='%".$searchCheck."%' OR a.albumPrice<='%".$searchCheck."%' OR LOWER(a.albumGenre) LIKE LOWER('%".$searchCheck."%') OR 
 				LOWER(a.albumDescrip) LIKE LOWER('%".$searchCheck."%') OR a.albumTitle IN (SELECT cc.ccsAlbumTitle FROM composercomposessong cc WHERE  
-				LOWER(cc.ccsComposerFirstName) LIKE LOWER('%".$searchCheck."%') OR LOWER(cc.ccsComposerLastName) LIKE LOWER('%".$searchCheck."%'))";
+				LOWER(cc.ccsComposerFirstName) LIKE LOWER('%".$searchCheck."%') OR LOWER(cc.ccsComposerLastName) LIKE LOWER('%".$searchCheck."%')))";
 
 		$query = $this->db->query($SQL);
 		log_message('info', 'singer_model - generic search'.$this->db->last_query());
@@ -229,5 +242,6 @@ class Singer_model extends CI_Model {
 		else 
 			return FALSE;
 	}
+}
 
 ?>

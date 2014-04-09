@@ -52,8 +52,8 @@
               <div class="list-group">
                 <a href="../home/songmenu" class="list-group-item">All Songs</a>
                 <a class="list-group-item">All Albums</a>
-                <a href="../home/singermenu" class="list-group-item">All Singers</a>
-                <a href="../home/composermenu" class="list-group-item">All Composers</a>
+                <a href="./singerController" class="list-group-item">All Singers</a>
+                <a href="./composerController" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -104,9 +104,11 @@
                     if(count($albumImg)){
                           foreach ($albumImg as $key => $value) {
                             echo '<div class="col-xs-6 col-md-3">';
-                              echo '<a href="#" data-toggle="modal" data-target="#albuminfo" data-id="test123" class="thumbnail">';
-                                echo '<img src="'; echo $value['albumImg']; echo'width="180" height="180">';
+                              echo '<a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">';
+                                echo '<img src="'; echo $value['albumImg']; echo'>';                                
                              echo '</a>';
+                             echo $value['albumTitle'];
+                            echo $value['albumPrice'];
                             echo '</div>';
                           }
                       }
@@ -115,9 +117,6 @@
         </div>
       </div>
 
-<!--       //try to get the id to be pass to modal so to get the information but
-      difficult!!!!
-      possibliy look jquery, javascript -->
 
       <div id="albuminfo" class="modal fade">
         <div class="modal-dialog">

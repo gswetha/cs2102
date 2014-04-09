@@ -20,11 +20,11 @@ class AlbumController extends CI_Controller {
 	 
 	public function index()
 	{
-		$data['albumImg'] = $this->getAllAlbumImg();
+		$data['albumImg'] = $this->getAllAlbumPriInfo();
 		$albumData['album'] = $this->getAlbum();
 		log_message('debug','creating something here in album');
 		$this->load->view('_home_header_styles');
-		$this->load->view('albummenu',$data,$albumData);
+		$this->load->view('albummenu',$data);
 		$this->load->view('_home_footer_script');
 	}
 
@@ -33,9 +33,8 @@ class AlbumController extends CI_Controller {
 		return $albums;
 	}
 
-	function getAllAlbumImg(){
-		log_message('info', 'entered the getAllComposers function in composer controller');
-		$img = $this->album_model->getAllAlbumImg();
+	function getAllAlbumPriInfo(){
+		$img = $this->album_model->getAllAlbumPriInfo();
 		return $img;
 	}
 

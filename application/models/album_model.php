@@ -15,8 +15,8 @@ class Album_model extends CI_Model {
         parent::__construct();
     }
 
-	function getAllAlbumImg(){
-		$SQL = "SELECT albumImg FROM album";
+	function getAllAlbumPriInfo(){
+		$SQL = "SELECT albumImg, albumTitle, albumPrice FROM album";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query '.$this->db->last_query());
 		$result = NULL;

@@ -78,24 +78,25 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-        
-        <div style="font-size:18px;"><select>
+      <form method="post" action="./search">  
+        <div style="font-size:18px;"><select name="search_option" id="search_option">
           <option>Search By..</option>
           <option>Song Title</option>
-          <option>Artist</option>
+          <option>Singer</option>
           <option>Year</option>
           <option>Composer</option>
           <option>Genre</option>
           <option>Price</option>
-          <option>Album </option>
+          <option>Album</option>
         </select></div>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
+         <input type="text" class="form-control" name="search_term" id="search_term" placeholder="Search..">
+            <span class="input-group-btn">
+              <button class="btn btn-default" name="search_submit" id="search_submit" value="Submit" type="submit">Go!</button>
+            </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
+    </form>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row">
@@ -116,62 +117,8 @@
             }
           }
         ?>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-           <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
+      
+          <div class="col-xs-6 col-md-3" style="display: none;">
             <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
               <img data-src="holder.js/200x180">
             </a>

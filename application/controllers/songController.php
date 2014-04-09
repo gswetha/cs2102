@@ -52,6 +52,77 @@ class SongController extends CI_Controller {
 		return $result;
 	}
 
+function search(){
+		//get form input from search and based on what user wants to search for, direct to the correct function and display the result
+		log_message('info', 'in search function in composer controller.');
+		 if($this->input->post('search_submit')) {
+		 	echo "post successful";
+		 	$result = NULL;
+		 	switch ($this->input->post('search_option')) {
+		 		case 'Search By..':
+					$result = $this->searchSongGeneric($this->input->post('search_term'));
+					break;
+				case 'Song Title':
+					$result = $this->searchSongbyTitle($this->input->post('search_term'));
+					break;
+				case 'Singer':
+					$term = $this->input->post('search_term');
+					$term = explode(' ', $term);
+					log_message('debug','term is '.print_r($term,true));
+					if(count($term) == 1) {
+						log_message('info', 'count of term is 1');
+						$result = $this->searchSongbySinger($term[0], FALSE, FALSE);
+					}
+					else {
+						//there is firstname and lastname or stagename
+						$result = $this->searchSongbySinger(FALSE, $term[0], $term[1]);
+					}
+					break;
+				case 'Year':
+					$result = $this->searchSongbyYear($this->input->post('search_term'));
+					break;
+				case 'Composer':
+					$result = $this->searchSongbyComposer($this->input->post('search_term'));
+					break;
+				case 'Genre':
+					$result = $this->searchSongbyGenre($this->input->post('search_term'));
+					break;
+				case 'Price':
+					$term = $this->input->post('search_term');
+					$term = explode(' ', $term);
+					log_message('debug','term is '.print_r($term,true));
+					if(count($term) == 1) {
+						log_message('info', 'count of term is 1');
+						$result = $this->searchSongbyPriceRange($term[0], FALSE);
+					}
+					else {
+						//there is lower and higher
+						$result = $this->searchSongbyPriceRange($term[0], $term[1]);
+					}
+					break;
+				case 'Album':
+					$result = $this->searchSongbyAlbum($this->input->post('search_term'));
+					break;
+				default:
+					$result = $this->searchSongGeneric($this->input->post('search_term'));
+					break;
+		 	}
+
+			//process result and show page
+			//var_dump($result);
+			if(count($result))
+				$data['songs_list'] = $result;
+			else
+				$data['songs_list'] = NULL;
+			$data['title'] = "Song Catalogue";
+			$this->load->view('_home_header_styles');
+			$this->load->view('songmenu', $data);
+			$this->load->view('_home_footer_script');
+		}
+		else
+			redirect($this->config->item('base_url')."songcontroller");
+	}
+
 	function searchSongbyTitle($title){
 		$result = $this->song_model->searchSongbyTitle($title);
 		return $result;

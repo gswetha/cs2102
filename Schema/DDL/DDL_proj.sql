@@ -78,6 +78,7 @@ CREATE TABLE purchases (
 		transactionId	INT NOT NULL AUTO_INCREMENT,
 		transactionDate	DATE,
 		amountPaid		DOUBLE,
+		purchaseType	VARCHAR(16) (CHECK purchaseType='album' OR purchaseType='song'),
 		FOREIGN KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear) REFERENCES song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
 		FOREIGN KEY (pEmail) REFERENCES user (email) ON UPDATE CASCADE ON DELETE CASCADE,
 		PRIMARY KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail),

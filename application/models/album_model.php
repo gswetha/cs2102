@@ -122,14 +122,14 @@ class Album_model extends CI_Model {
 			$SQL = "SELECT s.sssAlbumTitle, s.sssAlbumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE ((LOWER(s.sssSingerFirstName) LIKE LOWER('%".$name."%'))
 					OR (LOWER(s.sssSingerLastName) LIKE LOWER('%".$name."%'))
-					OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$name."%')))";
+					OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$name."%'))";
 		}	
 		else{
 			$SQL = "SELECT s.sssAlbumTitle, s.sssAlbumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE (
 						(LOWER(s.sssSingerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(s.sssSingerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))
-						)";
+						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))";
+
 		}
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - search album by singer name '.$this->db->last_query());
@@ -150,14 +150,13 @@ class Album_model extends CI_Model {
 			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.cssAlbumYear = a.albumYear WHERE ((LOWER(c.ccsSingerFirstName) LIKE LOWER('%".$name."%'))
 					OR (LOWER(c.ccsSingerLastName) LIKE LOWER('%".$name."%'))
-					OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$name."%')))";
+					OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$name."%'))";
 		}	
 		else{
 			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre FROM album a
 					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.cssAlbumYear = a.albumYear WHERE ((LOWER(c.ccsSingerFirstName) LIKE LOWER('%".$firstName."%') 
 						AND LOWER(c.ccsSingerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))
-						)";
+						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))";
 		}
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - search album by compoer name '.$this->db->last_query());

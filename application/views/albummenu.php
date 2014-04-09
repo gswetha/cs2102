@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="Scripts/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="Scripts/knockout-2.0.0.js" type="text/javascript"></script>
+<script src="Scripts/ViewModel.js" type="text/javascript"></script>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,54 +97,39 @@
       </div><!-- /.col-lg-6 -->
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-       
-        <div class="row">
-
-    
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">
-              <img data-src="holder.js/200x180">  
-            </a>
-          </div>
-
-        </div>
-
-         <div class="row">
+          <div class="row">
                 <tbody>
                   <?php
                     log_message('info', 'album_list in view is '.print_r($albumImg,true));
                     if(count($albumImg)){
                           foreach ($albumImg as $key => $value) {
-                        
                             echo '<div class="col-xs-6 col-md-3">';
-                            echo '<a href="#" data-toggle="modal" data-target="#albuminfo" class="thumbnail">';
-                            echo '<img src="'; echo $value['albumImg']; echo'>';
-                            echo '</a>';
+                              echo '<a href="#" data-toggle="modal" data-target="#albuminfo" data-id="test123" class="thumbnail">';
+                                echo '<img src="'; echo $value['albumImg']; echo'width="180" height="180">';
+                             echo '</a>';
                             echo '</div>';
                           }
                       }
                   ?>
                 </tbody> 
-       </div>
-        
+        </div>
       </div>
+
+<!--       //try to get the id to be pass to modal so to get the information but
+      difficult!!!!
+      possibliy look jquery, javascript -->
 
       <div id="albuminfo" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Album Title Goes Here!</h4>
+              <h4 class="modal-title">Album Title Goes Here!</h4> 
+              <tbody>
+                <?php
+                  echo "soomething as a test!";
+                ?>
+              </tbody>
             </div>
             <div class="modal-body">
               <div style="float:left;">
@@ -152,76 +140,75 @@
             </div>
             <div>
             	<div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th><a style="text-decoration:none">No.</a></th>
-                <th><a style="text-decoration:none">Song Name</a></th>
-                
-            </thead>
-            <tbody>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-             <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td>Song 1</td>
-                
-              </tr>
-            </tbody>
-          </table>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th><a style="text-decoration:none">No.</a></th>
+                      <th><a style="text-decoration:none">Song Name</a></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                   <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                    <tr>
+                      
+                      <td>1</td>
+                      <td>Song 1</td>
+                      
+                    </tr>
+                  </tbody>
+                </table>
             </div>
             <div class="modal-footer" style="margin-top:30px;">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

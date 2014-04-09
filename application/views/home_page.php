@@ -89,10 +89,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../songcontroller" class="list-group-item">All Songs</a>
+                <a href="./songcontroller" class="list-group-item">All Songs</a>
                 <a href="./home/albummenu" class="list-group-item">All Albums</a>
                 <a href="./home/singermenu" class="list-group-item">All Singers</a>
-                <a href="../composercontroller" class="list-group-item">All Composers</a>
+                <a href="./composercontroller" class="list-group-item">All Composers</a>
                 <a href="./home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>

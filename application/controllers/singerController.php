@@ -19,8 +19,9 @@ class SingerController extends CI_Controller {
 	 
 	public function index()
 	{
+		$data['images'] = $this->getAllSingerImg();
 		$this->load->view('_home_header_styles');
-		$this->load->view('home_page');
+		$this->load->view('singermenu',$data);
 		$this->load->view('_home_footer_script');
 	}
 
@@ -28,12 +29,17 @@ class SingerController extends CI_Controller {
 		$this->singer_model->getSinger();
 	}
 
+	function getAllSingerImg(){
+		$images = $this->singer_model->getAllSingerImg();
+		return $images;
+	}
+
 	function addSinger($firstName,$lastName,$stageName,$birthday,$descrip, $img){
 		$this->singer_model->addSinger($firstName,$lastName,$stageName,$birthday,$descrip, $img);
 	}
 
 	function searchSingerbySongTitle($title){
-		$this->singer_model->searchAlbumbyTitle(($title);
+		$this->singer_model->searchAlbumbyTitle($title);
 	}
 
 	function searchSingerbyAlbumTitle($title){

@@ -93,68 +93,21 @@
       </div><!-- /.col-lg-6 -->
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-        <div class="row">
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-           <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" data-toggle="modal" data-target="#singerinfo" class="thumbnail">
-              <img data-src="holder.js/200x180">
-            </a>
-          </div>
+         <div class="row">
+                <tbody>
+                  <?php
+                    log_message('info', 'singer_list in view is '.print_r($images,true));
+                    if(count($images)){
+                          foreach ($images as $key => $value) {
+                            echo '<div class="col-xs-6 col-md-3">';
+                              echo '<a href="#" data-toggle="modal" data-target="#singerinfo" data-id="test123" class="thumbnail">';
+                                echo '<img src="'; echo $value['singerImg']; echo'width="180" height="180">';
+                             echo '</a>';
+                            echo '</div>';
+                          }
+                      }
+                  ?>
+                </tbody> 
         </div>
       </div>
 

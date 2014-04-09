@@ -14,15 +14,17 @@ class AlbumController extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		// Models
+
 		 $this->load->model('album_model');
 	 }
 	 
 	public function index()
 	{
 		$data['albumImg'] = $this->getAllAlbumImg();
+		$albumData['album'] = $this->getAlbum();
 		log_message('debug','creating something here in album');
 		$this->load->view('_home_header_styles');
-		$this->load->view('albummenu',$data);
+		$this->load->view('albummenu',$data,$albumData);
 		$this->load->view('_home_footer_script');
 	}
 
@@ -42,6 +44,7 @@ class AlbumController extends CI_Controller {
 	}
 
 	function searchAlbumbyTitle($title){
+
 		$title = "feel";
 		$result = $this->album_model->searchAlbumbyTitle($title);
 		return $result;

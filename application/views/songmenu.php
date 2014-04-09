@@ -49,8 +49,8 @@
               <div class="list-group">
                 <a class="list-group-item">All Songs</a>
                 <a href="../home/albummenu" class="list-group-item">All Albums</a>
-                <a href="../home/singermenu" class="list-group-item">All Singers</a>
-                <a href="../home/composermenu" class="list-group-item">All Composers</a>
+                <a href="../songcontroller" class="list-group-item">All Singers</a>
+                <a href="../composercontroller" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -86,6 +86,8 @@
           <option>Year</option>
           <option>Composer</option>
           <option>Genre</option>
+          <option>Price</option>
+          <option>Album </option>
         </select></div>
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search...">
@@ -96,8 +98,24 @@
       </div><!-- /.col-lg-6 -->
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
         <div class="row">
+        <?php if(count($songs_list)) {  } ?>
+        <?php 
+          if(count($songs_list)){
+            foreach ($songs_list as $key => $value) {
+             //var_dump($value);
+              echo '<div class="col-xs-6 col-md-3">';
+              $data_target = "#songinfo_".$key;
+              echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
+              //echo '<img data-src="holder.js/200x180">';
+              echo '<img src= '.$value['songImg'].'>';
+              echo '<p>';
+              echo '<b>'.$value['songTitle']."  -  $".$value['songPrice'].'</b>';
+              echo '</p>';
+              echo '</div>';
+            }
+          }
+        ?>
           <div class="col-xs-6 col-md-3">
             <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
               <img data-src="holder.js/200x180">
@@ -157,27 +175,36 @@
             <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
               <img data-src="holder.js/200x180">
             </a>
-          </div>
+          </div> 
         </div>
       </div>
+      
+      <?php foreach ($songs_list as $key => $value) {
+        $id = "songinfo_".$key; 
+      ?>
+        <div id=<?php echo $id; ?> class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php echo $value['songTitle']; ?></h4>
+              </div>
+              <div class="modal-body">
+                <p><img src="<?php echo $value['songImg']; ?>" align="middle"></p>
+                <p>Album: <?php echo $value['sAlbumTitle']; ?> ( released <?php echo $value['sAlbumYear']; ?>)</p>
+                <p>Genre: <?php echo $value['songGenre']; ?></p>
+                <p>Length: <?php echo $value['songLength']; ?></p>
+              </div>
+              <div class="modal-footer">
+                <form method="post"> <!-- later add in action="/purchasecontroller/buysong" -->
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" name="buy_song" id="buy_song">$<?php echo number_format($value['songPrice'],2); ?></button>
+                </form>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+      <?php } ?>  
 
-      <div id="songinfo" class="modal fade">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Song Title</h4>
-            </div>
-            <div class="modal-body">
-              <p><img data-src="holder.js/200x180" align="middle"></p>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">$1.99</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
 </body>
 </html>

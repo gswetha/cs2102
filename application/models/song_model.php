@@ -15,10 +15,15 @@ class Song_model extends CI_Model {
 		var $song_price 	= '';
 		var $song_length 	= '';
 		var $song_img_url 	= '';
-	}
+	
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
 
 	function getAllSongs(){
-		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle FROM song s";
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle, s.sAlbumYear, s.songImg FROM song s";
 		$query = $this->db->query($SQL);
 		log_message('info', 'song_model - getting all songs query '.$this->db->last_query());
 		$result = NULL;
@@ -172,7 +177,7 @@ class Song_model extends CI_Model {
 					JOIN singersingssong s ON s.sssAlbumTitle = so.sAlbumTitle AND s.sssAlbumYear = so.sAlbumYear AND s.sssSongTitle = so.songTitle AND s.sssSongYear = so.songYear
 					WHERE (
 						(LOWER(s.sssSingerFirstName) LIKE LOWER('%".$firstname."%') AND LOWER(s.sssSingerLastName) LIKE LOWER('%".$lastname."%'))
-						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstname." ".$lastname"%'))
+						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstname." ".$lastname."%'))
 						)";
 		}
 		$query = $this->db->query($SQL);
@@ -224,5 +229,6 @@ class Song_model extends CI_Model {
 		log_message('info', 'song_model - search generic result is '.print_r($result,TRUE));
 		return $result;
 	}
+}
 
 ?>

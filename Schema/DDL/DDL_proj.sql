@@ -1,7 +1,7 @@
 CREATE TABLE album (
 		albumTitle 	VARCHAR(100),
 		albumYear 	DATE,
-		numSongs 	INT (CHECK numSongs>0),
+		numSongs 	INT,
 		albumGenre 	VARCHAR(64),
 		albumPrice 	DOUBLE,
 		albumImg 	VARCHAR(96),
@@ -78,11 +78,42 @@ CREATE TABLE purchases (
 		transactionId	INT NOT NULL AUTO_INCREMENT,
 		transactionDate	DATE,
 		amountPaid		DOUBLE,
-		purchaseType	VARCHAR(16) (CHECK purchaseType='album' OR purchaseType='song'),
+		purchaseType	VARCHAR(16),
 		FOREIGN KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear) REFERENCES song (sAlbumTitle, sAlbumYear, songTitle, songYear) ON UPDATE CASCADE ON DELETE CASCADE,
 		FOREIGN KEY (pEmail) REFERENCES user (email) ON UPDATE CASCADE ON DELETE CASCADE,
 		PRIMARY KEY (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail),
 		KEY (transactionId));
 
 
+#RUN THIS IN YOUR SQL TAB
+DELIMITER $$
+
+CREATE TRIGGER numSongs
+BEFORE INSERT
+ON album
+FOR EACH ROW
+BEGIN
+  IF NEW.numSongs < 0 THEN
+    SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'ROL must be less then QOH';
+  END IF;
+END$$
+
+DELIMITER ;
+
+#Run this also 
+DELIMITER $$
+
+CREATE TRIGGER purchaseType
+BEFORE INSERT
+ON purchases
+FOR EACH ROW
+BEGIN
+  IF NOT NEW.purchaseType = 'album' THEN
+    SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'ROL must be less then QOH';
+ELSEIF NOT NEW.purchaseType = 'song' THEN  
+	SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'ROL must be less then QOH';
+END IF;
+END$$
+
+DELIMITER ;
 

@@ -12,15 +12,32 @@ class SongController extends CI_Controller {
 
 		// Libraries
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 		// Models
 		$this->load->model('song_model');
 	 }
+
+	function isLoggedIn(){
+		if($this->session->userdata('status') == 'logged_in')
+			return TRUE;
+		else
+			return FALSE;
+	}
 	 
 	public function index()
 	{
 		$data['songs_list'] = $this->getAllSongs();
 		$data['title'] = "Song Catalogue";
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else
+			$data['logged_in'] = FALSE;
 		$this->load->view('_home_header_styles');
 		$this->load->view('songmenu', $data);
 		$this->load->view('_home_footer_script');
@@ -115,6 +132,16 @@ function search(){
 			else
 				$data['songs_list'] = NULL;
 			$data['title'] = "Song Catalogue";
+			if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 			$this->load->view('_home_header_styles');
 			$this->load->view('songmenu', $data);
 			$this->load->view('_home_footer_script');

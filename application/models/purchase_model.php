@@ -7,7 +7,11 @@ class Purchase_model extends CI_Model {
 	 | CLASS DATA
 	 |
 	 */
-	}
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
 
 	function getAllPurchases(){
 		$SQL = "SELECT * FROM purchases";
@@ -25,6 +29,16 @@ class Purchase_model extends CI_Model {
 		log_message('info', 'purchase_model - result is '.print_r($result,TRUE));
 		return $result;
 		
+	}
+
+	function purchaseSong($data){
+		var_dump($data);
+		$SQL = "INSERT INTO purchases (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail, transactionDate, amountPaid, purchaseType)
+				VALUES ("."'".$data['pAlbumTitle']."',"."'".$data['pAlbumYear']."',"."'".$data['pSongTitle']."',"."'".$data['pSongYear']."',"."'".$data['pEmail']."',"."'".$data['transactionDate']."',"."'".$data['amountPaid']."',"."'".$data['purchaseType']."'".")";
+		if($this->db->query($SQL))
+			return TRUE;
+
+		return FALSE;
 	}
 
 	function getTotalRevenue(){
@@ -156,5 +170,6 @@ class Purchase_model extends CI_Model {
 		log_message('info', 'purchase_model - result is '.print_r($result,TRUE));
 		return $result;
 	}
+}
 
 ?>

@@ -78,7 +78,7 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-      <form method="post" action="./search">  
+      <form method="post" action="./songcontroller/search">  
         <div style="font-size:18px;"><select name="search_option" id="search_option">
           <option>Search By..</option>
           <option>Song Title</option>
@@ -145,9 +145,19 @@
                 <p>Length: <?php echo $value['songLength']; ?></p>
               </div>
               <div class="modal-footer">
-                <form method="post" action="./purchasescontroller/purchaseSong"> <!-- later add in action="/purchasecontroller/buysong" -->
+                <form method="post" action="./purchasescontroller/purchaseSong">
+                  <input type="hidden" name="songTitle" value=<?php echo $value['songTitle']; ?>>
+                  <input type="hidden" name="songYear" value=<?php echo $value['songYear'];  ?>>
+                  <input type="hidden" name="sAlbumTitle" value=<?php echo $value['sAlbumTitle'];  ?>>
+                  <input type="hidden" name="sAlbumYear" value=<?php echo $value['sAlbumYear'];  ?>>
+                  <input type="hidden" name="amountPaid" value=<?php echo $value['songPrice'];  ?>>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" name="buy_song" id="buy_song">$<?php echo number_format($value['songPrice'],2); ?></button>
+                  <?php if($logged_in) { ?>
+                      <input type="hidden" name="userEmail" value=<?php echo $email;  ?>>
+                      <button type="submit" class="btn btn-primary" name="buy_song" id="buy_song" value="buy_song">Buy for $<?php echo number_format($value['songPrice'],2); ?></button>
+                  <?php } else { ?>
+                      <button type="submit" class="btn btn-primary disabled">Login to purchase for $<?php echo number_format($value['songPrice'],2); ?></button>
+                  <?php } ?>  
                 </form>
               </div>
             </div><!-- /.modal-content -->

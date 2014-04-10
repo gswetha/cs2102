@@ -15,6 +15,7 @@ class PurchasesController extends CI_Controller {
 		
 		// Models
 		$this->load->model('purchase_model');
+		$this->load->model('user_model');
 	 }
 	 
 	public function index()
@@ -29,7 +30,30 @@ class PurchasesController extends CI_Controller {
 	}
 
 	function purchaseSong(){
+		$data['title'] = "Buy Song";
 		echo "in purchaseSong";
+		 if($this->input->post('buy_song') && $this->input->post('songTitle') && $this->input->post('songYear') && $this->input->post('sAlbumTitle') && $this->input->post('sAlbumYear') && $this->input->post('amountPaid') && $this->input->post('userEmail')) {
+
+		 	$user_info = $this->user_model->getUserByEmail($this->input->post('userEmail'));
+
+		 	$insert_data['pAlbumTitle']		 = $this->input->post('sAlbumTitle');
+		 	$insert_data['pAlbumYear']		 = $this->input->post('sAlbumYear');
+		 	$insert_data['pSongTitle'] 		 = $this->input->post('songTitle');
+		 	$insert_data['pSongYear'] 		 = $this->input->post('songYear');
+		 	$insert_data['pEmail']		 	 = $user_info['paypalEmail'];
+		 	$insert_data['transactionDate']  = date('Y-m-d');
+		 	$insert_data['amountPaid'] 		 = $this->input->post('amountPaid');
+		 	$insert_data['purchaseType'] 	 = "song";
+		 	if ($this->purchase_model->purchaseSong($insert_data)){
+		 		echo "successfully purchased song";
+		 		var_dump($insert_data);
+		 	}
+		 }
+		 else{
+		 	echo "Sorry, we do not have all the information needed to add the song to the DB";
+		 	$data['error'][] = "Sorry, we do not have all the information needed to add the song to the DB";
+		 	log_message('error', 'post information is '.print_r($_POST,true));
+		 }
 	}
 
 	function getRevenue(){

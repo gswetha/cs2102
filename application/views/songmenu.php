@@ -109,7 +109,7 @@
               $data_target = "#songinfo_".$key;
               echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
               //echo '<img data-src="holder.js/200x180">';
-              echo '<img src= '.$value['songImg'].'>';
+              echo '<img src= '.$value['songImg'].' width="150" height="150" >';
               echo '<p>';
               echo '<b>'.$value['songTitle']."  -  $".$value['songPrice'].'</b>';
               echo '</p>';

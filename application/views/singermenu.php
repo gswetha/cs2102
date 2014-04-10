@@ -22,7 +22,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../home">Welcome, Guest!</a>
+        <a class="navbar-brand" href="../home">Welcome, Guest! </a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -74,57 +74,67 @@
           </div>
       </div>
        <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
+       <form method="post" action="searchResult">
+          <div style="font-size:18px;"><select>
+            <option>Search By..</option>
+            <option>Song Title</option>
+            <option>Artist</option>
+            <option>Year</option>
+            <option>Composer</option>
+            <option>Genre</option>
+          </select></div>
 
-        <div style="font-size:18px;"><select>
-          <option>Search By..</option>
-          <option>Song Title</option>
-          <option>Artist</option>
-          <option>Year</option>
-          <option>Composer</option>
-          <option>Genre</option>
-        </select></div>
-
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-        </div><!-- /input-group -->
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </form>
       </div><!-- /.col-lg-6 -->
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
          <div class="row">
-                <tbody>
+           <?php if(count($allSingers)) {  } ?>
                   <?php
-                    log_message('info', 'singer_list in view is '.print_r($images,true));
-                    if(count($images)){
-                          foreach ($images as $key => $value) {
-                            echo '<div class="col-xs-6 col-md-3">';
-                              echo '<a href="#" data-toggle="modal" data-target="#singerinfo" data-id="test123" class="thumbnail">';
-                                echo '<img src="'; echo $value['singerImg']; echo'width="180" height="180">';
+                    log_message('info', 'singer_list in view is '.print_r($allSingers,true));
+                    if(count($allSingers)){
+                          foreach ($allSingers as $key => $value) {
+                            $data_target = "#singerinfo_".$key;
+                            echo '<div class="col-xs-6 col-md-3" style="height: 320px; overflow: hidden;">';
+                              echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
+                                echo '<img src="'.$value['singerImg'].'" width="200" height="200">';
                              echo '</a>';
+                             echo '<p><b>'.$value['stageName'].'</b></p>';
                             echo '</div>';
                           }
                       }
                   ?>
-                </tbody> 
+             
         </div>
       </div>
 
-      <div id="singerinfo" class="modal fade">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Singer Title Goes Here!</h4>
-            </div>
-            <div class="modal-body">
-              <div style="float:left;">
-              <p><img data-src="holder.js/200x180" align="middle"></p></div>
-              <div style="margin-left:210px;"><p>Singer description goes here.</p>
+      <?php foreach ($allSingers as $key => $value) {
+        $id = "singerinfo_".$key; 
+      ?>
+        <div id=<?php echo $id; ?> class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php echo $value['stageName']; ?></h4>
               </div>
-            </div>
-            <div>
+              <div class="modal-body">
+                <p><img src="<?php echo $value['singerImg']; ?>" align="middle"></p>
+                
+                <div>
+                  <p><?php echo $value['singerDescrip']; ?></p>
+                </div>
+                <p>First Name: <?php echo $value['singerFirstName']; ?></p>
+                <p>Last Name: <?php echo $value['singerLastName']; ?></p>
+                <p>Birthday: <?php echo $value['singerBirthday']; ?></p>
+              </div>
+
           <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -134,39 +144,35 @@
                 <th><a style="text-decoration:none">Year</a></th>
             </thead>
             <tbody>
-              <tr>
-                
-                <td>1</td>
-                <td><a style="text-decoration:none; color:#000066;" href="../home/singlealbumview">Album 1</a></td>
-                <td>1997</td>
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td><a style="text-decoration:none; color:#000066;" href="../home/singlealbumview">Album 1</a></td>
-                <td>1997</td>
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td><a style="text-decoration:none; color:#000066;" href="../home/singlealbumview">Album 1</a></td>
-                <td>1997</td>
-              </tr>
-              <tr>
-                
-                <td>1</td>
-                <td><a style="text-decoration:none; color:#000066;" href="../home/singlealbumview">Album 1</a></td>
-                <td>1997</td>
-              </tr>
+                <?php 
+                  if(count($allSingerSongs)){
+                    $counter = 1;
+                    foreach($allSingerSongs as $stepper => $result){
+                      $firstName = $value['singerFirstName'];
+                      $lastName = $value['singerLastName'];
+                      $stageName = $value['stageName'];
+                      if($result['sssSingerFirstName'] == $firstName && $result['sssSingerLastName'] == $lastName && $result['sssSingerStageName'] = $stageName){
+                        echo '<tr>';
+                        echo '<td>'.$counter.'.</td>';
+                        echo '<td><a style="text-decoration:none; color:#000066;" href="./singlealbumview">'.$result['sssAlbumTitle'].'</a></td>';
+                        echo ' <td>'.$result['sssAlbumYear'].'</td></tr>';
+                        $counter = $counter + 1;
+                      }
+                    }
+                  }
+                ?>  
             </tbody>
           </table>
             </div>
-            <div class="modal-footer" style="margin-top:30px;">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+              <div class="modal-footer">
+                <form method="post"> <!-- later add in action="/purchasecontroller/buysong" -->
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        
+                </form>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+      <?php } ?>  
 
 
       

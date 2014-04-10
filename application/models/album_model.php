@@ -15,10 +15,9 @@ class Album_model extends CI_Model {
         parent::__construct();
     }
 
-	function getAllAlbumPriInfo(){
-		$SQL = "SELECT albumImg, albumTitle, albumPrice FROM album";
+	function getAllSongs(){
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle, s.sAlbumYear, s.songImg FROM song s";
 		$query = $this->db->query($SQL);
-		log_message('info', 'album_model - getting all album query '.$this->db->last_query());
 		$result = NULL;
 		if ($query->num_rows() > 0)
 		{
@@ -71,7 +70,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchAlbumbyYear($year){
-		$SQL = "SELECT * FROM album WHERE albumYear = '".$year."'";
+		$SQL = "SELECT * FROM album WHERE albumYear LIKE '".$year."'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by year '.$this->db->last_query());
 		$result = NULL;
@@ -82,6 +81,7 @@ class Album_model extends CI_Model {
 		      $result[] = $row;
 		   }
 		}
+		log_message('info', 'album_model - result is '.print_r($result,TRUE));
 		return $result;
 	}
 
@@ -100,7 +100,25 @@ class Album_model extends CI_Model {
 		return $result;
 	}
 
+	function searchAlbumbySongTitle($song){
+		$SQL = "SELECT a.albumImg,a.albumTitle,a.albumYear,a.albumGenre,a.numSongs,a.albumPrice FROM song s, album a WHERE 
+				a.albumTitle = s.sAlbumTitle AND a.albumYear = s.sAlbumYear AND LOWER(songTitle) LIKE LOWER('%".$song."%')
+				GROUP BY a.albumImg,a.albumTitle,a.albumYear,a.albumGenre,a.numSongs,a.albumPrice";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - getting all album query by song title '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
+
 	function searchAlbumbyPriceRange($lowerPrice,$upperPrice){
+
 		$SQL = "SELECT * FROM album	WHERE albumPrice BETWEEN ".$lowerPrice." AND ".$upperPrice;
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by price range'.$this->db->last_query());
@@ -119,16 +137,16 @@ class Album_model extends CI_Model {
 		//this function receives $name if only one word was typed. eg. Taylor. 
 		//if 2 words were given, it is assumed to be in the format "firstname lastname". So this function will not receive $name. it will only receive $firstname and $lastname.
 		if(!$firstName && !$lastName) {
-			$SQL = "SELECT s.sssAlbumTitle, s.sssAlbumYear, a.albumPrice, a.albumGenre FROM album a
-					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE ((LOWER(s.sssSingerFirstName) LIKE LOWER('%".$name."%'))
+			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs FROM album a
+					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE (LOWER(s.sssSingerFirstName) LIKE LOWER('%".$name."%'))
 					OR (LOWER(s.sssSingerLastName) LIKE LOWER('%".$name."%'))
-					OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$name."%'))";
+					OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$name."%')) GROUP BY a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs";
 		}	
 		else{
-			$SQL = "SELECT s.sssAlbumTitle, s.sssAlbumYear, a.albumPrice, a.albumGenre FROM album a
-					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE (
+			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs FROM album a
+					JOIN singersingssong s ON s.sssAlbumTitle = a.albumTitle AND s.sssAlbumYear = a.albumYear WHERE 
 						(LOWER(s.sssSingerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(s.sssSingerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))";
+						OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%')) GROUP BY a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs";
 
 		}
 		$query = $this->db->query($SQL);
@@ -147,16 +165,17 @@ class Album_model extends CI_Model {
 
 	function searchAlbumbyComposer($name=FALSE, $firstName=FALSE, $lastName=FALSE){
 		if(!$firstName && !$lastName) {
-			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre FROM album a
-					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.cssAlbumYear = a.albumYear WHERE ((LOWER(c.ccsSingerFirstName) LIKE LOWER('%".$name."%'))
-					OR (LOWER(c.ccsSingerLastName) LIKE LOWER('%".$name."%'))
-					OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$name."%'))";
+			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs FROM album a, composercomposessong c WHERE c.ccsAlbumTitle = a.albumTitle AND c.ccsAlbumYear = a.albumYear AND 
+					(LOWER(c.ccsComposerFirstName) LIKE LOWER('%".$name."%'))
+					OR (LOWER(c.ccsComposerLastName) LIKE LOWER('%".$name."%'))
+					GROUP BY a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs";
 		}	
 		else{
-			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre FROM album a
-					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.cssAlbumYear = a.albumYear WHERE ((LOWER(c.ccsSingerFirstName) LIKE LOWER('%".$firstName."%') 
-						AND LOWER(c.ccsSingerLastName) LIKE LOWER('%".$lastName."%'))
-						OR (LOWER(c.ccsSingerStageName) LIKE LOWER('%".$firstName." ".$lastName."%'))";
+			$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs FROM album a
+					JOIN composercomposessong c ON c.ccsAlbumTitle = a.albumTitle AND c.ccsAlbumYear = a.albumYear WHERE 
+					(LOWER(c.ccsComposerFirstName) LIKE LOWER('%".$firstName."%') 
+						AND LOWER(c.ccsComposerLastName) LIKE LOWER('%".$lastName."%'))
+						OR (LOWER(c.ccsComposerFirstName) LIKE LOWER('%".$firstName." ".$lastName."%')) GROUP BY a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs";
 		}
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - search album by compoer name '.$this->db->last_query());

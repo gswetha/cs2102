@@ -59,7 +59,8 @@ class AlbumController extends CI_Controller {
 	}
 
 	function searchAlbumbyPriceRange($lowerPrice,$upperPrice){
-		$this->album_model->searchAlbumbyPriceRange($lowerPrice,$upperPrice);
+		$albums = $this->album_model->searchAlbumbyPriceRange($lowerPrice,$upperPrice);
+		return $albums;
 	}
 
 	function searchAlbumbyArtist($name, $firstName, $lastName){
@@ -82,6 +83,11 @@ class AlbumController extends CI_Controller {
 
 	function searchAlbumbySongTitle($song){
 		$albums = $this->album_model->searchAlbumbySongTitle($song);	
+		return $albums;
+	}
+
+	function searchAlbumbyComposer($name, $firstName, $lastName){
+		$albums = $this->album_model->searchAlbumbyComposer($name, $firstName, $lastName);	
 		return $albums;
 	}
 
@@ -148,8 +154,9 @@ class AlbumController extends CI_Controller {
 
 			//process result and show page
 			// var_dump($result);
-			if(count($result))
+			if(count($result)){
 				$albumData['albumList'] = $result;	
+			}
 			else
 				$albumData['albumList'] = NULL;
 

@@ -47,10 +47,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../home/songmenu" class="list-group-item">All Songs</a>
-                <a href="../home/albummenu"class="list-group-item">All Albums</a>
+                <a href="./songController" class="list-group-item">All Songs</a>
+                <a href="./albumController"class="list-group-item">All Albums</a>
                 <a class="list-group-item">All Singers</a>
-                <a href="../home/composermenu" class="list-group-item">All Composers</a>
+                <a href="./composerController" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -73,25 +73,27 @@
 
           </div>
       </div>
+      <form method="post" action="./singerController/searchInSinger" >
        <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
-       <form method="post" action="searchResult">
-          <div style="font-size:18px;"><select>
+          <div style="font-size:18px;">
+          <select name="searchOptions" id="searchOptions">
             <option>Search By..</option>
+            <option>Album Title</option>
+            <option>Album Release Date</option>
             <option>Song Title</option>
-            <option>Artist</option>
-            <option>Year</option>
-            <option>Composer</option>
+            <option>Artist Name</option>
+            <option>Birthday</option>
             <option>Genre</option>
           </select></div>
 
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" name="searchInput" placeholder="Search...">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-default">Go!</button>
+              <button type="submit" class="btn btn-default" name="searchSubmit" id="searchSubmit" value="submit" >Go!</button>
             </span>
           </div><!-- /input-group -->
-        </form>
-      </div><!-- /.col-lg-6 -->
+        </div><!-- /.col-lg-6 -->
+      </form>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
          <div class="row">
@@ -108,6 +110,8 @@
                              echo '<p><b>'.$value['stageName'].'</b></p>';
                             echo '</div>';
                           }
+                      }else{
+                        echo '<p><b>Sorry, we did not find any matches for your search :(</b></p>';
                       }
                   ?>
              

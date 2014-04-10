@@ -130,6 +130,7 @@ class Album_model extends CI_Model {
 		      $result[] = $row;
 		   }
 		}
+		log_message('info', print_r($result,TRUE));
 		return $result;
 	}
 

@@ -109,11 +109,10 @@ ON purchases
 FOR EACH ROW
 BEGIN
   IF NOT NEW.purchaseType = 'album' THEN
-    SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'ROL must be less then QOH';
-ELSEIF NOT NEW.purchaseType = 'song' THEN  
-	SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'ROL must be less then QOH';
+    IF NOT NEW.purchaseType = 'song' THEN  
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'purchaseType must be album or song';
+	END IF;
 END IF;
 END$$
 
 DELIMITER ;
-

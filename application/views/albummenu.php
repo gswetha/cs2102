@@ -74,18 +74,18 @@
           </div>
       </div>
 
-
+     <form action="./albumController/searchInAlbum" method="post">
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
-        <form action="./albumController/searchInAlbum" method="post">
           <div style="font-size:18px;">
             <select id="searchOptions" name="searchOptions">
-              <option value="0">Search By..</option>
-              <option value="1">Album Title</option>
-              <option value="2">Song Title</option>
-              <option value="3">Artist</option>
-              <option value="4">Year</option>
-              <option value="5">Composer</option>
-              <option value="6">Genre</option>
+              <option>Search By..</option>
+              <option>Album Title</option>
+              <option>Song Title</option>
+              <option>Artist</option>
+              <option>Year</option>
+              <option>Composer</option>
+              <option>Genre</option>
+              <option>Price</option>
             </select>
           </div>
         
@@ -95,26 +95,28 @@
               <button class="btn btn-default" type="submit" name="searchSubmit" id="searchSubmit" value="submit">Go!</button>
             </span>
           </div><!-- /input-group -->
-        </form>
       </div><!-- /.col-lg-6 -->
+      </form>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="row">
                 
                   <?php
             
-                    log_message('info', 'album_list in view is '.print_r($albumList,true));
+                    // log_message('info', 'album_list in view is '.print_r($albumList,true));
                     if(count($albumList)){
                           foreach ($albumList as $key => $value) {
                             echo '<div class="col-xs-6 col-md-3" style="height: 320px; overflow: hidden;">';
                             $data_target = "#albuminfo_".$key;
                               echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
                               echo '<img src="'.$value['albumImg'].' width="250" height="250"> </a>';                                
-                              echo '<div>';
+                              echo '<p>';
                               echo '<b>'.$value['albumTitle']." - $".$value['albumPrice'].'</b>';
-                              echo '</div>';
+                              echo '</p>';
                               echo '</div>';
                           }
+                      }else{
+                        echo '<p><b>Sorry, we did not find any matches for your search :(</b></p>';
                       }
                   ?>
                
@@ -134,9 +136,9 @@
               </div>
               <div class="modal-body">
                 <p><img src="<?php echo $value['albumImg']; ?>" align="middle"></p>
-                
-                <div><?php echo $value['albumDescrip']; ?>
-                </div>
+                <p>Release Date: <?php echo $value['albumYear']?></p>
+                <p>Number of Songs: <?php echo $value['numSongs']?></p>
+                <p>Genre: <?php echo $value['albumGenre']?></p>
               </div>
     
               <div class="table-responsive">
@@ -169,11 +171,8 @@
             </div>
 
               <div class="modal-footer">
-                <form method="post"> <!-- later add in action="/purchasecontroller/buysong/echo title" -->
-                <input type="hidden" value="ECHO ID" name="something" />
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" name="buy_song" id="buy_song">$<?php echo number_format($value['albumPrice'],2); ?></button>
-                </form>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->

@@ -89,16 +89,16 @@ class AlbumController extends CI_Controller {
 		if ($this->input->post('searchSubmit')) {
 			$result = NULL;
 			switch ($this->input->post('searchOptions')) {
-				case '0':
+				case 'Search By..':
 					$result = $this->albumGenericSearch($this->input->post('searchInput'));
 					break;
-				case '1':
+				case 'Album Title':
 					$result = $this->searchAlbumbyTitle($this->input->post('searchInput'));
 					break;
-				case '2':
+				case 'Song Title':
 					$result = $this->searchAlbumbySongTitle($this->input->post('searchInput'));
 					break;
-				case '3':
+				case 'Artist':
 					$term = explode(' ', $this->input->post('searchInput'));
 					log_message('debug','term is '.print_r($term,true));
 					if(count($term) == 1) {
@@ -110,14 +110,36 @@ class AlbumController extends CI_Controller {
 						$result = $this->searchAlbumbyArtist(FALSE, $term[0], $term[1]);
 					}
 					break;
-				case '4':
+				case 'Year':
 					$result = $this->searchAlbumbyYear($this->input->post('searchInput'));
 					break;
-				case '5':
-					$result = $this->searchAlbumbyComposer($this->input->post('searchInput'),FALSE,FALSE);
+				case 'Composer':
+					$term = explode(' ', $this->input->post('searchInput'));
+					log_message('debug','term is '.print_r($term,true));
+					if(count($term) == 1) {
+						log_message('info', 'count of term is 1');
+						$result = $this->searchAlbumbyComposer($term[0], FALSE, FALSE);
+					}
+					else {
+						//there is lower and higher
+						$result = $this->searchAlbumbyComposer(FALSE, $term[0], $term[1]);
+					}
 					break;
-				case '6':
+				case 'Genre':
 					$result = $this->searchAlbumbyGenre($this->input->post('searchInput'));
+					break;
+				case 'Price':
+					$term = $this->input->post('searchInput');
+					$term = explode(' ', $term);
+					log_message('debug','term is '.print_r($term,true));
+					if(count($term) == 1) {
+						log_message('info', 'count of term is 1');
+						$result = $this->searchAlbumbyPriceRange($term[0], FALSE);
+					}
+					else {
+						//there is lower and higher
+						$result = $this->searchAlbumbyPriceRange($term[0], $term[1]);
+					}
 					break;
 				default:
 					$result = $this->albumGenericSearch($this->input->post('searchInput'));
@@ -125,8 +147,12 @@ class AlbumController extends CI_Controller {
 			}
 
 			//process result and show page
-			var_dump($result);
-			$albumData['albumList'] = $result;
+			// var_dump($result);
+			if(count($result))
+				$albumData['albumList'] = $result;	
+			else
+				$albumData['albumList'] = NULL;
+
 			$albumData['albumSongs'] = $this->getAlbumSongs();
 			$this->load->view('_home_header_styles');
 			$this->load->view('albummenu', $albumData);

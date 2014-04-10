@@ -78,7 +78,7 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-      <form method="post" action="./search">  
+      <form method="post" action="./songController/search">  
         <div style="font-size:18px;"><select name="search_option" id="search_option">
           <option>Search By..</option>
           <option>Song Title</option>
@@ -109,7 +109,7 @@
               $data_target = "#songinfo_".$key;
               echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
               //echo '<img data-src="holder.js/200x180">';
-              echo '<img src= '.$value['songImg'].'>';
+              echo '<img src= '.$value['songImg'].' width="150" height="150" >';
               echo '<p>';
               echo '<b>'.$value['songTitle']."  -  $".$value['songPrice'].'</b>';
               echo '</p>';

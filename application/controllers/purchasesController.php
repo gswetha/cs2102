@@ -14,7 +14,7 @@ class PurchasesController extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		// Models
-		$this->load->model('purchases_model');
+		$this->load->model('purchase_model');
 	 }
 	 
 	public function index()
@@ -26,6 +26,10 @@ class PurchasesController extends CI_Controller {
 
 	function getAllPurchases(){
 		$this->singer_model->getAllPurchases();
+	}
+
+	function purchaseSong(){
+		echo "in purchaseSong";
 	}
 
 	function getRevenue(){

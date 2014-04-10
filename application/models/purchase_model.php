@@ -120,12 +120,8 @@ class Purchase_model extends CI_Model {
 
 	function getRevenueByComposer(){
 		$SQL = "SELECT ccs.ccsComposerFirstName, ccs.ccsComposerLastName, SUM(p.amountPaid) FROM composercomposessong ccs, purchases p WHERE 
-<<<<<<< HEAD
-				ccs.ccsAlbumTitle = p.pAlbumTitle AND ccs.ccsAlbumYear = p.pAlbumYear
-=======
 				ccs.ccsAlbumTitle = p.pAlbumTitle AND ccs.ccsAlbumYear = p.pAlbumYear AND
 				LOWER(ccs.ccsComposerFirstName) LIKE LOWER('%".$firstName."%') AND LOWER(ccs.ccsComposerLastName) LIKE LOWER('%".$lastName."%')
->>>>>>> FETCH_HEAD
 				GROUP BY ccs.ccsComposerFirstName, ccs.ccsComposerLastName, SUM(p.amountPaid) ORDER BY SUM(p.amountPaid) DESC";
 
 		$query = $this->db->query($SQL);

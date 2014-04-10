@@ -128,6 +128,11 @@ function search(){
 		return $result;
 	}
 
+	function searchSongbyAlbum($album){
+		$result = $this->song_model->searchSongbyAlbum($album);
+		return $result;
+	}
+
 	function searchSongbyYear($year){
 		$result = $this->song_model->searchSongbyYear($year);
 		return $result;

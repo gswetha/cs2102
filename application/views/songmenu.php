@@ -105,7 +105,7 @@
           if(count($songs_list)){
             foreach ($songs_list as $key => $value) {
              //var_dump($value);
-              echo '<div class="col-xs-6 col-md-3">';
+              echo '<div class="col-xs-6 col-md-3 style="height:320px; overflow:hidden;">';
               $data_target = "#songinfo_".$key;
               echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
               //echo '<img data-src="holder.js/200x180">';
@@ -115,8 +115,9 @@
               echo '</p>';
               echo '</div>';
             }
-          }
-        ?>
+          } else { ?>
+            <p><b>Sorry, we did not find any matches for your search :(</b></p>
+        <?php } ?>
       
           <div class="col-xs-6 col-md-3" style="display: none;">
             <a href="#" data-toggle="modal" data-target="#songinfo" class="thumbnail">
@@ -126,7 +127,8 @@
         </div>
       </div>
       
-      <?php foreach ($songs_list as $key => $value) {
+      <?php   if(count($songs_list)){
+        foreach ($songs_list as $key => $value) {
         $id = "songinfo_".$key; 
       ?>
         <div id=<?php echo $id; ?> class="modal fade">
@@ -143,7 +145,7 @@
                 <p>Length: <?php echo $value['songLength']; ?></p>
               </div>
               <div class="modal-footer">
-                <form method="post"> <!-- later add in action="/purchasecontroller/buysong" -->
+                <form method="post" action="./purchasescontroller/purchaseSong"> <!-- later add in action="/purchasecontroller/buysong" -->
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" name="buy_song" id="buy_song">$<?php echo number_format($value['songPrice'],2); ?></button>
                 </form>
@@ -152,6 +154,7 @@
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
       <?php } ?>  
+       <?php } ?>
 
 </body>
 </html>

@@ -15,10 +15,9 @@ class Album_model extends CI_Model {
         parent::__construct();
     }
 
-	function getAllAlbumPriInfo(){
-		$SQL = "SELECT albumImg, albumTitle, albumPrice FROM album";
+	function getAllSongs(){
+		$SQL = "SELECT s.songTitle, s.songLength, s.songYear, s.songPrice, s.songGenre, s.sAlbumTitle, s.sAlbumYear, s.songImg FROM song s";
 		$query = $this->db->query($SQL);
-		log_message('info', 'album_model - getting all album query '.$this->db->last_query());
 		$result = NULL;
 		if ($query->num_rows() > 0)
 		{
@@ -89,6 +88,21 @@ class Album_model extends CI_Model {
 		$SQL = "SELECT * FROM album WHERE LOWER(albumGenre) LIKE LOWER('%".$genre."%')";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by genre '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
+
+	function searchAlbumbySongTitle($song){
+		$SQL = "SELECT * FROM song WHERE LOWER(songTitle) LIKE LOWER('%".$song."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - getting all album query by song title '.$this->db->last_query());
 		$result = NULL;
 		if ($query->num_rows() > 0)
 		{

@@ -57,6 +57,21 @@ class Singer_model extends CI_Model {
 			return FALSE;
 	}
 
+	function getSingerSongs(){
+		$SQL = "SELECT * FROM singersingssong GROUP BY sssAlbumTitle, sssAlbumYear";
+		$query = $this->db->query($SQL);
+		log_message('info', 'singer_model - getting all singer and songs '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
+
 	function searchSingerbySongTitle($title){
 		$SQL = "SELECT s.sssSingerFirstName, s.sssSingerLastName, s.sssSingerStageName FROM singersingssong s WHERE 
 				LOWER(s.sssSongTitle) LIKE LOWER('%".$title."%')";

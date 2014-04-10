@@ -73,7 +73,7 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../home/songmenu" class="list-group-item">All Songs</a>
+                <a href="./songController" class="list-group-item">All Songs</a>
                 <a href="./albumController" class="list-group-item">All Albums</a>
                 <a href="./singerControler" class="list-group-item">All Singers</a>
                 <a class="list-group-item">All Composers</a>
@@ -101,7 +101,7 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-      <form method="post" action="./search">  
+      <form method="post" action="./composerController/search">  
         <div style="font-size:18px;">
           <select name="search_option" id="search_option">
             <option>Search By..</option>

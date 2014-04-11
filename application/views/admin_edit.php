@@ -141,6 +141,7 @@
             <thead>
               <tr>
                 <th><a style="text-decoration:none">Song</a></th>
+                <th><a style="text-decoration:none">Title</a></th>
                 <th><a style="text-decoration:none">Artist</a></th>
                 <th><a style="text-decoration:none">Album</a></th>
                 <th><a style="text-decoration:none">Genre</a></th>

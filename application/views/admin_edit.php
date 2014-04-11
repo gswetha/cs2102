@@ -140,95 +140,105 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><a style="text-decoration:none">Song</a></th>
+                <th><a style="text-decoration:none">Category</a></th>
                 <th><a style="text-decoration:none">Title</a></th>
                 <th><a style="text-decoration:none">Artist</a></th>
                 <th><a style="text-decoration:none">Album</a></th>
                 <th><a style="text-decoration:none">Genre</a></th>
                 <th><a style="text-decoration:none">Year</a></th>
-                <th><a style="text-decoration:none">Delete Entry</a></th>
+                <th><a style="text-decoration:none">Delete/Edit Entry</a></th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Let It Go</a></td>
                 <td>Edina Menzel</td>
                 <td>Frozen OST</td>
                 <td>Pop</td>
                 <td>2014</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Do You Wanna Build a Snowman?</a></td>
                 <td>Kirsten Bell</td>
                 <td>Never Again</td>
                 <td>Pop</td>
                 <td>2014</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">All Of Me</a></td>
                 <td>John Legend</td>
                 <td>Love in the Future</td>
                 <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><button>Edit</button></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Love is An Open Door</a></td>
                 <td>Kristen Bell</td>
                 <td>Frozen OST</td>
                 <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Dark Horse</a></td>
                 <td>Katy Perry</td>
                 <td>Prism</td>
                 <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Happy</a></td>
                 <td>Pharrel Williams</td>
                 <td>Despicable Me 2: OST</td>
                 <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">A Thousand Years</a></td>
                 <td>Christina Perri</td>
                 <td>Twilight</td>
                 <td>Pop</td>
                 <td>2011</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Wake Me Up!</a></td>
                 <td>Avicii</td>
                 <td>True</td>
                 <td>Electonics</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Counting Stars</a></td>
                 <td>One Republic</td>
                 <td>Native</td>
                 <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
               <tr>
+                <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Roar</a></td>
                 <td>Katy Perry</td>
                 <td>Prism</td>
                 <td>Pop</td>
                 <td>2013</td>
-                <td><button>Delete</button></td>
+                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
             </tbody>
           </table>

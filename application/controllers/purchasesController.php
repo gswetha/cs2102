@@ -56,6 +56,57 @@ class PurchasesController extends CI_Controller {
 		 }
 	}
 
+	function purchaseAlbum(){
+		$data['title'] = "Buy Album";
+		 if($this->input->post('buy_album') && $this->input->post('albumTitle') && $this->input->post('albumYear') && $this->input->post('amountPaid') && $this->input->post('userEmail')) {
+
+		 	$user_info = $this->user_model->getUserByEmail($this->input->post('userEmail'));
+		 	$songsInAlbum = $this->purchase_model->getAllSongsInAlbum($this->input->post('albumTitle'), $this->input->post('albumYear'));
+
+		 	if(count($songsInAlbum)){
+		 		foreach ($songsInAlbum as $key => $value) {
+		 			$isAlreadyPurchased = $this->purchase_model->checkPurchased($user_info['paypalEmail'],$value['sAlbumTitle'],$value['sAlbumYear'],$value['songTitle'],$value['songYear']);
+		 			if(count($isAlreadyPurchased) > 0){
+		 				$data['error'] = "Error. Album is already purchased.";
+					 	$data['isPurchaseSuccessful'] = false;
+					 	echo "error insert problem";
+		 				break;
+		 			}else{
+		 				$albumTitle = str_ireplace("'", "\'", $value['sAlbumTitle']);
+						$songTitle = str_ireplace("'", "\'", $value['songTitle']);
+			 			$insert_data['pAlbumTitle']		 = $albumTitle;
+					 	$insert_data['pAlbumYear']		 = $value['sAlbumYear'];
+					 	$insert_data['pSongTitle'] 		 = $songTitle;
+					 	$insert_data['pSongYear'] 		 = $value['songYear'];
+					 	$insert_data['pEmail']		 	 = $user_info['paypalEmail'];
+					 	$insert_data['transactionDate']  = date('Y-m-d');
+					 	$insert_data['amountPaid'] 		 = $this->input->post('amountPaid');
+					 	$insert_data['purchaseType'] 	 = "album";
+					 	if ($this->purchase_model->purchaseSong($insert_data)){
+					 		$data['isPurchaseSuccessful'] = true;
+					 		// var_dump($insert_data);
+					 	}else{
+					 		$data['error'][] = "Error inserting purchase : album";
+					 		$data['isPurchaseSuccessful'] = false;
+					 	}
+		 			}
+		 		}
+		 		if($data['isPurchaseSuccessful']){
+		 			$data['result'] = '- album title : '.$albumTitle;
+		 		}
+		 	}
+		 }
+		 else{
+		 	$data['error'] = "Sorry, we do not have all the information needed to purchase the album";
+		 	$data['isPurchaseSuccessful'] = false;
+		 	log_message('error', 'post information is '.print_r($_POST,true));
+		 }
+		
+		$this->load->view('_home_header_styles');
+		$this->load->view('purchaseReceipt',$data);
+		$this->load->view('_home_footer_script');
+	}
+
 	function getRevenue(){
 		$this->singer_model->getRevenue();
 	}

@@ -22,12 +22,28 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="./home">Welcome, Guest!</a>
+         <a class="navbar-brand" href="./home">Welcome, <?php echo $username; ?>!</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Sign up</a></li>
+         <?php if(!$logged_in){ ?>
+            <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
+            <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
+          <?php } ?>
+          <?php if($logged_in){ ?>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" role="button" id="drop1" data-toggle="dropdown">
+                  My Account
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/admin_edit">My Profile</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/purchases">My Purchases</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
+                </ul>
+            </li>
+          <?php } ?>  
         </ul>
       </div>
     </div>
@@ -154,7 +170,7 @@
                         if(count($albumSongs)){
                           $counter = 1;
                           foreach($albumSongs as $stepper => $result){
-                                  $albumTitle = $value['albumTitle'];
+                            $albumTitle = $value['albumTitle'];
                             $albumYear = $value['albumYear'];
                             if($result['sAlbumTitle'] == $albumTitle && $result['sAlbumYear'] == $albumYear ){
                               echo '<tr>';
@@ -171,8 +187,18 @@
             </div>
 
               <div class="modal-footer">
+                  <form method="post" action="./purchasescontroller/purchaseAlbum">
+                  <input type="hidden" name="albumTitle" value=<?php echo $albumTitle;?>>
+                  <input type="hidden" name="albumYear" value=<?php echo $albumYear;  ?>>
+                  <input type="hidden" name="amountPaid" value=<?php echo $value['albumPrice'];  ?>>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" name="buy_song" id="buy_song">$<?php echo number_format($value['albumPrice'],2); ?></button>
+                  <?php if($logged_in) { ?>
+                      <input type="hidden" name="userEmail" value=<?php echo $email;  ?>>
+                      <button type="submit" class="btn btn-primary" name="buy_album" id="buy_album" value="buy_album">Buy for $<?php echo number_format($value['albumPrice'],2); ?></button>
+                  <?php } else { ?>
+                      <button type="submit" class="btn btn-primary disabled">Login to purchase for $<?php echo number_format($value['albumPrice'],2); ?></button>
+                  <?php } ?>  
+                </form>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->

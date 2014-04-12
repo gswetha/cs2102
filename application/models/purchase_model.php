@@ -32,13 +32,45 @@ class Purchase_model extends CI_Model {
 	}
 
 	function purchaseSong($data){
-		var_dump($data);
+		// var_dump($data);
 		$SQL = "INSERT INTO purchases (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail, transactionDate, amountPaid, purchaseType)
 				VALUES ("."'".$data['pAlbumTitle']."',"."'".$data['pAlbumYear']."',"."'".$data['pSongTitle']."',"."'".$data['pSongYear']."',"."'".$data['pEmail']."',"."'".$data['transactionDate']."',"."'".$data['amountPaid']."',"."'".$data['purchaseType']."'".")";
 		if($this->db->query($SQL))
 			return TRUE;
 
 		return FALSE;
+	}
+
+	function getAllSongsInAlbum($albumTitle,$albumYear){
+		$SQL = "SELECT so.songTitle, so.songYear, so.sAlbumTitle, so.sAlbumYear FROM song so
+				WHERE LOWER(so.sAlbumTitle) LIKE LOWER('%".$albumTitle."%') AND so.sAlbumYear = '".$albumYear."'";
+		$query = $this->db->query($SQL);
+		log_message('info', 'purchase_model - getting songs in album for purchase '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
+
+	function checkPurchased($userEmail,$albumTitle,$albumYear,$songTitle,$songYear){
+		$SQL = "SELECT COUNT(*) FROM purchases WHERE LOWER(pAlbumTitle) LIKE LOWER('%".$albumTitle."%') AND pAlbumYear = '".$albumYear."' AND LOWER(pSongTitle) LIKE LOWER('%".$songTitle."%') AND pSongYear = '".$songYear."' AND pEmail = '".$userEmail."'";
+		$query = $this->db->query($SQL);
+		$result = NULL;
+		log_message('info', 'purchase_model - checking is purchased '.$this->db->last_query());
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		log_message('info', 'purchase_model - check purchased resutl is '.print_r($result,TRUE));
+		return $result;
 	}
 
 	function getTotalRevenue(){

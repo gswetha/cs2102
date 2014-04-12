@@ -12,18 +12,35 @@ class AlbumController extends CI_Controller {
 		
 		// Libraries
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 		// Models
 
 		 $this->load->model('album_model');
 	 }
 	 
+	function isLoggedIn(){
+		if($this->session->userdata('status') == 'logged_in')
+			return TRUE;
+		else
+			return FALSE;
+	}
+
 	public function index()
 	{
 
 		$albumData['albumList'] = $this->getAlbum();
 		$albumData['albumSongs'] = $this->getAlbumSongs();
-		log_message('debug','creating something here in album');
+		if ($this->isLoggedIn()) {
+			$albumData['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$albumData['username'] = $this->session->userdata('name');
+			$albumData['role'] = $this->session->userdata('role');
+			$albumData['email'] = $this->session->userdata('email');
+		}
+		else
+			$albumData['logged_in'] = FALSE;
+
 		$this->load->view('_home_header_styles');
 		$this->load->view('albummenu',$albumData);
 		$this->load->view('_home_footer_script');
@@ -39,8 +56,33 @@ class AlbumController extends CI_Controller {
 		return $songs;
 	}
 
-	function addAlbum($albumTitle, $albumYear, $numSongs, $genre, $price, $img, $descrip){
-		$this->album_model->addAlbum($albumTitle, $albumYear, $numSongs, $genre, $price, $img, $descrip);
+	function addAlbum(){
+		if ($this->input->post('addSubmit')) {
+			$title = $this->input->post('title');
+			$year = $this->input->post('year');
+			$noSongs = $this->input->post('noSongs');
+			$genre = $this->input->post('genre');
+			$price = $this->input->post('price');
+			$img = $this->input->post('img');
+			$descrip = $this->input->post('descrip');
+			// $result = $this->album_model->addAlbum($title, $year, $noSongs, $genre, $price, $img, $descrip);
+			
+			$result = FALSE;
+			if($result){
+				$resultData['result'] = array($title,$year,$noSongs,$genre,$price,$price,$img,$descrip);
+				$this->load->view('_home_header_styles');
+				$this->load->view('admin_edit',$resultData);
+				$this->load->view('_home_footer_script');			
+			}else{
+				$resultData['result'] = array($title);
+				$this->load->view('_home_header_styles');
+				$this->load->view('admin_edit',$resultData);
+				$this->load->view('_home_footer_script');	
+			}
+		}else{
+			echo 'no';
+		}
+		
 	}
 
 	function searchAlbumbyTitle($title){
@@ -176,6 +218,8 @@ class AlbumController extends CI_Controller {
 	function searchMostPopular(){
 		$this->album_model->searchMostPopular();
 	}
+
+	
 
 	
 }

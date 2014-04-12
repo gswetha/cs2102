@@ -116,6 +116,19 @@
 
         <h2 class="sub-header">Your Dashboard</h2>
 
+        <?php 
+          
+          $count = count($result);
+          if($count && $count>1){
+            echo'<h4>Album with title '.$result[0].' is added successfully</h4>';
+          }else if($count && $count = 1){
+            echo'<h4>Fail to insert album with title '.$result[0].'</h4>';
+          }else{
+            echo'<h4>Error. Please retry</h3>';
+          }
+        ?>
+
+
         <div><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addinfo">To Add an Entry, Click Here</button></div>
         </br>
         </br>
@@ -134,7 +147,6 @@
             <input type="text" class="form-control">
           </div>
         </div>
-
 
         <div class="table-responsive">
           <table class="table table-striped">
@@ -275,8 +287,8 @@
                 
                 </br>
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Album</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Artist</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_album">Album</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist">Artist</a></button>
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
 
                   

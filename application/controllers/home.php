@@ -128,16 +128,33 @@ class Home extends CI_Controller {
 	}
 
 	public function admin_edit()
-	{
+	{	
+		$data['result'][] = "";
 		$this->load->view('_home_header_styles');
-		$this->load->view('admin_edit');
+		$this->load->view('admin_edit',$data);
 		$this->load->view('_home_footer_script');
 	}
+
+	public function purchaseReceipt()
+	{	
+		$data['result'][] = "";
+		$this->load->view('_home_header_styles');
+		$this->load->view('purchaseReceipt',$data);
+		$this->load->view('_home_footer_script');
+	}
+
 
 	public function add_song_album()
 	{
 		$this->load->view('_home_header_styles');
 		$this->load->view('add_song_album');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function add_album()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('add_album');
 		$this->load->view('_home_footer_script');
 	}
 

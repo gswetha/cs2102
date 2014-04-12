@@ -58,6 +58,8 @@ class PurchasesController extends CI_Controller {
 
 	function purchaseAlbum(){
 		$data['title'] = "Buy Album";
+		$data['error'][] = "";
+		$data['result'][] = "";
 		 if($this->input->post('buy_album') && $this->input->post('albumTitle') && $this->input->post('albumYear') && $this->input->post('amountPaid') && $this->input->post('userEmail')) {
 
 		 	$user_info = $this->user_model->getUserByEmail($this->input->post('userEmail'));
@@ -65,15 +67,15 @@ class PurchasesController extends CI_Controller {
 
 		 	if(count($songsInAlbum)){
 		 		foreach ($songsInAlbum as $key => $value) {
-		 			$isAlreadyPurchased = $this->purchase_model->checkPurchased($user_info['paypalEmail'],$value['sAlbumTitle'],$value['sAlbumYear'],$value['songTitle'],$value['songYear']);
-		 			if(count($isAlreadyPurchased) > 0){
+		 			$albumTitle = str_ireplace("'", "\'", $value['sAlbumTitle']);
+					$songTitle = str_ireplace("'", "\'", $value['songTitle']);
+		 			$isAlreadyPurchased = $this->purchase_model->checkPurchased($user_info['paypalEmail'],$albumTitle,$value['sAlbumYear'],$songTitle,$value['songYear']); 
+		 			if($isAlreadyPurchased){
 		 				$data['error'] = "Error. Album is already purchased.";
 					 	$data['isPurchaseSuccessful'] = false;
 					 	echo "error insert problem";
 		 				break;
 		 			}else{
-		 				$albumTitle = str_ireplace("'", "\'", $value['sAlbumTitle']);
-						$songTitle = str_ireplace("'", "\'", $value['songTitle']);
 			 			$insert_data['pAlbumTitle']		 = $albumTitle;
 					 	$insert_data['pAlbumYear']		 = $value['sAlbumYear'];
 					 	$insert_data['pSongTitle'] 		 = $songTitle;

@@ -58,7 +58,7 @@ class Purchase_model extends CI_Model {
 	}
 
 	function checkPurchased($userEmail,$albumTitle,$albumYear,$songTitle,$songYear){
-		$SQL = "SELECT COUNT(*) FROM purchases WHERE LOWER(pAlbumTitle) LIKE LOWER('%".$albumTitle."%') AND pAlbumYear = '".$albumYear."' AND LOWER(pSongTitle) LIKE LOWER('%".$songTitle."%') AND pSongYear = '".$songYear."' AND pEmail = '".$userEmail."'";
+		$SQL = "SELECT COUNT(*) AS counter FROM purchases WHERE LOWER(pAlbumTitle) LIKE LOWER('%".$albumTitle."%') AND pAlbumYear = '".$albumYear."' AND LOWER(pSongTitle) LIKE LOWER('%".$songTitle."%') AND pSongYear = '".$songYear."' AND pEmail = '".$userEmail."'";
 		$query = $this->db->query($SQL);
 		$result = NULL;
 		log_message('info', 'purchase_model - checking is purchased '.$this->db->last_query());
@@ -70,7 +70,10 @@ class Purchase_model extends CI_Model {
 		   }
 		}
 		log_message('info', 'purchase_model - check purchased resutl is '.print_r($result,TRUE));
-		return $result;
+		if($result[0]['counter'] != "0")
+			return TRUE;
+		else
+			return FALSE;
 	}
 
 	function getTotalRevenue(){

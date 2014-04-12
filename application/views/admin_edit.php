@@ -60,10 +60,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../home/songmenu" class="list-group-item">All Songs</a>
-                <a href="../home/albummenu" class="list-group-item">All Albums</a>
-                <a href="../home/singermenu" class="list-group-item">All Singers</a>
-                <a href="../home/composermenu" class="list-group-item">All Composers</a>
+                <a href="./songController" class="list-group-item">All Songs</a>
+                <a href="./albumController" class="list-group-item">All Albums</a>
+                <a href="./singerController" class="list-group-item">All Singers</a>
+                <a href="./composerController" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -95,6 +95,8 @@
           $count = count($add);
           if($count > 0){
             echo'<h4>Album with title '.$add[0].' is added successfully</h4>';
+          }else{
+            echo'<h4>Failed to add album with title '.$add[0].'</h4>';
           }
         ?>
 
@@ -102,24 +104,26 @@
         <div><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addinfo">To Add an Entry, Click Here</button></div>
         </br>
         </br>
+        <form action="../adminEditController/searchItem" method="post">
+          <div style="font-size:18px;">
+          <select name="searchOption">
+            <option>Search By..</option>
+            <option>Song</option>
+            <option>Album</option>
+          </select></div>
 
-        <div style="font-size:18px;"><select>
-          <option>Search By..</option>
-          <option>Song</option>
-          <option>Album</option>
-          <option>Year</option>
-          <option>Composer</option>
-          <option>Genre</option>
-        </select></div>
-
-        <div class="col-m-12" >
-          <div class="input-group">
-            <input type="text" class="form-control">
+          <div class="col-m-12" >
+            <div class="input-group">
+             <input type="text" class="form-control" placeholder="Search..." name="searchInput">
+              <span class="input-group-btn">
+                 <button class="btn btn-default" type="submit" name="searchSubmit" id="searchSubmit" value="submit">Go!</button>
+            </span>
+            </div>
           </div>
-        </div>
+        </form>
 
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped" input="hidden">
             <thead>
               <tr>
                 <th><a style="text-decoration:none">Category</a></th>
@@ -139,87 +143,6 @@
                 <td>Frozen OST</td>
                 <td>Pop</td>
                 <td>2014</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Do You Wanna Build a Snowman?</a></td>
-                <td>Kirsten Bell</td>
-                <td>Never Again</td>
-                <td>Pop</td>
-                <td>2014</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">All Of Me</a></td>
-                <td>John Legend</td>
-                <td>Love in the Future</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button><button>Edit</button></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Love is An Open Door</a></td>
-                <td>Kristen Bell</td>
-                <td>Frozen OST</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Dark Horse</a></td>
-                <td>Katy Perry</td>
-                <td>Prism</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Happy</a></td>
-                <td>Pharrel Williams</td>
-                <td>Despicable Me 2: OST</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">A Thousand Years</a></td>
-                <td>Christina Perri</td>
-                <td>Twilight</td>
-                <td>Pop</td>
-                <td>2011</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Wake Me Up!</a></td>
-                <td>Avicii</td>
-                <td>True</td>
-                <td>Electonics</td>
-                <td>2013</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Counting Stars</a></td>
-                <td>One Republic</td>
-                <td>Native</td>
-                <td>Pop</td>
-                <td>2013</td>
-                <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Roar</a></td>
-                <td>Katy Perry</td>
-                <td>Prism</td>
-                <td>Pop</td>
-                <td>2013</td>
                 <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
               </tr>
             </tbody>
@@ -256,10 +179,10 @@
                 <div class="modal-body">
                 
                 </br>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_album">Album</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist">Artist</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_song_album">Song</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_album">Album</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_artist">Artist</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_artist_composer">Composer</a></button>
 
                   
                 </div>

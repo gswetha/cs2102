@@ -55,6 +55,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchAlbumbyTitle($title){
+		log_message('info','searching now!!!');
 		$SQL = "SELECT * FROM album WHERE LOWER(albumTitle) LIKE LOWER('%".$title."%')";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - getting all album query by title '.$this->db->last_query());
@@ -66,6 +67,7 @@ class Album_model extends CI_Model {
 		      $result[] = $row;
 		   }
 		}
+		log_message('info', 'album_model - result is '.print_r($result,TRUE));
 		return $result;
 	}
 

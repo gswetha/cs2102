@@ -65,9 +65,8 @@ class AlbumController extends CI_Controller {
 			$price = $this->input->post('price');
 			$img = $this->input->post('img');
 			$descrip = $this->input->post('descrip');
-			// $result = $this->album_model->addAlbum($title, $year, $noSongs, $genre, $price, $img, $descrip);
+			$result = $this->album_model->addAlbum($title, $year, $noSongs, $genre, $price, $img, $descrip);
 			
-			$result = FALSE;
 			if($result){
 				$resultData['add'] = array($title,$year,$noSongs,$genre,$price,$price,$img,$descrip);
 				$this->load->view('_home_header_styles');

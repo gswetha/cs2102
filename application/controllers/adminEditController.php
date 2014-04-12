@@ -23,6 +23,34 @@ class AdminEditController extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	function searchItem(){
+		if($this->input->post('searchSubmit'){
+			$result = NULL;
+			switch ($this->input->post('searchOptions')) {
+				case 'Song':
+					$result = $this->songController->searchSongbyTitle($this->input->post('searchInput'));
+					$data['category']="song";
+					break;
+				case 'Album':
+					$result = $this->albumController->searchAlbumbyTitle($this->input->post('searchInput'));
+					$data['category']="album";
+					break;
+				default:
+					$result = "No Input";
+					break;
+			}
+			if(count($result)){
+				$data['searchResults'] = $result;	
+			}
+			else
+				$data['searchResults'] = NULL;
+
+			$this->load->view('_home_header_styles');
+			$this->load->view('admin_edit',$data);
+			$this->load->view('_home_footer_script');
+		}
+	}
+
 }
 
 ?>

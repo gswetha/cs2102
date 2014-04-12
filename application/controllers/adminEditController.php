@@ -12,6 +12,10 @@ class AdminEditController extends CI_Controller {
 		
 		// Libraries
 		$this->load->library('form_validation');
+
+		//Models
+		$this->load->model('song_model');
+		$this->load->model('album_model');
 		
 	 }
 	 
@@ -24,15 +28,15 @@ class AdminEditController extends CI_Controller {
 	}
 
 	function searchItem(){
-		if($this->input->post('searchSubmit'){
+		if($this->input->post('searchSubmit')) {
 			$result = NULL;
-			switch ($this->input->post('searchOptions')) {
+			switch ($this->input->post('searchOption')) {
 				case 'Song':
-					$result = $this->songController->searchSongbyTitle($this->input->post('searchInput'));
+					$result = $this->song_model->searchSongbyTitle($this->input->post('searchInput'));
 					$data['category']="song";
 					break;
 				case 'Album':
-					$result = $this->albumController->searchAlbumbyTitle($this->input->post('searchInput'));
+					$result = $this->album_model->searchAlbumbyTitle($this->input->post('searchInput'));
 					$data['category']="album";
 					break;
 				default:

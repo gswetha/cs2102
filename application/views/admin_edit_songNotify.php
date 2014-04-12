@@ -119,15 +119,23 @@
         <div><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addinfo">To Add an Entry, Click Here</button></div>
         </br>
         </br>
+        <form action="../adminEditController/searchItem" method="post">
+          <div style="font-size:18px;">
+          <select name="searchOption">
+            <option>Search By..</option>
+            <option>Song</option>
+            <option>Album</option>
+          </select></div>
 
-        <div style="font-size:18px;"><select>
-          <option>Search By..</option>
-          <option>Song</option>
-          <option>Album</option>
-          <option>Year</option>
-          <option>Composer</option>
-          <option>Genre</option>
-        </select></div>
+          <div class="col-m-12" >
+            <div class="input-group">
+             <input type="text" class="form-control" placeholder="Search..." name="searchInput">
+              <span class="input-group-btn">
+                 <button class="btn btn-default" type="submit" name="searchSubmit" id="searchSubmit" value="submit">Go!</button>
+            </span>
+            </div>
+          </div>
+        </form>
 
         <div class="col-m-12" >
           <div class="input-group">

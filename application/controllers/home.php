@@ -150,6 +150,13 @@ class Home extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function edit_song()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('add_song_album');
+		$this->load->view('_home_footer_script');
+	}
+
 	public function add_album()
 	{
 		$this->load->view('_home_header_styles');

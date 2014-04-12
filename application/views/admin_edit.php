@@ -91,12 +91,13 @@
         <h2 class="sub-header">Your Dashboard</h2>
 
         <?php 
-          
-          $count = count($add);
-          if($count > 0){
-            echo'<h4>Album with title '.$add[0].' is added successfully</h4>';
-          }else{
-            echo'<h4>Failed to add album with title '.$add[0].'</h4>';
+         if(isset($add)) { 
+            $count = count($add);
+            if($count > 0){
+              echo'<h4>Album with title '.$add[0].' is added successfully</h4>';
+            }else{
+              echo'<h4>Failed to add album with title '.$add[0].'</h4>';
+            }
           }
         ?>
 
@@ -126,17 +127,33 @@
           <table class="table table-striped" input="hidden">
             <thead>
               <tr>
-                <th><a style="text-decoration:none">Category</a></th>
-                <th><a style="text-decoration:none">Title</a></th>
-                <th><a style="text-decoration:none">Artist</a></th>
-                <th><a style="text-decoration:none">Album</a></th>
-                <th><a style="text-decoration:none">Genre</a></th>
-                <th><a style="text-decoration:none">Year</a></th>
-                <th><a style="text-decoration:none">Delete/Edit Entry</a></th>
+                <?php if( isset($category) && $category == "song") { ?>
+                    <th><a style="text-decoration:none">Category</a></th>
+                    <th><a style="text-decoration:none">Album Title</a></th>
+                    <th><a style="text-decoration:none">Album Year</a></th>
+                    <th><a style="text-decoration:none">Song Title</a></th>
+                    <th><a style="text-decoration:none">Song Year</a></th>
+                    <th><a style="text-decoration:none">Song Price</a></th>
+                    <th><a style="text-decoration:none">Song Image</a></th>
+                    <th><a style="text-decoration:none">Song Genre</a></th>
+                    <th><a style="text-decoration:none">Song Length</a></th>
+                    <th><a style="text-decoration:none">Delete/Edit Entry</a></th>
+                <?php } ?>
+                <?php if( isset($category) && $category == "album") { ?>
+                    <th><a style="text-decoration:none">Category</a></th>
+                    <th><a style="text-decoration:none">Album Title</a></th>
+                    <th><a style="text-decoration:none">Album Year</a></th>
+                    <th><a style="text-decoration:none">Number of Songs</a></th>
+                    <th><a style="text-decoration:none">Album Genre</a></th>
+                    <th><a style="text-decoration:none">Album Price</a></th>
+                    <th><a style="text-decoration:none">Album Image</a></th>
+                    <th><a style="text-decoration:none">Album Description</a></th>
+                    <th><a style="text-decoration:none">Delete/Edit Entry</a></th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <!-- <tr>
                 <td></td>
                 <td><a href="" style="text-decoration:none; color:black;" data-toggle="modal" data-target="#songinfo">Let It Go</a></td>
                 <td>Edina Menzel</td>
@@ -144,7 +161,46 @@
                 <td>Pop</td>
                 <td>2014</td>
                 <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
-              </tr>
+              </tr> -->
+              <?php 
+                if(isset($searchResults) && isset($category) && count($searchResults) && $category == "song"){
+                  //var_dump($searchResults);
+                  foreach ($searchResults as $key => $value) { ?>
+                      <tr>
+                        <td><?php echo $category; ?></td>
+                        <td><?php echo $value['sAlbumTitle']; ?></td>
+                        <td><?php echo $value['sAlbumYear']; ?></td>
+                        <td><?php echo $value['songTitle']; ?></td>
+                        <td><?php echo $value['songYear']; ?></td>
+                        <td><?php echo $value['songPrice']; ?></td>
+                        <td><?php echo $value['songImg']; ?></td>
+                        <td><?php echo $value['songGenre']; ?></td>
+                        <td><?php echo $value['songLength']; ?></td>
+                        <td><button>Delete</button><a href="../home/edit_song"><button>Edit</button></a></td>
+                      </tr>
+                  <?php } ?>
+                <?php } elseif(isset($searchResults) && isset($category) && !count($searchResults) && $category == "song") { ?>
+                  <p><b>Sorry, we did not find any matches for your search :(</b></p>
+              <?php } ?>
+
+              <?php 
+                if(isset($searchResults) && isset($category) && count($searchResults) && $category == "album"){
+                  foreach ($searchResults as $key => $value) { ?>
+                      <tr>
+                        <td><?php echo $category; ?></td>
+                        <td><?php echo $value['albumTitle']; ?></td>
+                        <td><?php echo $value['albumYear']; ?></td>
+                        <td><?php echo $value['numSongs']; ?></td>
+                        <td><?php echo $value['albumGenre']; ?></td>
+                        <td><?php echo $value['albumPrice']; ?></td>
+                        <td><?php echo $value['albumImg']; ?></td>
+                        <td><?php echo $value['albumDescrip']; ?></td>
+                        <td><button>Delete</button><a href="../home/add_artist_composer"><button>Edit</button></a></td>
+                      </tr>
+                  <?php } ?>
+                <?php } elseif(isset($searchResults) && isset($category) && !count($searchResults) && $category == "album") { ?>
+                  <p><b>Sorry, we did not find any matches for your search :(</b></p>
+              <?php } ?>
             </tbody>
           </table>
 

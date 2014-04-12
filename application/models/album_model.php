@@ -258,5 +258,20 @@ class Album_model extends CI_Model {
 		else 
 			return FALSE;
 	}
+
+	function getAlbumbyKey($title, $year){
+		$SQL = "SELECT * FROM album WHERE LOWER(albumTitle) LIKE LOWER('%".$title."%') AND "."LOWER(albumYear) LIKE LOWER('%".$year."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - getting all album query by title '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
 }
 ?>

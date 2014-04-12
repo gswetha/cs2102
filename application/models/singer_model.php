@@ -260,6 +260,21 @@ class Singer_model extends CI_Model {
 		else 
 			return FALSE;
 	}
+
+	function getSingerbyKey($firstname, $lastname, $stagename){
+		$SQL = "SELECT * FROM singer s WHERE LOWER(singerFirstName) LIKE LOWER('%".$firstname."%') AND "."LOWER(singerLastName) LIKE LOWER('%".$lastname."%') AND "."LOWER(stageName) LIKE LOWER('%".$stagename."%')";
+		$query = $this->db->query($SQL);
+		log_message('info', 'album_model - getting all album query by title '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
 }
 
 ?>

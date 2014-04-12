@@ -44,17 +44,27 @@ class Song_model extends CI_Model {
 		$SQL_delete_trigger = "DROP TRIGGER IF EXISTS song_trigger";
 		$query_delete_trigger = $this->db->query($SQL_delete_trigger);
 
-		$SQL_trigger = "CREATE TRIGGER song_trigger AFTER INSERT ON album 
-						BEGIN
-							INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength) VALUES ("."'".$data['sAlbumTitle']."',".$data['sAlbumYear'].",'".$data['songTitle']."','".$data['songYear']."',".$data['songPrice'].",'".$data['songImg']."','".$data['songGenre']."',".$data['songLength'].");
-							INSERT INTO singer (singerFirstName, singerLastName, stageName, singerBirthday, singerDescrip, singerImg) VALUES ('".$data['singerFirstName']."','".$data['singerLastName']."','".$data['stageName']."','".$data['singerBirthday']."','".$data['singerDescrip']."','".$data['singerImg']."');
-							INSERT INTO singersingssong sss (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear, sssSingerFirstName, sssSingerLastName, sssSingerStageName) VALUES ('".$data['sssAlbumTitle']."','".$data['sssAlbumYear']."','".$data['sssSongTitle']."','".$data['sssSongYear']."','".$data['sssSingerFirstName']."','".$data['sssSingerLastName']."','".$data['sssSingerStageName']."');
-							INSERT INTO composercomposessong ccs (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear, ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday) VALUES ('".$data['ccsAlbumTitle']."','".$data['ccsAlbumYear']."','".$data['ccsSongTitle']."','".$data['ccsSongYear']."','".$data['ccsComposerFirstName']."','".$data['ccsComposerLastName']."','".$data['ccsComposerBirthday']."'); 
-						END";
+		// $SQL_trigger = "delimiter $$ \n CREATE TRIGGER song_trigger \n AFTER INSERT ON song \nfor each row
+		// 				\nBEGIN
+		// 					\nINSERT INTO singersingssong (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear, sssSingerFirstName, sssSingerLastName, sssSingerStageName) VALUES ('".$data['sAlbumTitle']."','".$data['sAlbumYear']."','".$data['songTitle']."','".$data['songYear']."','".$data['singerFirstName']."','".$data['singerLastName']."','".$data['singerStageName']."');
+		// 					\n\nINSERT INTO composercomposessong (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear, ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday) VALUES ('".$data['sAlbumTitle']."','".$data['sAlbumYear']."','".$data['songTitle']."','".$data['songYear']."','".$data['composerFirstName']."','".$data['composerLastName']."','".$data['composerBirthday']."'); 
+		// 				\nEND $$ 
+		// 				\ndelimiter ;";
+
+		$SQL_trigger =  
+						"CREATE TRIGGER song_trigger 
+						AFTER INSERT ON song 
+						for each row 
+						BEGIN 
+						INSERT INTO singersingssong (sssAlbumTitle, sssAlbumYear, sssSongTitle, sssSongYear, sssSingerFirstName, sssSingerLastName, sssSingerStageName) VALUES ('".$data['sAlbumTitle']."','".$data['sAlbumYear']."','".$data['songTitle']."','".$data['songYear']."','".$data['singerFirstName']."','".$data['singerLastName']."','".$data['singerStageName']."');
+		 				INSERT INTO composercomposessong (ccsAlbumTitle, ccsAlbumYear, ccsSongTitle, ccsSongYear, ccsComposerFirstName, ccsComposerLastName, ccsComposerBirthday) VALUES ('".$data['sAlbumTitle']."','".$data['sAlbumYear']."','".$data['songTitle']."','".$data['songYear']."','".$data['composerFirstName']."','".$data['composerLastName']."','".$data['composerBirthday']."'); 
+						END;
+						";
 
 		$query_trigger = $this->db->query($SQL_trigger);
 
-		$SQL = "INSERT INTO album (albumTitle, albumYear, numSongs, albumGenre, albumPrice, albumImg, albumDescrip) VALUES ('".$data['albumTitle']."','".$data['albumYear']."',".$data['numSongs'].",'".$data['albumGenre']."',".$data['albumPrice'].",'".$data['albumImg']."','".$data['albumDescrip']."')";
+		//$SQL = "INSERT INTO album (albumTitle, albumYear, numSongs, albumGenre, albumPrice, albumImg, albumDescrip) VALUES ('".$data['albumTitle']."','".$data['albumYear']."',".$data['numSongs'].",'".$data['albumGenre']."',".$data['albumPrice'].",'".$data['albumImg']."','".$data['albumDescrip']."')";
+		$SQL = "INSERT INTO song (sAlbumTitle, sAlbumYear, songTitle, songYear, songPrice, songImg, songGenre, songLength) VALUES ("."'".$data['sAlbumTitle']."',"."'".$data['sAlbumYear']."','".$data['songTitle']."','".$data['songYear']."',".$data['songPrice'].",'".$data['songImg']."','".$data['songGenre']."',".$data['songLength'].")";
 		$query = $this->db->query($SQL);
 
 

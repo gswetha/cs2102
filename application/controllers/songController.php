@@ -16,6 +16,9 @@ class SongController extends CI_Controller {
 		
 		// Models
 		$this->load->model('song_model');
+		$this->load->model('album_model');
+		$this->load->model('singer_model');
+		$this->load->model('composer_model');
 	 }
 
 	function isLoggedIn(){
@@ -49,10 +52,62 @@ class SongController extends CI_Controller {
 		return $result;
 	}
 
-	function addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength){
+	function addSong(){
 		//get form input (album info, song info, singer info, composer info)
-		$result = $this->song_model->addSong($sAlbumTitle,$sAlbumYear,$songTitle,$songYear,$songPrice,$songImg,$songGenre,$songLength);
-		return $result;
+		// if album does not exist, throw an error.
+		// if singer does not exist, throw error
+		// if composer does not exist, throw error
+		$result = FALSE;
+		$data['song_info'] = NULL;
+		$data['notify_type'] = "none";
+		if ($this->input->post('submit_add_song')) {
+			//echo "post result is "; var_dump($_POST);
+			$album_exists = $this->album_model->getAlbumbyKey($this->input->post('sAlbumTitle'), $this->input->post('sAlbumYear'));
+			$singer_exists = $this->singer_model->getSingerbyKey($this->input->post('singerFirstName'), $this->input->post('singerLastName'), $this->input->post('singerStageName'));
+			$composer_exists = $this->composer_model->getComposerbyKey($this->input->post('composerFirstName'), $this->input->post('composerLastName'), $this->input->post('composerBirthday'));
+			//echo "album_exists is"; var_dump($album_exists); 
+			//echo "singer_exists is"; var_dump($singer_exists);
+			//echo "composer_exists is"; var_dump($composer_exists);
+			if($album_exists && $singer_exists && $composer_exists){
+				$insert_data['sAlbumTitle'] = $this->input->post('sAlbumTitle');
+				$insert_data['sAlbumYear'] = $this->input->post('sAlbumYear');
+				$insert_data['songTitle'] = $this->input->post('songTitle');
+				$insert_data['songYear'] = $this->input->post('songYear');
+				$insert_data['songPrice'] = $this->input->post('songPrice');
+				$insert_data['songImg'] = $this->input->post('songImg');
+				$insert_data['songGenre'] = $this->input->post('songGenre');
+				$insert_data['songLength'] = $this->input->post('songLength');
+				$insert_data['singerFirstName'] = $this->input->post('singerFirstName');
+				$insert_data['singerLastName'] = $this->input->post('singerLastName');
+				$insert_data['singerStageName'] = $this->input->post('singerStageName');
+				$insert_data['composerFirstName'] = $this->input->post('composerFirstName');
+				$insert_data['composerLastName'] = $this->input->post('composerLastName');
+				$insert_data['composerBirthday'] = $this->input->post('composerBirthday');
+				//echo "adding song now";
+				$result = $this->song_model->addSong($insert_data);
+				//var_dump($result);
+				$data['song_info'] = $insert_data;
+				$data['notify_type'] = "add song";
+				$this->load->view('_home_header_styles');
+				$this->load->view('admin_edit_songNotify', $data);
+				$this->load->view('_home_footer_script');
+			}
+			else{
+				if(!$album_exists) {$data['errors'][] = "The album does not exist. Please enter valid album information"; }
+				if(!$singer_exists) {$data['errors'][] = "The singer does not exist. Please enter valid singer information"; }
+				if(!$composer_exists) {$data['errors'][] = "The composer does not exist. Please enter valid composer information"; }
+				//var_dump($data['error']);
+				$this->load->view('_home_header_styles');
+				$this->load->view('add_song_album', $data);
+				$this->load->view('_home_footer_script');
+
+			}
+		}
+		else {
+			redirect($this->config->item('base_url')."home/add_song_album");
+		}
+
+		//return $result;
 	}
 
 	function deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear){

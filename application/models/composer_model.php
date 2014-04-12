@@ -192,6 +192,21 @@ class Composer_model extends CI_Model {
 		log_message('info', 'composer_model - search composer by genre result is '.print_r($result,TRUE));
 		return $result;
 	}
+
+	function getComposerByKey($composerFirstName, $composerLastName, $composerBirthday){
+		$SQL = "SELECT * FROM composer c WHERE LOWER(composerFirstName) LIKE LOWER('%".$composerFirstName."%') AND "."LOWER(composerLastName) LIKE LOWER('%".$composerLastName."%') AND "."composerBirthday = '".$composerBirthday."'";
+		$query = $this->db->query($SQL);
+		log_message('info', 'composer_model - getting composer by primary key query '.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		return $result;
+	}
 }
 
 ?>

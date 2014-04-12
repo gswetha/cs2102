@@ -216,9 +216,9 @@ class Singer_model extends CI_Model {
 	}
 
 	function searchMostPopular(){
-		$SQL = "SELECT DISTINCT s.sssSingerFirstName, s.sssSingerLastName, s.sssSingerStageName FROM purchases p, singersingssong s 
-				WHERE p.pSongTitle=s.sssSongTitle AND p.pAlbumTitle=s.sssAlbumTitle GROUP BY s.sssSingerFirstName, s.sssSingerLastName, 
-				s.sssSingerStageName, p.pSongTitle, p.pSongYear ORDER BY COUNT(*) DESC";
+		$SQL = "SELECT s.singerFirstName, s.singerLastName, s.stageName, s.singerImg, s.singerBirthday, s.singerDescrip, COUNT(*) FROM purchases p, singersingssong sss , singer s
+				WHERE p.pSongTitle=sss.sssSongTitle AND p.pAlbumTitle=sss.sssAlbumTitle AND sss.sssSingerFirstName = s.singerFirstName AND sss.sssSingerLastName = s.singerLastName 
+				GROUP BY s.singerFirstName, s.singerLastName, s.stageName, s.singerImg, s.singerBirthday, s.singerDescrip ORDER BY COUNT(*) DESC";
 
 		$query = $this->db->query($SQL);
 		log_message('info', 'singer_model - popular search'.$this->db->last_query());

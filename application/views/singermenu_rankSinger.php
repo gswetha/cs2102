@@ -26,7 +26,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-         <?php if(!$logged_in){ ?>
+          <?php if(!$logged_in){ ?>
             <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
             <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
           <?php } ?>
@@ -63,10 +63,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="./songController" class="list-group-item">All Songs</a>
-                <a href="./albumController"class="list-group-item">All Albums</a>
-                <a class="list-group-item">All Singers</a>
-                <a href="./composerController" class="list-group-item">All Composers</a>
+                <a href="../songController" class="list-group-item">All Songs</a>
+                <a href="../albumController" class="list-group-item">All Albums</a>
+                <a href="../singerController" class="list-group-item">All Singers</a>
+                <a href="../composerController" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -81,15 +81,15 @@
               </div>
               <div class="list-group">
                 <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
-                <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
-                <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
+                <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a class="list-group-item">Top 10 Singers</a>
                 <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
               </div>
             </div>
 
           </div>
       </div>
-      <form method="post" action="./singerController/searchInSinger" >
+      <form method="post" action="./searchInSinger" >
        <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
           <div style="font-size:18px;">
           <select name="searchOptions" id="searchOptions">
@@ -117,14 +117,16 @@
                   <?php
                     log_message('info', 'singer_list in view is '.print_r($allSingers,true));
                     if(count($allSingers)){
+                        $counter = 1;
                           foreach ($allSingers as $key => $value) {
                             $data_target = "#singerinfo_".$key;
                             echo '<div class="col-xs-6 col-md-3" style="height: 320px; overflow: hidden;">';
                               echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
                                 echo '<img src="'.$value['singerImg'].'" width="200" height="200">';
                              echo '</a>';
-                             echo '<p><b>'.$value['stageName'].'</b></p>';
+                             echo '<p><b>Popularity: '.$counter.'    '.$value['stageName'].'</b></p>';
                             echo '</div>';
+                            $counter = $counter + 1;
                           }
                       }else{
                         echo '<p><b>Sorry, we did not find any matches for your search :(</b></p>';

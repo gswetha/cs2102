@@ -92,6 +92,13 @@ class Home extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function singermenu_rankSinger()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('singermenu_rankSinger');
+		$this->load->view('_home_footer_script');
+	}
+
 	public function composermenu()
 	{
 		$this->load->view('_home_header_styles');

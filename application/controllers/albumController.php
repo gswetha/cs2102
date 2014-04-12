@@ -251,7 +251,27 @@ class AlbumController extends CI_Controller {
 	}
 
 	function searchMostPopular(){
-		$this->album_model->searchMostPopular();
+		$result = $this->album_model->searchMostPopular();
+		if(count($result)){
+			$albumData['albumList'] = $result;
+		}else{
+			$albumData['albumList'] = NULL;
+		}
+
+		if ($this->isLoggedIn()) {
+				$albumData['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$albumData['username'] = $this->session->userdata('name');
+				$albumData['role'] = $this->session->userdata('role');
+				$albumData['email'] = $this->session->userdata('email');
+		}
+		else
+			$albumData['logged_in'] = FALSE;
+
+		$albumData['albumSongs'] = $this->getAlbumSongs();
+		$this->load->view('_home_header_styles');
+		$this->load->view('albummenu_rankAlbum', $albumData);
+		$this->load->view('_home_footer_script');
 	}
 
 	

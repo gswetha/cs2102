@@ -111,7 +111,28 @@ class SingerController extends CI_Controller {
 	}
 
 	function searchMostPopular(){
-		$this->singer_model->searchMostPopular();
+		$result = $this->singer_model->searchMostPopular();
+		if(count($result)){
+			$data['allSingers'] = $result;
+		}else{
+			$data['allSingers'] = NULL;
+		}
+
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+		}
+		else
+			$data['logged_in'] = FALSE;
+
+		$data['allSingerSongs'] = $this->getSingerSongs();
+		$this->load->view('_home_header_styles');
+		$this->load->view('singermenu_rankSinger', $data);
+		$this->load->view('_home_footer_script');
+		
 	}
 
 	function searchInSinger(){

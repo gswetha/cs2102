@@ -71,10 +71,24 @@ class Home extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function albummenu_searchAlbum()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('albummenu_searchAlbum');
+		$this->load->view('_home_footer_script');
+	}
+
 	public function singermenu()
 	{
 		$this->load->view('_home_header_styles');
 		$this->load->view('singermenu');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function singermenu_searchSinger()
+	{
+		$this->load->view('_home_header_styles');
+		$this->load->view('singermenu_searchSinger');
 		$this->load->view('_home_footer_script');
 	}
 
@@ -134,6 +148,27 @@ class Home extends CI_Controller {
 		$this->load->view('_home_footer_script');
 	}
 
+	public function admin_edit_addAblum()
+	{	
+		$this->load->view('_home_header_styles');
+		$this->load->view('admin_edit_addAblum');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function admin_edit_deleteAlbum()
+	{	
+		$this->load->view('_home_header_styles');
+		$this->load->view('admin_edit_deleteAlbum');
+		$this->load->view('_home_footer_script');
+	}
+
+	public function admin_edit_searchItem()
+	{	
+		$this->load->view('_home_header_styles');
+		$this->load->view('admin_edit_searchItem');
+		$this->load->view('_home_footer_script');
+	}
+
 	public function purchaseReceipt()
 	{	
 		$data['result'][] = "";
@@ -162,6 +197,25 @@ class Home extends CI_Controller {
 		$this->load->view('_home_header_styles');
 		$this->load->view('add_album');
 		$this->load->view('_home_footer_script');
+	}
+
+	public function edit_album()
+	{
+		if($this->input->post('editAlbum')) {
+			$data['albumTitle'] = $this->input->post('albumTitle');
+			$data['albumYear'] = $this->input->post('albumYear');
+			$data['numSongs'] = $this->input->post('numSongs');
+			$data['albumGenre'] = $this->input->post('albumGenre');
+			$data['albumPrice'] = $this->input->post('albumPrice');
+			$data['albumImg'] = $this->input->post('albumImg');
+			$data['albumDescrip'] = $this->input->post('albumDescrip');
+
+			$this->load->view('_home_header_styles');
+			$this->load->view('edit_album',$data);
+			$this->load->view('_home_footer_script');
+		}else{
+			echo "nothing	";
+		}
 	}
 
 	public function add_artist_composer()

@@ -60,10 +60,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="./songController" class="list-group-item">All Songs</a>
-                <a href="./albumController" class="list-group-item">All Albums</a>
-                <a href="./singerController" class="list-group-item">All Singers</a>
-                <a href="./composerController" class="list-group-item">All Composers</a>
+                <a href="../songController" class="list-group-item">All Songs</a>
+                <a href="../albumController" class="list-group-item">All Albums</a>
+                <a href="../singerController" class="list-group-item">All Singers</a>
+                <a href="../composerController" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -104,7 +104,7 @@
         <div><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addinfo">To Add an Entry, Click Here</button></div>
         </br>
         </br>
-        <form action="./adminEditController/searchItem" method="post">
+        <form action="../adminEditController/searchItem" method="post">
           <div style="font-size:18px;">
           <select name="searchOption">
             <option>Search By..</option>
@@ -196,7 +196,7 @@
                         <td><?php echo $value['albumDescrip']; ?></td>
                        
                           <td>
-                             <form action="./deleteAlbum" method="post">
+                             <form action="../adminEditController/deleteAlbum" method="post">
                                 <input type="hidden" name="albumTitle" value=<?php echo $value['albumTitle'];?>>
                                 <input type="hidden" name="albumYear" value=<?php echo $value['albumYear'];?>>
                                 <button type="submit" class="btn btn-primary" name="deleteAlbum" id="deleteAlbum" value="deleteAlbum">Delete</button>
@@ -254,10 +254,10 @@
                 <div class="modal-body">
                 
                 </br>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_song_album">Song</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_album">Album</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_artist">Artist</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_artist_composer">Composer</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_album">Album</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist">Artist</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
 
                   
                 </div>

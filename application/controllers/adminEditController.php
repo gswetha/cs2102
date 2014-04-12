@@ -50,12 +50,32 @@ class AdminEditController extends CI_Controller {
 				$data['searchResults'] = NULL;
 
 			$this->load->view('_home_header_styles');
-			$this->load->view('admin_edit',$data);
+			$this->load->view('admin_edit_searchItem',$data);
 			$this->load->view('_home_footer_script');
 		}
 
 		//to redirect to home controller function add_song_album
 		//redirect($this->config->item('base_url')."home/add_song_album");
+	}
+
+	function deleteAlbum(){
+		echo "in deletealbum";
+		if($this->input->post('deleteAlbum')) {
+			$albumTitle = $this->input->post('albumTitle');
+			$albumYear = $this->input->post('albumYear');
+			$result = $this->album_model->deleteAlbum($albumTitle, $albumYear);
+			if($result){
+				$data['delete'] = "Album : ".$albumTitle." is successfully deleted!";
+			}else{
+				$data['delete'] = "Failed to delete Album : ".$albumTitle;
+			}
+			$this->load->view('_home_header_styles');
+			$this->load->view('admin_edit_deleteAlbum',$data);
+			$this->load->view('_home_footer_script');
+		}else{
+			echo "nothing	";
+		}
+		
 	}
 
 }

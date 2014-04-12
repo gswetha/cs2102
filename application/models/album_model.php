@@ -250,7 +250,7 @@ class Album_model extends CI_Model {
  	}
 
 	function deleteAlbum($albumTitle, $albumYear){
-		$SQL = "DELETE FROM album a WHERE LOWER(a.albumTitle) LIKE LOWER("."'%".$albumTitle."%') and a.albumYear = '".$albumYear."'";
+		$SQL = "DELETE FROM album WHERE LOWER(albumTitle) LIKE LOWER('%".$albumTitle."%') AND albumYear = '".$albumYear."'";
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - delete album by title and year '.$this->db->last_query());
 		if($query)

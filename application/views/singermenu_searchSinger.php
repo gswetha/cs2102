@@ -26,7 +26,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-         <?php if(!$logged_in){ ?>
+          <?php if(!$logged_in){ ?>
             <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
             <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
           <?php } ?>
@@ -63,10 +63,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="./songController" class="list-group-item">All Songs</a>
-                <a href="./albumController"class="list-group-item">All Albums</a>
+                <a href="../songController" class="list-group-item">All Songs</a>
+                <a href="../albumController"class="list-group-item">All Albums</a>
                 <a class="list-group-item">All Singers</a>
-                <a href="./composerController" class="list-group-item">All Composers</a>
+                <a href="../composerController" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -89,7 +89,7 @@
 
           </div>
       </div>
-      <form method="post" action="./singerController/searchInSinger" >
+      <form method="post" action="./searchInSinger" >
        <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
           <div style="font-size:18px;">
           <select name="searchOptions" id="searchOptions">

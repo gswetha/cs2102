@@ -68,14 +68,14 @@ class AlbumController extends CI_Controller {
 			$result = $this->album_model->addAlbum($title, $year, $noSongs, $genre, $price, $img, $descrip);
 			
 			if($result){
-				$resultData['add'] = array($title,$year,$noSongs,$genre,$price,$price,$img,$descrip);
+				$resultData['add'] = "Album : ".$title." is successfully added!";
 				$this->load->view('_home_header_styles');
-				$this->load->view('admin_edit',$resultData);
+				$this->load->view('admin_edit_addAlbum',$resultData);
 				$this->load->view('_home_footer_script');			
 			}else{
-				$resultData['add'] = array($title);
+				$resultData['add'] = "Failed to add Album : ".$title;
 				$this->load->view('_home_header_styles');
-				$this->load->view('admin_edit',$resultData);
+				$this->load->view('admin_edit_addAlbum',$resultData);
 				$this->load->view('_home_footer_script');	
 			}
 		}else{
@@ -109,8 +109,34 @@ class AlbumController extends CI_Controller {
 		return $albums;
 	}
 
-	function updateAlbum($update_data, $album_identifier){
-		$this->album_model->updateAlbum($update_data, $album_identifier);
+	function updateAlbum(){
+		if ($this->input->post('updateSubmit')) {
+			$updateData['albumTitle'] = $this->input->post('title');
+			$updateData['albumYear'] = $this->input->post('year');
+			$updateData['numSongs'] = $this->input->post('noSongs');
+			$updateData['albumGenre'] = $this->input->post('genre');
+			$updateData['albumPrice'] = $this->input->post('price');
+			$updateData['albumImg'] = $this->input->post('img');
+			$updateData['albumDescrip'] = $this->input->post('descrip');
+			$identifer['albumTitle'] = $this->input->post('origAlbumTitle');
+			$identifer['albumYear'] = $this->input->post('origAlbumYear');
+
+			$result = $this->album_model->updateAlbum($updateData,$identifer);
+			
+			if($result){
+				$resultData['update'] = "Album : ".$updateData['albumTitle']." is successfully updated!";
+				$this->load->view('_home_header_styles');
+				$this->load->view('admin_edit_addAlbum',$resultData);
+				$this->load->view('_home_footer_script');			
+			}else{
+				$resultData['update'] = "Failed to update Album : ".$updateData['albumTitle'];
+				$this->load->view('_home_header_styles');
+				$this->load->view('admin_edit_addAlbum',$resultData);
+				$this->load->view('_home_footer_script');	
+			}
+		}else{
+			echo 'no';
+		}
 	}
 
 	function deleteAlbum($albumTitle, $albumYear){
@@ -201,9 +227,19 @@ class AlbumController extends CI_Controller {
 			else
 				$albumData['albumList'] = NULL;
 
+			if ($this->isLoggedIn()) {
+				$albumData['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$albumData['username'] = $this->session->userdata('name');
+				$albumData['role'] = $this->session->userdata('role');
+				$albumData['email'] = $this->session->userdata('email');
+			}
+			else
+				$albumData['logged_in'] = FALSE;
+
 			$albumData['albumSongs'] = $this->getAlbumSongs();
 			$this->load->view('_home_header_styles');
-			$this->load->view('albummenu', $albumData);
+			$this->load->view('albummenu_searchAlbum', $albumData);
 			$this->load->view('_home_footer_script');
 
 		}else{

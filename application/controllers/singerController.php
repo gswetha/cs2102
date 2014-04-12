@@ -9,16 +9,35 @@ class SingerController extends CI_Controller {
 		// Helpers
 		$this->load->helper('url');
 		$this->load->helper('form');
+
 		
 		// Libraries
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 		// Models
 		$this->load->model('singer_model');
 	 }
-	 
+	
+	function isLoggedIn(){
+		if($this->session->userdata('status') == 'logged_in')
+			return TRUE;
+		else
+			return FALSE;
+	}
+
 	public function index()
 	{
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else
+			$data['logged_in'] = FALSE;
+
 		$data['allSingers'] = $this->getSinger();
 		$data['allSingerSongs'] = $this->getSingerSongs();
 		$this->load->view('_home_header_styles');
@@ -150,9 +169,19 @@ class SingerController extends CI_Controller {
 			else
 				$data['allSingers'] = NULL;
 
+			if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else
+				$data['logged_in'] = FALSE;
+
 			$data['allSingerSongs'] = $this->getSingerSongs();
 			$this->load->view('_home_header_styles');
-			$this->load->view('singermenu', $data);
+			$this->load->view('singermenu_searchSinger', $data);
 			$this->load->view('_home_footer_script');
 
 		}else{

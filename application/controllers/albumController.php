@@ -69,12 +69,12 @@ class AlbumController extends CI_Controller {
 			
 			$result = FALSE;
 			if($result){
-				$resultData['result'] = array($title,$year,$noSongs,$genre,$price,$price,$img,$descrip);
+				$resultData['add'] = array($title,$year,$noSongs,$genre,$price,$price,$img,$descrip);
 				$this->load->view('_home_header_styles');
 				$this->load->view('admin_edit',$resultData);
 				$this->load->view('_home_footer_script');			
 			}else{
-				$resultData['result'] = array($title);
+				$resultData['add'] = array($title);
 				$this->load->view('_home_header_styles');
 				$this->load->view('admin_edit',$resultData);
 				$this->load->view('_home_footer_script');	

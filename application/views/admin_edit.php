@@ -50,32 +50,6 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <!-- <li class="dropdown">
-              <a href="#" class="dropdown-toggle" role="button" id="drop2" data-toggle="dropdown">
-                Catalogue
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
-              </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" role="button" id="drop3" data-toggle="dropdown">
-                Most Popular
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Song</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Album</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Artist</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composer</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Genre</a></li>
-              </ul>
-          </li> -->
           <div class="panel-group" id="accordion">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -118,13 +92,9 @@
 
         <?php 
           
-          $count = count($result);
-          if($count && $count>1){
-            echo'<h4>Album with title '.$result[0].' is added successfully</h4>';
-          }else if($count && $count = 1){
-            echo'<h4>Fail to insert album with title '.$result[0].'</h4>';
-          }else{
-            echo'<h4>Error. Please retry</h3>';
+          $count = count($add);
+          if($count > 0){
+            echo'<h4>Album with title '.$add[0].' is added successfully</h4>';
           }
         ?>
 

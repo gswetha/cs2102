@@ -129,9 +129,8 @@ class Home extends CI_Controller {
 
 	public function admin_edit()
 	{	
-		$data['result'][] = "";
 		$this->load->view('_home_header_styles');
-		$this->load->view('admin_edit',$data);
+		$this->load->view('admin_edit');
 		$this->load->view('_home_footer_script');
 	}
 

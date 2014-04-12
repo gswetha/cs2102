@@ -49,6 +49,9 @@ class AdminEditController extends CI_Controller {
 			$this->load->view('admin_edit',$data);
 			$this->load->view('_home_footer_script');
 		}
+
+		//to redirect to home controller function add_song_album
+		//redirect($this->config->item('base_url')."home/add_song_album");
 	}
 
 }

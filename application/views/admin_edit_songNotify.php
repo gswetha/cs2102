@@ -86,10 +86,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../home/songmenu" class="list-group-item">All Songs</a>
-                <a href="../home/albummenu" class="list-group-item">All Albums</a>
-                <a href="../home/singermenu" class="list-group-item">All Singers</a>
-                <a href="../home/composermenu" class="list-group-item">All Composers</a>
+                <a href="../songcontroller" class="list-group-item">All Songs</a>
+                <a href="../albumcontroller" class="list-group-item">All Albums</a>
+                <a href="../singercontroller" class="list-group-item">All Singers</a>
+                <a href="../composercontroller" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
@@ -122,7 +122,7 @@
         <form action="../adminEditController/searchItem" method="post">
           <div style="font-size:18px;">
           <select name="searchOption">
-            <option>Search By..</option>
+            <option disabled>Search By..</option>
             <option>Song</option>
             <option>Album</option>
           </select></div>
@@ -137,12 +137,6 @@
           </div>
         </form>
 
-        <div class="col-m-12" >
-          <div class="input-group">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
         <?php if($notify_type == "add song") { ?>
         <h3>Added the following song:</h3>
         <?php var_dump($song_info); ?>
@@ -156,6 +150,15 @@
         <?php if($notify_type == "delete song") { ?>
         <h3>Deleted the following song:</h3>
         <?php var_dump($song_info); ?>
+        <?php } ?>
+
+        <?php if(isset($errors) && count($errors) ) { ?>
+          <div class="alert alert-danger">
+              <?php foreach ($errors as $key => $value) {
+                   echo $value; echo '<br>';
+                  }
+              ?>
+          </div>
         <?php } ?>
 
         <div id="songinfo" class="modal fade">

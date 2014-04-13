@@ -33,11 +33,15 @@ class Purchase_model extends CI_Model {
 
 	function purchaseSong($data){
 		// var_dump($data);
+		//echo "in purchaseSong in purchase_model";
 		$SQL = "INSERT INTO purchases (pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail, transactionDate, amountPaid, purchaseType)
 				VALUES ("."'".$data['pAlbumTitle']."',"."'".$data['pAlbumYear']."',"."'".$data['pSongTitle']."',"."'".$data['pSongYear']."',"."'".$data['pEmail']."',"."'".$data['transactionDate']."',"."'".$data['amountPaid']."',"."'".$data['purchaseType']."'".")";
 		if($this->db->query($SQL))
-			return TRUE;
-
+		{	
+			log_message('info', 'purchase_model - get all purchases'.$this->db->last_query());
+			return TRUE; 
+		}
+		log_message('info', 'purchase_model - get all purchases 2'.$this->db->last_query());
 		return FALSE;
 	}
 

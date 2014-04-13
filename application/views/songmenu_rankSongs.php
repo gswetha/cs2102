@@ -123,6 +123,7 @@
         <?php if(count($songs_list)) {  } ?>
         <?php 
           if(count($songs_list)){
+             $rank = 1;
             foreach ($songs_list as $key => $value) {
              //var_dump($value);
               echo '<div class="col-xs-6 col-md-3 style="height:320px; overflow:hidden;">';
@@ -131,9 +132,10 @@
               //echo '<img data-src="holder.js/200x180">';
               echo '<img src= '.$value['songImg'].' width="150" height="150" >';
               echo '<p>';
-              echo '<b>'.$value['songTitle']."  -  $".$value['songPrice'].'</b>';
+              echo '<b>Popularity: '.$rank.'  '.$value['songTitle']." - $".$value['songPrice'].'</b>';
               echo '</p>';
               echo '</div>';
+              $rank = $rank + 1;
             }
           } else { ?>
             <p><b>Sorry, we did not find any matches for your search :(</b></p>
@@ -165,7 +167,7 @@
                 <p>Length: <?php echo $value['songLength']; ?></p>
               </div>
               <div class="modal-footer">
-                <form method="post" action="./purchasescontroller/purchaseSong">
+                <form method="post" action="../purchasescontroller/purchaseSong">
                   <input type="hidden" name="songTitle" value="<?php echo $value['songTitle']; ?>">
                   <input type="hidden" name="songYear" value=<?php echo $value['songYear'];  ?>>
                   <input type="hidden" name="sAlbumTitle" value="<?php echo $value['sAlbumTitle'];  ?>">

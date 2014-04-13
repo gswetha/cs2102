@@ -57,6 +57,16 @@ class SongController extends CI_Controller {
 		// if album does not exist, throw an error.
 		// if singer does not exist, throw error
 		// if composer does not exist, throw error
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 		$result = FALSE;
 		$data['song_info'] = NULL;
 		$data['notify_type'] = "none";
@@ -112,20 +122,75 @@ class SongController extends CI_Controller {
 
 	function deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear){
 		//get form input
+		//actual one is in adminEditController function deleteSong()
 		$result = $this->song_model->deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear);
 		return $result;
 	}
 
 	function updateSong(){
 		//get form input
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 		$update_data = NULL;
 		$song_identifier = NULL;
-		$result = $this->song_model->updateSong($update_data, $song_identifier);
-		return $result;
+		// $result = $this->song_model->updateSong($update_data, $song_identifier);
+		// return $result;
+		var_dump($_POST);
+		if ($this->input->post('updateSubmit')) {
+			//$update_data['sAlbumTitle'] = $this->input->post('sAlbumTitle');
+			//$update_data['sAlbumYear'] = $this->input->post('sAlbumYear');
+			$update_data['songTitle'] = $this->input->post('songTitle');
+			$update_data['songYear'] = $this->input->post('songYear');
+			$update_data['songPrice'] = $this->input->post('songPrice');
+			$update_data['songImg'] = $this->input->post('songImg');
+			$update_data['songGenre'] = $this->input->post('songGenre');
+			$update_data['songLength'] = $this->input->post('songLength');
+
+			$song_identifier['sAlbumTitle'] = $this->input->post('sAlbumTitleOriginal');
+			$song_identifier['sAlbumYear'] = $this->input->post('sAlbumYearOriginal');
+			$song_identifier['songTitle'] = $this->input->post('songTitleOriginal');
+			$song_identifier['songYear'] = $this->input->post('songYearOriginal');
+
+			$result = $this->song_model->updateSong($update_data,$song_identifier);
+			var_dump($result);
+			
+			if($result){
+				$data['notify_type'] = "edit song";
+				$data['song_info'] = $update_data;
+				$this->load->view('_home_header_styles');
+				$this->load->view('admin_edit_songNotify',$data);
+				$this->load->view('_home_footer_script');			
+			}else{
+				$data['errors'][] = "Failed to update song. Please verify all the fields";
+				$this->load->view('_home_header_styles');
+				$this->load->view('edit_song',$data);
+				$this->load->view('_home_footer_script');	
+			}
+		} else{
+			echo 'no form submission';
+		}
 	}
 
 function search(){
 		//get form input from search and based on what user wants to search for, direct to the correct function and display the result
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 		log_message('info', 'in search function in composer controller.');
 		 if($this->input->post('search_submit')) {
 		 	echo "post successful";
@@ -243,6 +308,29 @@ function search(){
 	function searchSongGeneric($term){
 		$result = $this->song_model->searchGeneric($term);
 		return $result;
+	}
+
+	function searchMostPopularSongs(){
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else {
+			$data['logged_in'] = FALSE;
+		}
+		$result = $this->song_model->searchMostPopularSongs();
+		if(count($result)){
+			$data['songs_list'] = $result;
+		}else{
+			$data['songs_list'] = NULL;
+		}
+		//var_dump($result);
+		$this->load->view('_home_header_styles');
+		$this->load->view('songmenu_rankSongs', $data);
+		$this->load->view('_home_footer_script');
 	}
 }
 

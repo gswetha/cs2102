@@ -44,6 +44,7 @@ class AdminEditController extends CI_Controller {
 					break;
 			}
 			if(count($result)){
+				var_dump($result);
 				$data['searchResults'] = $result;	
 			}
 			else
@@ -76,6 +77,34 @@ class AdminEditController extends CI_Controller {
 			echo "nothing	";
 		}
 		
+	}
+
+	function deleteSong(){
+		var_dump($_POST);
+		if($this->input->post('deleteSong')) {
+			$sAlbumTitle = $this->input->post('sAlbumTitle');
+			$sAlbumYear = $this->input->post('sAlbumYear');
+			$songTitle = $this->input->post('songTitle');
+			$songYear = $this->input->post('songYear');
+			$result = $this->song_model->deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear);
+			$delete_data['sAlbumTitle'] = $sAlbumTitle;
+			$delete_data['sAlbumYear'] = $sAlbumYear;
+			$delete_data['songTitle'] = $songTitle;
+			$delete_data['songYear'] = $songYear;
+
+			if($result){
+				$data['notify_type'] = "delete song";
+				$data['song_info'] = $delete_data;			
+			}else{
+				$data['errors'][] = "Failed to delete song. Please verify all the fields";
+			}
+
+			$this->load->view('_home_header_styles');
+			$this->load->view('admin_edit_songNotify',$data);
+			$this->load->view('_home_footer_script');
+		} else{
+			echo "nothing	";
+		}
 	}
 
 }

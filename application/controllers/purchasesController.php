@@ -31,29 +31,56 @@ class PurchasesController extends CI_Controller {
 
 	function purchaseSong(){
 		$data['title'] = "Buy Song";
-		echo "in purchaseSong";
+		$data['error'][] = "";
+		$data['result'][] = "";
+		//echo "in purchaseSong in PurchasesController";
 		 if($this->input->post('buy_song') && $this->input->post('songTitle') && $this->input->post('songYear') && $this->input->post('sAlbumTitle') && $this->input->post('sAlbumYear') && $this->input->post('amountPaid') && $this->input->post('userEmail')) {
 
 		 	$user_info = $this->user_model->getUserByEmail($this->input->post('userEmail'));
+		 	//log_message('info', 'songs in album are '.print_r($songsInAlbum,TRUE));
+		 	//if(count($songsInAlbum)){
+		 		//foreach ($songsInAlbum as $key => $value) {
+		 		// 	$albumTitle = str_ireplace("'", "\'", $value['sAlbumTitle']);
+					// $songTitle = str_ireplace("'", "\'", $value['songTitle']);
+		 			$isAlreadyPurchased = $this->purchase_model->checkPurchased($user_info['paypalEmail'],$this->input->post('sAlbumTitle'),$this->input->post('sAlbumYear'),$this->input->post('songTitle'), $this->input->post('songYear')); 
+		 			if($isAlreadyPurchased){
+		 				$data['error'] = "Error. Song is already purchased.";
+					 	$data['isPurchaseSuccessful'] = false;
+					 	//echo "error insert problem";
+		 				
+		 			}else{
+			 			$insert_data['pAlbumTitle']		 = $this->input->post('sAlbumTitle');
+					 	$insert_data['pAlbumYear']		 = $this->input->post('sAlbumYear');
+					 	$insert_data['pSongTitle'] 		 = $this->input->post('songTitle');
+					 	$insert_data['pSongYear'] 		 = $this->input->post('songYear');
+					 	$insert_data['pEmail']		 	 = $user_info['paypalEmail'];
+					 	$insert_data['transactionDate']  = date('Y-m-d');
+					 	$insert_data['amountPaid'] 		 = $this->input->post('amountPaid');
+					 	$insert_data['purchaseType'] 	 = "song";
+					 	if ($this->purchase_model->purchaseSong($insert_data)){
+					 		$data['isPurchaseSuccessful'] = true;
+					 		// var_dump($insert_data);
+					 	}else{
+					 		$data['error'][] = "Error inserting purchase : album";
+					 		$data['isPurchaseSuccessful'] = false;
+					 	}
+		 			}
+		 		//}
+		 		if($data['isPurchaseSuccessful']){
+		 			$data['result'] = '- Song title : '.$this->input->post('songTitle');
+		 		}
+		 	//}
 
-		 	$insert_data['pAlbumTitle']		 = $this->input->post('sAlbumTitle');
-		 	$insert_data['pAlbumYear']		 = $this->input->post('sAlbumYear');
-		 	$insert_data['pSongTitle'] 		 = $this->input->post('songTitle');
-		 	$insert_data['pSongYear'] 		 = $this->input->post('songYear');
-		 	$insert_data['pEmail']		 	 = $user_info['paypalEmail'];
-		 	$insert_data['transactionDate']  = date('Y-m-d');
-		 	$insert_data['amountPaid'] 		 = $this->input->post('amountPaid');
-		 	$insert_data['purchaseType'] 	 = "song";
-		 	if ($this->purchase_model->purchaseSong($insert_data)){
-		 		echo "successfully purchased song";
-		 		var_dump($insert_data);
-		 	}
 		 }
 		 else{
 		 	echo "Sorry, we do not have all the information needed to add the song to the DB";
 		 	$data['error'][] = "Sorry, we do not have all the information needed to add the song to the DB";
 		 	log_message('error', 'post information is '.print_r($_POST,true));
 		 }
+
+		$this->load->view('_home_header_styles');
+		$this->load->view('purchaseReceipt',$data);
+		$this->load->view('_home_footer_script');
 	}
 
 	function purchaseAlbum(){

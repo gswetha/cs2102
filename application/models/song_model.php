@@ -77,7 +77,7 @@ class Song_model extends CI_Model {
 	}
 
 	function deleteSong($sAlbumTitle, $sAlbumYear, $songTitle, $songYear){
-		$SQL = "DELETE FROM song s WHERE s.sAlbumTitle= "."'".$sAlbumTitle."'"." AND s.sAlbumYear= "."'".$sAlbumYear."'"." AND s.songTitle= "."'".$songTitle."'"." AND s.songYear= "."'".$songYear."'";
+		$SQL = "DELETE FROM song WHERE sAlbumTitle= "."'".$sAlbumTitle."'"." AND sAlbumYear= "."'".$sAlbumYear."'"." AND songTitle= "."'".$songTitle."'"." AND songYear= "."'".$songYear."'";
 
 		$query = $this->db->query($SQL);
 		if($query)
@@ -89,8 +89,18 @@ class Song_model extends CI_Model {
  	function updateSong($update_data, $song_identifier) {
  		if(is_array($update_data) && count($update_data)){
  			$data = array();
+ 			//update song title and year first before the rest
+ 			$SQL = "UPDATE song s SET s.songTitle="."'".$update_data['songTitle']."', s.songYear = '".$update_data['songYear']."' WHERE s.sAlbumTitle= "."'".$song_identifier['sAlbumTitle']."'"." AND s.sAlbumYear= "."'".$song_identifier['sAlbumYear']."'"." AND s.songTitle= "."'".$song_identifier['songTitle']."'"." AND s.songYear= "."'".$song_identifier['songYear']."'";
+ 			$query = $this->db->query($SQL);
+ 			log_message("debug","update song title and year SQL " . $this->db->last_query());
+
+ 			$new_song_title = $update_data['songTitle'];
+ 			$new_song_year = $update_data['songYear'];
+ 			unset($update_data['songTitle']);
+ 			unset($update_data['songYear']);
+
  			foreach ($update_data as $key=>$value) {
- 				$SQL = "UPDATE song s SET s.".$key."= "."'".$value."'"." WHERE s.sAlbumTitle= "."'".$song_identifier['sAlbumTitle']."'"." AND s.sAlbumYear= "."'".$song_identifier['sAlbumYear']."'"." AND s.songTitle= "."'".$song_identifier['songTitle']."'"." AND s.songYear= "."'".$song_identifier['songYear']."'";
+ 				$SQL = "UPDATE song s SET s.".$key."= "."'".$value."'"." WHERE s.sAlbumTitle= "."'".$song_identifier['sAlbumTitle']."'"." AND s.sAlbumYear= "."'".$song_identifier['sAlbumYear']."'"." AND s.songTitle= "."'".$new_song_title."'"." AND s.songYear= "."'".$new_song_year."'";
  				$query = $this->db->query($SQL);
  				log_message("debug","update song SQL " . $this->db->last_query());
  			}
@@ -254,6 +264,23 @@ class Song_model extends CI_Model {
 		   }
 		}
 		log_message('info', 'song_model - search generic result is '.print_r($result,TRUE));
+		return $result;
+	}
+
+	function searchMostPopularSongs(){
+		//$SQL = "SELECT p.pAlbumTitle, p.pAlbumYear, p.pSongTitle, p.pSongYear, COUNT( * ) FROM purchases p GROUP BY p.pAlbumTitle, p.pAlbumYear, p.pSongTitle, p.pSongYear ORDER BY COUNT( * ) DESC LIMIT 10 ";
+		$SQL = "SELECT p.pAlbumTitle AS sAlbumTitle, p.pAlbumYear AS sAlbumYear, p.pSongTitle AS songTitle, p.pSongYear as songYear, s.songImg, s.songPrice, s.songGenre, s.songLength, COUNT( * ) FROM purchases p, song s WHERE p.pAlbumTitle = s.sAlbumTitle AND p.pAlbumYear = s.sAlbumYear AND p.pSongTitle = s.songTitle AND p.pSongYear = s.songYear GROUP BY p.pAlbumTitle, p.pAlbumYear, p.pSongTitle, p.pSongYear ORDER BY COUNT( * ) DESC LIMIT 10 ";
+		$query = $this->db->query($SQL);
+		log_message('info', 'song_model - popular search'.$this->db->last_query());
+		$result = NULL;
+		if ($query->num_rows() > 0)
+		{
+		   foreach ($query->result_array() as $row)
+		   {
+		      $result[] = $row;
+		   }
+		}
+		log_message('info', 'song_model - result is '.print_r($result,TRUE));
 		return $result;
 	}
 }

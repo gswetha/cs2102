@@ -22,7 +22,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="./home">Welcome, <?php echo $username; ?>!</a>
+        <?php if(isset($username)) { ?>
+              <a class="navbar-brand" href="./home">Welcome, <?php echo $username; ?>!</a>
+          <?php } else { ?>
+              <a class="navbar-brand" href="./home">Welcome, Guest!</a>
+          <?php } ?>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">

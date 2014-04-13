@@ -57,6 +57,16 @@ class AlbumController extends CI_Controller {
 	}
 
 	function addAlbum(){
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 		if ($this->input->post('addSubmit')) {
 			$title = $this->input->post('title');
 			$year = $this->input->post('year');
@@ -110,6 +120,16 @@ class AlbumController extends CI_Controller {
 	}
 
 	function updateAlbum(){
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 		if ($this->input->post('updateSubmit')) {
 			$updateData['albumTitle'] = $this->input->post('title');
 			$updateData['albumYear'] = $this->input->post('year');
@@ -159,6 +179,16 @@ class AlbumController extends CI_Controller {
 	}
 
 	function searchInAlbum(){
+		if ($this->isLoggedIn()) {
+				$data['logged_in'] = TRUE;
+				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+				$data['username'] = $this->session->userdata('name');
+				$data['role'] = $this->session->userdata('role');
+				$data['email'] = $this->session->userdata('email');
+			}
+			else {
+				$data['logged_in'] = FALSE;
+			}
 		if ($this->input->post('searchSubmit')) {
 			$result = NULL;
 			switch ($this->input->post('searchOptions')) {

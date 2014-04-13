@@ -22,12 +22,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="./home">Welcome, Guest!</a>
+         <?php if(isset($username)) { ?>
+              <a class="navbar-brand" href="./home">Welcome, <?php echo $username; ?>!</a>
+          <?php } else { ?>
+              <a class="navbar-brand" href="./home">Welcome, Guest!</a>
+          <?php } ?>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Sign up</a></li>
+         <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
+            <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
         </ul>
       </div>
     </div>

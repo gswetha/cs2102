@@ -218,7 +218,7 @@ class Album_model extends CI_Model {
 	}
 
 	function searchMostPopular(){
-		$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs, COUNT(*) FROM purchases p, album a WHERE a.albumTitle=p.pAlbumTItle AND a.albumYear=p.pAlbumYear AND p.purchaseType LIKE 'album' GROUP BY a.albumTitle, a.albumYear ORDER BY COUNT(*) DESC";
+		$SQL = "SELECT a.albumTitle, a.albumYear, a.albumPrice, a.albumGenre, a.albumImg, a.numSongs, COUNT(*) FROM purchases p, album a WHERE a.albumTitle=p.pAlbumTitle AND a.albumYear=p.pAlbumYear AND p.purchaseType LIKE 'album' GROUP BY a.albumTitle, a.albumYear ORDER BY COUNT(*) DESC";
 
 		$query = $this->db->query($SQL);
 		log_message('info', 'album_model - popular search'.$this->db->last_query());

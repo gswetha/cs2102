@@ -175,7 +175,27 @@
                         <td><?php echo $value['songImg']; ?></td>
                         <td><?php echo $value['songGenre']; ?></td>
                         <td><?php echo $value['songLength']; ?></td>
-                        <td><button>Delete</button><a href="../home/edit_song"><button>Edit</button></a></td>
+                        <td>
+                             <form action="./deleteSong" method="post">
+                                <input type="hidden" name="sAlbumTitle" value= "<?php echo $value['sAlbumTitle']; ?>" >
+                                <input type="hidden" name="sAlbumYear" value=<?php echo $value['sAlbumYear'];?>>
+                                <input type="hidden" name="songTitle" value="<?php echo $value['songTitle'];?>">
+                                <input type="hidden" name="songYear" value=<?php echo $value['songYear'];?>>
+                                <button type="submit" class="btn btn-primary" name="deleteSong" id="deleteSong" value="deleteSong">Delete</button>
+                             </form>
+                             <form action="../home/edit_song" method="post">
+                               <input type="hidden" name="sAlbumTitle" value="<?php echo $value['sAlbumTitle'];?>">
+                                <input type="hidden" name="sAlbumYear" value=<?php echo $value['sAlbumYear'];?>>
+                                <input type="hidden" name="songTitle" value="<?php echo $value['songTitle'];?>">
+                                <input type="hidden" name="songYear" value=<?php echo $value['songYear'];?>>
+                                <input type="hidden" name="songGenre" value="<?php echo $value['songGenre'];?>">
+                                <input type="hidden" name="songPrice" value=<?php echo $value['songPrice'];?>>
+                                <input type="hidden" name="songImg" value="<?php echo $value['songImg'];?>">
+                                <input type="hidden" name="songLength" value= <?php echo $value['songLength'];?>>
+                                <button type="submit" class="btn btn-primary" name="editSong" id="editSong" value="editSong">Edit</button>
+                             </form>
+                  
+                          </td>
                       </tr>
                   <?php } ?>
                 <?php } elseif(isset($searchResults) && isset($category) && !count($searchResults) && $category == "song") { ?>

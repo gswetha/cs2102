@@ -122,9 +122,10 @@ class Home extends CI_Controller {
 
 	public function top10songs()
 	{
-		$this->load->view('_home_header_styles');
-		$this->load->view('top10songs');
-		$this->load->view('_home_footer_script');
+		// $this->load->view('_home_header_styles');
+		// $this->load->view('top10songs');
+		// $this->load->view('_home_footer_script');
+		redirect($this->config->item('base_url')."songcontroller/searchMostPopularSongs");
 	}
 
 	public function top10albums()
@@ -194,9 +195,28 @@ class Home extends CI_Controller {
 
 	public function edit_song()
 	{
-		$this->load->view('_home_header_styles');
-		$this->load->view('add_song_album');
-		$this->load->view('_home_footer_script');
+		var_dump($_POST);
+		$data['title'] = "Edit Song";
+		$data['action_type'] = "Edit";
+		if($this->input->post('editSong')) {
+			$data['sAlbumTitle'] = $this->input->post('sAlbumTitle');
+			$data['sAlbumYear'] = $this->input->post('sAlbumYear');
+			$data['songTitle'] = $this->input->post('songTitle');
+			$data['songYear'] = $this->input->post('songYear');
+			$data['songPrice'] = $this->input->post('songPrice');
+			$data['songImg'] = $this->input->post('songImg');
+			$data['songGenre'] = $this->input->post('songGenre');
+			$data['songLength'] = $this->input->post('songLength');
+
+			$this->load->view('_home_header_styles');
+			$this->load->view('edit_song',$data);
+			$this->load->view('_home_footer_script');
+		} else{
+			echo "nothing	";
+		}
+		// $this->load->view('_home_header_styles');
+		// $this->load->view('add_song_album');
+		// $this->load->view('_home_footer_script');
 	}
 
 	public function add_album()

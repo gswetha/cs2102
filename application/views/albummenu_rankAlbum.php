@@ -121,15 +121,17 @@
             
                     // log_message('info', 'album_list in view is '.print_r($albumList,true));
                     if(count($albumList)){
+                        $rank = 1;
                           foreach ($albumList as $key => $value) {
                             echo '<div class="col-xs-6 col-md-3" style="height: 320px; overflow: hidden;">';
                             $data_target = "#albuminfo_".$key;
                               echo '<a href="#" data-toggle="modal" data-target="'.$data_target.'" class="thumbnail">';
                               echo '<img src="'.$value['albumImg'].' width="250" height="250"> </a>';                                
                               echo '<p>';
-                              echo '<b>'.$value['albumTitle']." - $".$value['albumPrice'].'</b>';
+                              echo '<b>Popularity: '.$rank.'  '.$value['albumTitle']." - $".$value['albumPrice'].'</b>';
                               echo '</p>';
                               echo '</div>';
+                              $rank = $rank + 1;
                           }
                       }else{
                         echo '<p><b>Sorry, we did not find any matches for your search :(</b></p>';

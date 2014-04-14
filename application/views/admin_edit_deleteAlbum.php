@@ -36,7 +36,7 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" >My Profile</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/purchases">My Purchases</a></li>
-                  <li role="presentation" class="divider"></li>
+                 <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
                   
                 </ul>
             </li>
@@ -110,6 +110,7 @@
             <option>Search By..</option>
             <option>Song</option>
             <option>Album</option>
+            <option>Composer</option>
           </select></div>
 
           <div class="col-m-12" >

@@ -70,8 +70,13 @@
                 <a class="list-group-item">All Songs</a>
                 <a href="./albumcontroller" class="list-group-item">All Albums</a>
                 <a href="./singercontroller" class="list-group-item">All Singers</a>
+<<<<<<< HEAD
                 <a href="../composercontroller" class="list-group-item">All Composers</a>
                 <!-- <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
+=======
+                <a href="./composercontroller" class="list-group-item">All Composers</a>
+                <a href="./home/genremenu" class="list-group-item">All Genres</a>
+>>>>>>> FETCH_HEAD
               </div>
             </div>
 
@@ -84,10 +89,17 @@
                   </h4>
               </div>
               <div class="list-group">
+<<<<<<< HEAD
                 <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
                 <a href="../home/top10albums" class="list-group-item">Top 10 Albums</a>
                 <a href="../home/top10singers" class="list-group-item">Top 10 Singers</a>
                 <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
+=======
+                <a href="./songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
+                <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
+                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
+>>>>>>> FETCH_HEAD
               </div>
             </div>
 

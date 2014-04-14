@@ -22,7 +22,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../home">Back</a>
+        <a class="navbar-brand" href="./home">Back</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -36,7 +36,7 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" >My Profile</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/purchases">My Purchases</a></li>
-                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
                   
                 </ul>
             </li>
@@ -60,11 +60,19 @@
                   </h4>
               </div>
               <div class="list-group">
+<<<<<<< HEAD
                 <a href="./songController" class="list-group-item">All Songs</a>
                 <a href="./albumController" class="list-group-item">All Albums</a>
                 <a href="./singerController" class="list-group-item">All Singers</a>
                 <a href="./composerController" class="list-group-item">All Composers</a>
 <!--                 <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
+=======
+                <a href="../songController" class="list-group-item">All Songs</a>
+                <a href="../albumController" class="list-group-item">All Albums</a>
+                <a href="../singerController" class="list-group-item">All Singers</a>
+                <a href="../composerController" class="list-group-item">All Composers</a>
+                <a href="../home/genremenu" class="list-group-item">All Genres</a>
+>>>>>>> FETCH_HEAD
               </div>
             </div>
 
@@ -77,10 +85,17 @@
                   </h4>
               </div>
               <div class="list-group">
+<<<<<<< HEAD
                <a href="./songController/searchMostPopular" class="list-group-item">Top 10 Songs</a>
                 <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
                 <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
                 <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
+=======
+               <a href="../songController/searchMostPopular" class="list-group-item">Top 10 Songs</a>
+                <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a href="../singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
+                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
+>>>>>>> FETCH_HEAD
               </div>
             </div>
 
@@ -104,12 +119,13 @@
         <div><button type="button" class="btn btn-default" data-toggle="modal" data-target="#addinfo">To Add an Entry, Click Here</button></div>
         </br>
         </br>
-        <form action="./adminEditController/searchItem" method="post">
+        <form action="../adminEditController/searchItem" method="post">
           <div style="font-size:18px;">
           <select name="searchOption">
             <option>Search By..</option>
             <option>Song</option>
             <option>Album</option>
+            <option>Composer</option>
           </select></div>
 
           <div class="col-m-12" >
@@ -274,10 +290,10 @@
                 <div class="modal-body">
                 
                 </br>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_song_album">Song</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_album">Album</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_artist">Artist</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="./home/add_artist_composer">Composer</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_album">Album</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist">Artist</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_composer">Composer</a></button>
 
                   
                 </div>

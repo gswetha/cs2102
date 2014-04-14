@@ -41,8 +41,8 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/admin_edit">My Profile</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="./home/purchases">My Purchases</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/admin_edit">My Profile</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/purchases">My Purchases</a></li>
                   <li role="presentation" class="divider"></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
                 </ul>
@@ -67,11 +67,11 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../songcontroller" class="list-group-item">All Songs</a>
+                <a class="list-group-item">All Songs</a>
                 <a href="../albumcontroller" class="list-group-item">All Albums</a>
                 <a href="../singercontroller" class="list-group-item">All Singers</a>
                 <a href="../composercontroller" class="list-group-item">All Composers</a>
-                <!-- <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
+                <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
 
@@ -84,17 +84,10 @@
                   </h4>
               </div>
               <div class="list-group">
-<<<<<<< HEAD
-                <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
-                <a href="../home/top10albums" class="list-group-item">Top 10 Albums</a>
-                <a href="../home/top10singers" class="list-group-item">Top 10 Singers</a>
-                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
-=======
-                <a class="list-group-item">Top 10 Songs</a>
-                <a href="../albumcontroller/searchMostPopular" class="list-group-item">Top 10 Albums</a>
-                <a href="../singercontroller/searchMostPopular" class="list-group-item">Top 10 Singers</a>
+                <a href="../songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
+                <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a href="../singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
                 <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
->>>>>>> FETCH_HEAD
               </div>
             </div>
 
@@ -105,7 +98,7 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-      <form method="post" action="../songcontroller/search">  
+      <form method="post" action="./search">  
         <div style="font-size:18px;"><select name="search_option" id="search_option">
           <option>Search By..</option>
           <option>Song Title</option>
@@ -130,7 +123,6 @@
         <?php if(count($songs_list)) {  } ?>
         <?php 
           if(count($songs_list)){
-             $rank = 1;
             foreach ($songs_list as $key => $value) {
              //var_dump($value);
               echo '<div class="col-xs-6 col-md-3 style="height:320px; overflow:hidden;">';
@@ -139,10 +131,9 @@
               //echo '<img data-src="holder.js/200x180">';
               echo '<img src= '.$value['songImg'].' width="150" height="150" >';
               echo '<p>';
-              echo '<b>Popularity: '.$rank.'  '.$value['songTitle']." - $".$value['songPrice'].'</b>';
+              echo '<b>'.$value['songTitle']."  -  $".$value['songPrice'].'</b>';
               echo '</p>';
               echo '</div>';
-              $rank = $rank + 1;
             }
           } else { ?>
             <p><b>Sorry, we did not find any matches for your search :(</b></p>
@@ -174,7 +165,7 @@
                 <p>Length: <?php echo $value['songLength']; ?></p>
               </div>
               <div class="modal-footer">
-                <form method="post" action="../purchasescontroller/purchaseSong">
+                <form method="post" action="./purchasescontroller/purchaseSong">
                   <input type="hidden" name="songTitle" value="<?php echo $value['songTitle']; ?>">
                   <input type="hidden" name="songYear" value=<?php echo $value['songYear'];  ?>>
                   <input type="hidden" name="sAlbumTitle" value="<?php echo $value['sAlbumTitle'];  ?>">

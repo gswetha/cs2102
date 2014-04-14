@@ -210,7 +210,7 @@ class Song_model extends CI_Model {
 					OR (LOWER(s.sssSingerStageName) LIKE LOWER('%".$name."%')))";
 		}	
 		else{
-			$SQL = "SELECT so.songTitle, so.songLength, so.songYear, so.songPrice, so.songGenre, so.sAlbumTitle FROM song so
+			$SQL = "SELECT so.songTitle, so.songLength, so.songYear, so.songPrice, so.songGenre, so.songImg, so.sAlbumTitle, so.sAlbumYear FROM song so
 					JOIN singersingssong s ON s.sssAlbumTitle = so.sAlbumTitle AND s.sssAlbumYear = so.sAlbumYear AND s.sssSongTitle = so.songTitle AND s.sssSongYear = so.songYear
 					WHERE (
 						(LOWER(s.sssSingerFirstName) LIKE LOWER('%".$firstname."%') AND LOWER(s.sssSingerLastName) LIKE LOWER('%".$lastname."%'))

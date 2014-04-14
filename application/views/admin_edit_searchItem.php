@@ -36,7 +36,7 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" >My Profile</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="../home/purchases">My Purchases</a></li>
-                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href=<?php echo $this->config->item('base_url')."userController/logout"?>>Logout</a></li>
                   
                 </ul>
             </li>
@@ -110,6 +110,7 @@
             <option>Search By..</option>
             <option>Song</option>
             <option>Album</option>
+            <option>Composer</option>
           </select></div>
 
           <div class="col-m-12" >
@@ -148,6 +149,13 @@
                     <th><a style="text-decoration:none">Album Image</a></th>
                     <th><a style="text-decoration:none">Album Description</a></th>
                     <th><a style="text-decoration:none">Delete/Edit Entry</a></th>
+                <?php } ?>
+                <?php if( isset($category) && $category == "composer") { ?>
+                    <th><a style="text-decoration:none">Category</a></th>
+                    <th><a style="text-decoration:none">Composer First Name</a></th>
+                    <th><a style="text-decoration:none">Composer Last Name</a></th>
+                    <th><a style="text-decoration:none">Composer Birthday</a></th>
+                    <th><a style="text-decoration:none">Composer Description</a></th>
                 <?php } ?>
               </tr>
             </thead>
@@ -240,6 +248,38 @@
                 <?php } elseif(isset($searchResults) && isset($category) && !count($searchResults) && $category == "album") { ?>
                   <p><b>Sorry, we did not find any matches for your search :(</b></p>
               <?php } ?>
+
+                           <?php 
+                if(isset($searchResults) && isset($category) && count($searchResults) && $category == "composer"){
+                  //var_dump($searchResults);
+                  foreach ($searchResults as $key => $value) { ?>
+                      <tr>
+                        <td><?php echo $category; ?></td>
+                        <td><?php echo $value['composerFirstName']; ?></td>
+                        <td><?php echo $value['composerLastName']; ?></td>
+                        <td><?php echo $value['composerBirthday']; ?></td>
+                        <td><?php echo $value['composerDescrip']; ?></td>
+                        <td>
+                             <form action="./deleteComposer" method="post">
+                                <input type="hidden" name="composerFirstName" value= "<?php echo $value['composerFirstName']; ?>" >
+                                <input type="hidden" name="composerLastName" value="<?php echo $value['composerLastName'];?>">
+                                <input type="hidden" name="composerBirthday" value="<?php echo $value['composerBirthday'];?>">
+                                <!-- <button type="submit" class="btn btn-primary" name="deleteSong" id="deleteSong" value="deleteSong">Delete</button> -->
+                             </form>
+                             <form action="../home/edit_composer" method="post">
+                                <input type="hidden" name="composerFirstName" value= "<?php echo $value['composerFirstName']; ?>" >
+                                <input type="hidden" name="composerLastName" value="<?php echo $value['composerLastName'];?>">
+                                <input type="hidden" name="composerBirthday" value="<?php echo $value['composerBirthday'];?>">
+                                <input type="hidden" name="composerDescrip" value="<?php echo $value['composerDescrip'];?>">
+                                <button type="submit" class="btn btn-primary" name="editComposer" id="editComposer" value="editComposer">Edit</button>
+                             </form>
+                  
+                          </td>
+                      </tr>
+                  <?php } ?>
+                <?php } elseif(isset($searchResults) && isset($category) && !count($searchResults) && $category == "song") { ?>
+                  <p><b>Sorry, we did not find any matches for your search :(</b></p>
+              <?php } ?>
             </tbody>
           </table>
 
@@ -277,7 +317,7 @@
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_album">Album</a></button>
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist">Artist</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_composer">Composer</a></button>
 
                   
                 </div>

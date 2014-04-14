@@ -6,7 +6,7 @@ BEFORE INSERT
 ON album
 FOR EACH ROW
 BEGIN
-  IF NEW.numSongs < 0 THEN
+  IF NEW.numSongs <= 0 THEN
     SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'ROL must be less then QOH';
   END IF;
 END$$

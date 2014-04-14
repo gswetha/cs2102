@@ -58,15 +58,15 @@ class SongController extends CI_Controller {
 		// if singer does not exist, throw error
 		// if composer does not exist, throw error
 		if ($this->isLoggedIn()) {
-				$data['logged_in'] = TRUE;
-				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
-				$data['username'] = $this->session->userdata('name');
-				$data['role'] = $this->session->userdata('role');
-				$data['email'] = $this->session->userdata('email');
-			}
-			else {
-				$data['logged_in'] = FALSE;
-			}
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else {
+			$data['logged_in'] = FALSE;
+		}
 		$result = FALSE;
 		$data['song_info'] = NULL;
 		$data['notify_type'] = "none";
@@ -143,7 +143,7 @@ class SongController extends CI_Controller {
 		$song_identifier = NULL;
 		// $result = $this->song_model->updateSong($update_data, $song_identifier);
 		// return $result;
-		var_dump($_POST);
+		//var_dump($_POST);
 		if ($this->input->post('updateSubmit')) {
 			//$update_data['sAlbumTitle'] = $this->input->post('sAlbumTitle');
 			//$update_data['sAlbumYear'] = $this->input->post('sAlbumYear');
@@ -160,7 +160,7 @@ class SongController extends CI_Controller {
 			$song_identifier['songYear'] = $this->input->post('songYearOriginal');
 
 			$result = $this->song_model->updateSong($update_data,$song_identifier);
-			var_dump($result);
+			//var_dump($result);
 			
 			if($result){
 				$data['notify_type'] = "edit song";
@@ -263,7 +263,7 @@ function search(){
 				$data['logged_in'] = FALSE;
 			}
 			$this->load->view('_home_header_styles');
-			$this->load->view('songmenu', $data);
+			$this->load->view('songmenu_searchSongs', $data);
 			$this->load->view('_home_footer_script');
 		}
 		else

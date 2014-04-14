@@ -16,6 +16,7 @@ class AdminEditController extends CI_Controller {
 		//Models
 		$this->load->model('song_model');
 		$this->load->model('album_model');
+		$this->load->model('composer_model');
 		
 	 }
 	 
@@ -39,12 +40,16 @@ class AdminEditController extends CI_Controller {
 					$result = $this->album_model->searchAlbumbyTitle($this->input->post('searchInput'));
 					$data['category']="album";
 					break;
+				case 'Composer':
+					$result = $this->composer_model->searchComposerByName($this->input->post('searchInput'));
+					$data['category']="composer";
+					break;
 				default:
 					$result = "No Input";
 					break;
 			}
 			if(count($result)){
-				var_dump($result);
+				//var_dump($result);
 				$data['searchResults'] = $result;	
 			}
 			else

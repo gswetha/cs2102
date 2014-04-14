@@ -30,7 +30,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-        <?php if(!$logged_in){ ?>
+         <?php if(!$logged_in){ ?>
             <li><a href=<?php echo $this->config->item('base_url')."userController/login"?> >Login</a></li>
             <li><a href=<?php echo $this->config->item('base_url')."userController/signup"?>>Sign up</a></li>
           <?php } ?>
@@ -93,11 +93,11 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="./songController" class="list-group-item">All Songs</a>
-                <a href="./albumController" class="list-group-item">All Albums</a>
-                <a href="./singerControler" class="list-group-item">All Singers</a>
-                <a class="list-group-item">All Composers</a>
-                <!-- <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
+                <a href="../songController" class="list-group-item">All Songs</a>
+                <a href="../albumController" class="list-group-item">All Albums</a>
+                <a href="../singerController" class="list-group-item">All Singers</a>
+                <a href="../composerController" class="list-group-item">All Composers</a>
+                <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
 
@@ -110,17 +110,10 @@
                   </h4>
               </div>
               <div class="list-group">
-<<<<<<< HEAD
-                <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
-                <a href="../home/top10albums" class="list-group-item">Top 10 Albums</a>
-                <a href="../home/top10singers" class="list-group-item">Top 10 Singers</a>
-                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
-=======
-                <a href="./songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
-                <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
-                <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
+                <a href="../songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
+                <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a href="../singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
                 <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
->>>>>>> FETCH_HEAD
               </div>
             </div>
           </div>
@@ -128,7 +121,7 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-      <form method="post" action="./composerController/search">  
+      <form method="post" action="../composerController/search">  
         <div style="font-size:18px;">
           <select name="search_option" id="search_option">
             <option>Search By..</option>

@@ -96,11 +96,49 @@ class Purchase_model extends CI_Model {
 		return $result;
 	}
 
+	function getPurchasesByEveryone(){
+
+		//get album purchases by everyone
+		$SQL_album = "SELECT * FROM purchasesviewalbum1";
+		$query_album = $this->db->query($SQL_album);
+		log_message('info', 'purchase_model - get album purchases for everyone'.$this->db->last_query());
+		$result['album'] = NULL;
+		$result['song'] = NULL;
+		$result_album = NULL;
+		$result_song = NULL;
+		if ($query_album->num_rows() > 0)
+		{
+		   foreach ($query_album->result_array() as $row)
+		   {
+		      $result_album[] = $row;
+		   }
+		}
+		log_message('info', 'result so far is '.print_r($result,true));
+		//get song purchases by everyone
+		$SQL_song = "SELECT * FROM purchasesviewsong1";
+		$query_song = $this->db->query($SQL_song);
+		log_message('info', 'purchase_model - get song purchases for everyone'.$this->db->last_query());
+		$result = NULL;
+		if ($query_song->num_rows() > 0)
+		{
+		   foreach ($query_song->result_array() as $row)
+		   {
+		      $result_song[] = $row;
+		   }
+		}
+		$result['album'] = $result_album;
+		$result['song'] = $result_song;
+		log_message('info', 'purchase_model - result is '.print_r($result,TRUE));
+		return $result;
+	}
+
 	function getPurchasesByUser($userEmail){
 		//union of results based on paypal email and user email?
-		$SQL = "SELECT * FROM purchases p WHERE p.pEmail = '".$userEmail."'".
-				"UNION SELECT p.pAlbumTitle,p.pAlbumYear,p.pSongTitle,p.pSongYear,p.pEmail,p.transactionId,p.transactionDate,p.amountPaid 
-				FROM purchases p, user u WHERE u.paypalEmail=p.pEmail AND u.email = '".$userEmail."'";
+		// $SQL = "SELECT * FROM purchases p WHERE p.pEmail = '".$userEmail."'".
+		// 		"UNION SELECT p.pAlbumTitle,p.pAlbumYear,p.pSongTitle,p.pSongYear,p.pEmail,p.transactionId,p.transactionDate,p.amountPaid 
+		// 		FROM purchases p, user u WHERE u.paypalEmail=p.pEmail AND u.email = '".$userEmail."'";
+		$SQL = "SELECT pAlbumTitle, pAlbumYear, pSongTitle, pSongYear, pEmail, transactionDate, transactionId, amountPaid, purchaseType FROM purchases WHERE purchaseType='song' AND pEmail='".$userEmail."' UNION
+				SELECT pAlbumTitle, pAlbumYear, pSongTitle AS albumFirstSong, pSongYear, pEmail, transactionDate, transactionId, amountPaid, purchaseType FROM purchases WHERE purchaseType='album' AND pEmail='".$userEmail."' GROUP BY pAlbumTitle";
 		$query = $this->db->query($SQL);
 		log_message('info', 'purchase_model - get purchases by user'.$this->db->last_query());
 		$result = NULL;
@@ -111,7 +149,7 @@ class Purchase_model extends CI_Model {
 		      $result[] = $row;
 		   }
 		}
-		log_message('info', 'purchase_model - result is '.print_r($result,TRUE));
+		log_message('info', 'purchase_model - by user result is '.print_r($result,TRUE));
 		return $result;
 	}
 

@@ -188,6 +188,7 @@ class Home extends CI_Controller {
 
 	public function purchases()
 	{
+		redirect($this->config->item('base_url')."purchasescontroller/getPurchasesByUser");
 		$this->load->view('_home_header_styles');
 		$this->load->view('purchases');
 		$this->load->view('_home_footer_script');

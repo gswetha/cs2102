@@ -116,3 +116,9 @@ END IF;
 END$$
 
 DELIMITER ;
+
+CREATE VIEW PurchasesViewAlbum1 AS
+SELECT p.transactionId, p.pAlbumTitle, p.pAlbumYear, p.pEmail, u.userName, p.transactionDate, p.amountPaid, p.purchaseType FROM purchases p, user u WHERE p.pEmail = u.email AND p.purchaseType='album' GROUP BY p.pAlbumTitle;
+
+CREATE VIEW PurchasesViewSong1 AS
+SELECT p.transactionId, p.pAlbumTitle, p.pAlbumYear, p.pSongTitle, p.pSongYear, p.pEmail, u.userName, p.transactionDate, p.amountPaid, p.purchaseType FROM purchases p, user u WHERE p.pEmail = u.email AND purchaseType='song';

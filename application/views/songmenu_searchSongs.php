@@ -165,7 +165,7 @@
                 <p>Length: <?php echo $value['songLength']; ?></p>
               </div>
               <div class="modal-footer">
-                <form method="post" action="./purchasescontroller/purchaseSong">
+                <form method="post" action="../purchasescontroller/purchaseSong">
                   <input type="hidden" name="songTitle" value="<?php echo $value['songTitle']; ?>">
                   <input type="hidden" name="songYear" value=<?php echo $value['songYear'];  ?>>
                   <input type="hidden" name="sAlbumTitle" value="<?php echo $value['sAlbumTitle'];  ?>">

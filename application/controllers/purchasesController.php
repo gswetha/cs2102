@@ -12,12 +12,20 @@ class PurchasesController extends CI_Controller {
 		
 		// Libraries
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 		// Models
 		$this->load->model('purchase_model');
 		$this->load->model('user_model');
 	 }
 	 
+	function isLoggedIn(){
+		if($this->session->userdata('status') == 'logged_in')
+			return TRUE;
+		else
+			return FALSE;
+	}
+
 	public function index()
 	{
 		$this->load->view('_home_header_styles');
@@ -140,8 +148,28 @@ class PurchasesController extends CI_Controller {
 		$this->singer_model->getRevenue();
 	}
 
-	function getPurchasesByUser($userEmail){
-		$this->singer_model->getPurchasesByUser($userEmail);
+	function getPurchasesByUser(){
+		$user_info = NULL;
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+			$user_info = $this->user_model->getUserByEmail($data['email']);
+		}
+		else
+			$data['logged_in'] = FALSE;
+		if($data['role'] == "admin") {
+			$data['result'] = $this->purchase_model->getPurchasesByEveryone();
+		}
+		else {
+			$data['result'] = $this->purchase_model->getPurchasesByUser($data['email']);
+		}
+		//var_dump($data['result']);
+		$this->load->view('_home_header_styles');
+		$this->load->view('purchases',$data);
+		$this->load->view('_home_footer_script');
 	}
 
 	function getRevenueBySinger($firstName, $lastName){

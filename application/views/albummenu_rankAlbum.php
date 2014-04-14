@@ -23,9 +23,9 @@
           <span class="icon-bar"></span>
         </button>
          <?php if(isset($username)) { ?>
-              <a class="navbar-brand" href="./home">Welcome, <?php echo $username; ?>!</a>
+              <a class="navbar-brand" href="../home">Welcome, <?php echo $username; ?>!</a>
           <?php } else { ?>
-              <a class="navbar-brand" href="./home">Welcome, Guest!</a>
+              <a class="navbar-brand" href="../home">Welcome, Guest!</a>
           <?php } ?>
       </div>
       <div class="navbar-collapse collapse">
@@ -84,7 +84,7 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
+                <a href="../songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
                 <a class="list-group-item">Top 10 Albums</a>
                 <a href="../singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
                 <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>

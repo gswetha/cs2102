@@ -106,10 +106,10 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="./home/top10songs" class="list-group-item">Top 10 Songs</a>
-                <a href="./home/top10albums" class="list-group-item">Top 10 Albums</a>
-                <a href="./home/top10singers" class="list-group-item">Top 10 Singers</a>
-                <a href="./home/top100" class="list-group-item">Top 100 of all Time</a>
+                <a href="./songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
+                <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
+                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
               </div>
             </div>
 
@@ -135,22 +135,22 @@
                 <div class="carousel-caption">
                   <h1>Today's Hits</h1>
                   <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <img data-src="http://media1.santabanta.com/full1/Global%20Celebrities(M)/Justin%20Bieber/justin-bieber-5a.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>Baby</h4>
                     <span class="text-muted">Justin Bieber</span>
                   </div>
                   <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <img data-src="http://static4.businessinsider.com/image/5293ca546da811be22e01e27/miley-cyrus-may-be-starring-in-a-very-expensive-super-bowl-commercial-for-pistachios.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>The Climb</h4>
                     <span class="text-muted">Miley Cyrus</span>
                   </div>
                   <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <img data-src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTARqNL9rPBA1AgLOM0lGCTwHvuxrDm0cj8XyoTlbZRC71UTiOk" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>Call Me Maybe</h4>
                     <span class="text-muted">Carly Rae Jepsen</span>
                   </div>
                   <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <img data-src="http://media.salon.com/2012/09/myspace-comeback.jpeg-e1357838843694-1280x960.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4>My Love</h4>
                     <span class="text-muted">Justin Timberlake</span>
                   </div>
@@ -162,7 +162,6 @@
                 <div class="carousel-caption">
                   <h1>One more for good measure.</h1>
                   <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
                 </div>
               </div>
             </div>
@@ -175,21 +174,6 @@
         
 
         <h2 class="sub-header">Music Catalogue</h2>
-
-        <div style="font-size:18px;"><select>
-          <option>Search By..</option>
-          <option>Song</option>
-          <option>Album</option>
-          <option>Year</option>
-          <option>Composer</option>
-          <option>Genre</option>
-        </select></div>
-
-        <div class="col-m-12" >
-          <div class="input-group">
-            <input type="text" class="form-control">
-          </div>
-        </div>
 
 
         <div class="table-responsive">

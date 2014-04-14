@@ -39,7 +39,7 @@ class Composer_model extends CI_Model {
 
 	function addComposer($data){
 		$SQL = "INSERT INTO composer (composerFirstName, composerLastName, composerBirthday, composerDescrip)
-				VALUES ("."'".$data['composerFirstName']."',".$data['composerLastName'].",'".$data['composerBirthday']."','".$data['composerDescrip']."')";
+				VALUES ("."'".$data['composerFirstName']."','".$data['composerLastName']."','".$data['composerBirthday']."','".$data['composerDescrip']."')";
 
 		//do not need trigger here. because can have composers who do not have songs. only need trigger for adding song
 		$query = $this->db->query($SQL);
@@ -66,12 +66,17 @@ class Composer_model extends CI_Model {
  		//on update cascase will update corresponsing tuples in composercomposessong
  		if(is_array($update_data) && count($update_data)){
  			$data = array();
- 			foreach ($update_data as $key=>$value) {
- 				$SQL = "UPDATE composer c SET c.".$key."= "."'".$value."'"." WHERE c.composerFirstName= "."'".$composer_identifier['composerFirstName']."'"." AND c.composerLastName= "."'".$composer_identifier['composerLastName']."'"." AND c.composerBirthday= "."'".$composer_identifier['composerBirthday']."'";
- 				$query = $this->db->query($SQL);
- 				log_message("debug","update composer SQL " . $this->db->last_query());
- 			}
- 			return (true);
+ 			// foreach ($update_data as $key=>$value) {
+ 			// 	$SQL = "UPDATE composer c SET c.".$key."= "."'".$value."'"." WHERE c.composerFirstName= "."'".$composer_identifier['composerFirstName']."'"." AND c.composerLastName= "."'".$composer_identifier['composerLastName']."'"." AND c.composerBirthday= "."'".$composer_identifier['composerBirthday']."'";
+ 			// 	$query = $this->db->query($SQL);
+ 			// 	log_message("debug","update composer SQL " . $this->db->last_query());
+ 			// }
+
+			$SQL = "UPDATE composer c SET c.composerFirstName="."'".$update_data['composerFirstName']."', c.composerLastName = '".$update_data['composerLastName']."', c.composerBirthday = '".$update_data['composerBirthday']."', c.composerDescrip = '".$update_data['composerDescrip']."' WHERE c.composerFirstName= "."'".$composer_identifier['composerFirstName']."'"." AND c.composerLastName= "."'".$composer_identifier['composerLastName']."'"." AND c.composerBirthday= "."'".$composer_identifier['composerBirthday']."'";
+			$query = $this->db->query($SQL);
+			log_message("debug","update composer SQL " . $this->db->last_query());
+ 			if ($query) 
+ 				return (true);
  		}
 
  		return false;

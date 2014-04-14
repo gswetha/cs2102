@@ -138,19 +138,19 @@
           </div>
         </form>
 
-        <?php if($notify_type == "add song") { ?>
-        <h3>Added the following song:</h3>
-        <?php var_dump($song_info); ?>
+        <?php if($notify_type == "add composer") { ?>
+        <h3>Added the following composer:</h3>
+        <?php var_dump($composer_info); ?>
         <?php } ?>
 
-        <?php if($notify_type == "edit song") { ?>
-        <h3>Edited chosen song to:</h3>
-        <?php var_dump($song_info); ?>
+        <?php if($notify_type == "edit composer") { ?>
+        <h3>Edited chosen composer to:</h3>
+        <?php var_dump($composer_info); ?>
         <?php } ?>
 
-        <?php if($notify_type == "delete song") { ?>
-        <h3>Deleted the following song:</h3>
-        <?php var_dump($song_info); ?>
+        <?php if($notify_type == "delete composer") { ?>
+        <h3>Deleted the following composer:</h3>
+        <?php var_dump($composer_info); ?>
         <?php } ?>
 
         <?php if(isset($errors) && count($errors) ) { ?>
@@ -196,7 +196,7 @@
               <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
               <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Album</a></button>
               <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Artist</a></button>
-              <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
+              <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_composer">Composer</a></button>
 
                 
               </div>

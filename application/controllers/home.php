@@ -239,7 +239,7 @@ class Home extends CI_Controller {
 
 	public function edit_song()
 	{
-		var_dump($_POST);
+		//var_dump($_POST);
 		$data['title'] = "Edit Song";
 		$data['action_type'] = "Edit";
 		if($this->input->post('editSong')) {
@@ -294,6 +294,36 @@ class Home extends CI_Controller {
 		$this->load->view('_home_header_styles');
 		$this->load->view('add_artist_composer');
 		$this->load->view('_home_footer_script');
+	}
+
+	public function add_composer()
+	{
+		 $this->load->view('_home_header_styles');
+		 $this->load->view('add_composer');
+		 $this->load->view('_home_footer_script');
+		//redirect($this->config->item('base_url')."composercontroller/addComposer");
+	}
+
+	public function edit_composer()
+	{
+		//var_dump($_POST);
+		$data['title'] = "Edit Composer";
+		$data['action_type'] = "Edit";
+		if($this->input->post('editComposer')) {
+			$data['composerFirstName'] = $this->input->post('composerFirstName');
+			$data['composerLastName'] = $this->input->post('composerLastName');
+			$data['composerBirthday'] = $this->input->post('composerBirthday');
+			$data['composerDescrip'] = $this->input->post('composerDescrip');
+
+			$this->load->view('_home_header_styles');
+			$this->load->view('edit_composer',$data);
+			$this->load->view('_home_footer_script');
+		} else{
+			echo "nothing	";
+		}
+		// $this->load->view('_home_header_styles');
+		// $this->load->view('add_song_album');
+		// $this->load->view('_home_footer_script');
 	}
 
 	function isLoggedIn(){

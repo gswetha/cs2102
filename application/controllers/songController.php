@@ -143,7 +143,7 @@ class SongController extends CI_Controller {
 		$song_identifier = NULL;
 		// $result = $this->song_model->updateSong($update_data, $song_identifier);
 		// return $result;
-		var_dump($_POST);
+		//var_dump($_POST);
 		if ($this->input->post('updateSubmit')) {
 			//$update_data['sAlbumTitle'] = $this->input->post('sAlbumTitle');
 			//$update_data['sAlbumYear'] = $this->input->post('sAlbumYear');
@@ -160,7 +160,7 @@ class SongController extends CI_Controller {
 			$song_identifier['songYear'] = $this->input->post('songYearOriginal');
 
 			$result = $this->song_model->updateSong($update_data,$song_identifier);
-			var_dump($result);
+			//var_dump($result);
 			
 			if($result){
 				$data['notify_type'] = "edit song";

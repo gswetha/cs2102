@@ -110,6 +110,7 @@
             <option>Search By..</option>
             <option>Song</option>
             <option>Album</option>
+            <option>Composer</option>
           </select></div>
 
           <div class="col-m-12" >

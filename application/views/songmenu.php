@@ -70,8 +70,8 @@
                 <a class="list-group-item">All Songs</a>
                 <a href="./albumcontroller" class="list-group-item">All Albums</a>
                 <a href="./singercontroller" class="list-group-item">All Singers</a>
-                <a href="../composercontroller" class="list-group-item">All Composers</a>
-                <a href="../home/genremenu" class="list-group-item">All Genres</a>
+                <a href="./composercontroller" class="list-group-item">All Composers</a>
+                <a href="./home/genremenu" class="list-group-item">All Genres</a>
               </div>
             </div>
 

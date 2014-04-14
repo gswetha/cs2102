@@ -14,7 +14,7 @@
 
 <body>
 <div style="padding-left:150px; padding-right:150px;">
-  <h2>Edit Song</h2>
+  <h2>Edit Composer</h2>
     <?php if(isset($errors) && count($errors) ) { ?>
           <div class="alert alert-danger">
               <?php foreach ($errors as $key => $value) {

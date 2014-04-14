@@ -317,7 +317,7 @@
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_song_album">Song</a></button>
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_album">Album</a></button>
                 <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist">Artist</a></button>
-                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_artist_composer">Composer</a></button>
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="../home/add_composer">Composer</a></button>
 
                   
                 </div>

@@ -71,7 +71,7 @@
                 <a class="list-group-item">All Albums</a>
                 <a href="./singerController" class="list-group-item">All Singers</a>
                 <a href="./composerController" class="list-group-item">All Composers</a>
-                <a href="../home/genremenu" class="list-group-item">All Genres</a>
+                <!-- <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
               </div>
             </div>
 
@@ -87,7 +87,7 @@
                 <a href="./songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
                 <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
                 <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
-                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
+                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
               </div>
             </div>
 

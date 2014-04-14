@@ -93,7 +93,7 @@
                 <a href="./albumcontroller" class="list-group-item">All Albums</a>
                 <a href="./singercontroller" class="list-group-item">All Singers</a>
                 <a href="./composercontroller" class="list-group-item">All Composers</a>
-                <a href="./home/genremenu" class="list-group-item">All Genres</a>
+                <!-- <a href="./home/genremenu" class="list-group-item">All Genres</a> -->
               </div>
             </div>
 
@@ -109,7 +109,7 @@
                 <a href="./songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
                 <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
                 <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
-                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
+                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
               </div>
             </div>
 
@@ -134,23 +134,23 @@
               <div class="container">
                 <div class="carousel-caption">
                   <h1>Today's Hits</h1>
-                  <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="http://media1.santabanta.com/full1/Global%20Celebrities(M)/Justin%20Bieber/justin-bieber-5a.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+                  <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
+                    <img src="http://media1.santabanta.com/full1/Global%20Celebrities(M)/Justin%20Bieber/justin-bieber-5a.jpg" width="150" height="150">
                     <h4>Baby</h4>
                     <span class="text-muted">Justin Bieber</span>
                   </div>
-                  <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="http://static4.businessinsider.com/image/5293ca546da811be22e01e27/miley-cyrus-may-be-starring-in-a-very-expensive-super-bowl-commercial-for-pistachios.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+                  <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
+                    <img data-src="http://img1.wikia.nocookie.net/__cb20140315161650/disney/images/1/13/2013-miley-cyrus.jpg" width="150" height="150">
                     <h4>The Climb</h4>
                     <span class="text-muted">Miley Cyrus</span>
                   </div>
-                  <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTARqNL9rPBA1AgLOM0lGCTwHvuxrDm0cj8XyoTlbZRC71UTiOk" class="img-responsive" alt="Generic placeholder thumbnail">
+                  <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
+                    <img data-src="http://15pictures.com/wp-content/gallery/15-pictures-carly-rae-jepsen/carly-rae-jepsen-5.jpg" width="150" height="150">
                     <h4>Call Me Maybe</h4>
                     <span class="text-muted">Carly Rae Jepsen</span>
                   </div>
-                  <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="http://media.salon.com/2012/09/myspace-comeback.jpeg-e1357838843694-1280x960.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+                  <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
+                    <img data-src="http://img2.timeinc.net//ew/i/2013/03/11/Justin-Timberlake-20-20-Experience_510x510.jpg" width="150" height="150">
                     <h4>My Love</h4>
                     <span class="text-muted">Justin Timberlake</span>
                   </div>

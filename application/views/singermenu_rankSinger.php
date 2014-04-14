@@ -71,7 +71,7 @@
                 <a href="../albumController" class="list-group-item">All Albums</a>
                 <a href="../singerController" class="list-group-item">All Singers</a>
                 <a href="../composerController" class="list-group-item">All Composers</a>
-                <a href="../home/genremenu" class="list-group-item">All Genres</a>
+                <!-- <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
               </div>
             </div>
 
@@ -87,7 +87,7 @@
                 <a href="../songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
                 <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
                 <a class="list-group-item">Top 10 Singers</a>
-                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
+                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
               </div>
             </div>
 
@@ -180,7 +180,7 @@
                       if($result['sssSingerFirstName'] == $firstName && $result['sssSingerLastName'] == $lastName && $result['sssSingerStageName'] = $stageName){
                         echo '<tr>';
                         echo '<td>'.$counter.'.</td>';
-                        echo '<td><a style="text-decoration:none; color:#000066;" href="./singlealbumview">'.$result['sssAlbumTitle'].'</a></td>';
+                        echo '<td>'.$result['sssAlbumTitle'].'</td>';
                         echo ' <td>'.$result['sssAlbumYear'].'</td></tr>';
                         $counter = $counter + 1;
                       }

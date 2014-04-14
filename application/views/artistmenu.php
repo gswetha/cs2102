@@ -77,7 +77,7 @@
                 <a href="./home/albummenu" class="list-group-item">All Albums</a>
                 <a href="./home/singermenu" class="list-group-item">All Singers</a>
                 <a href="./home/composermenu" class="list-group-item">All Composers</a>
-                <a href="./home/genremenu" class="list-group-item">All Genres</a>
+                <!-- <a href="./home/genremenu" class="list-group-item">All Genres</a> -->
               </div>
             </div>
 
@@ -93,7 +93,7 @@
                 <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
                 <a href="../home/top10albums" class="list-group-item">Top 10 Albums</a>
                 <a href="../home/top10singers" class="list-group-item">Top 10 Singers</a>
-                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
+                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
               </div>
             </div>
 

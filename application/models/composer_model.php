@@ -113,7 +113,7 @@ class Composer_model extends CI_Model {
 	}
 
 	function searchComposerByName($name){
-		$SQL = "SELECT * FROM composer c WHERE LOWER(c.composerFirstName) LIKE LOWER('%".$name."%') OR LOWER(c.composerLastName) LIKE LOWER('%".$name."%')";
+		$SQL = "SELECT * FROM composer c WHERE LOWER(c.composerFirstName) LIKE LOWER('%".$name."%') OR LOWER(c.composerLastName) LIKE LOWER('%".$name."%') OR CONCAT_WS(' ', LOWER(c.composerFirstName), LOWER(c.composerLastName)) LIKE LOWER('%".$name."%')";
 		$result = NULL;
 		$query = $this->db->query($SQL);
 		log_message('info', 'composer_model - search composer by composer name'.$this->db->last_query());

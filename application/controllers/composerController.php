@@ -12,13 +12,31 @@ class ComposerController extends CI_Controller {
 		
 		// Libraries
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 		// Models
 		$this->load->model('composer_model');
 	 }
 	 
+	function isLoggedIn(){
+		if($this->session->userdata('status') == 'logged_in')
+			return TRUE;
+		else
+			return FALSE;
+	}
+
 	public function index()
 	{
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else {
+			$data['logged_in'] = FALSE;
+		}
 		$data['composers_list'] = $this->getAllComposers();
 		$data['title'] = "Composer Catalogue";
 		$this->load->view('_home_header_styles');
@@ -50,6 +68,16 @@ class ComposerController extends CI_Controller {
 
 	function search(){
 		//get form input from search and based on what user wants to search for, direct to the correct function and display the result
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else {
+			$data['logged_in'] = FALSE;
+		}
 		echo "search function";
 		log_message('info', 'in search function in composer controller.');
 		if($this->input->post('search_submit')) {
@@ -94,7 +122,7 @@ class ComposerController extends CI_Controller {
 			$data['composers_list'] = $result;
 			$data['title'] = "Composer Catalogue";
 			$this->load->view('_home_header_styles');
-			$this->load->view('composermenu', $data);
+			$this->load->view('composermenu_searchComposer', $data);
 			$this->load->view('_home_footer_script');
 		}
 		else

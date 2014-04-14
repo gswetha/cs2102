@@ -58,15 +58,15 @@ class SongController extends CI_Controller {
 		// if singer does not exist, throw error
 		// if composer does not exist, throw error
 		if ($this->isLoggedIn()) {
-				$data['logged_in'] = TRUE;
-				log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
-				$data['username'] = $this->session->userdata('name');
-				$data['role'] = $this->session->userdata('role');
-				$data['email'] = $this->session->userdata('email');
-			}
-			else {
-				$data['logged_in'] = FALSE;
-			}
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+			$data['email'] = $this->session->userdata('email');
+		}
+		else {
+			$data['logged_in'] = FALSE;
+		}
 		$result = FALSE;
 		$data['song_info'] = NULL;
 		$data['notify_type'] = "none";
@@ -263,7 +263,7 @@ function search(){
 				$data['logged_in'] = FALSE;
 			}
 			$this->load->view('_home_header_styles');
-			$this->load->view('songmenu', $data);
+			$this->load->view('songmenu_searchSongs', $data);
 			$this->load->view('_home_footer_script');
 		}
 		else

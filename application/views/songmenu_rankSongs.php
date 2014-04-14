@@ -67,9 +67,9 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a class="list-group-item">All Songs</a>
-                <a href="./albumcontroller" class="list-group-item">All Albums</a>
-                <a href="./singercontroller" class="list-group-item">All Singers</a>
+                <a href="../songcontroller" class="list-group-item">All Songs</a>
+                <a href="../albumcontroller" class="list-group-item">All Albums</a>
+                <a href="../singercontroller" class="list-group-item">All Singers</a>
                 <a href="../composercontroller" class="list-group-item">All Composers</a>
                 <a href="../home/genremenu" class="list-group-item">All Genres</a>
               </div>
@@ -84,9 +84,9 @@
                   </h4>
               </div>
               <div class="list-group">
-                <a href="../home/top10songs" class="list-group-item">Top 10 Songs</a>
-                <a href="../home/top10albums" class="list-group-item">Top 10 Albums</a>
-                <a href="../home/top10singers" class="list-group-item">Top 10 Singers</a>
+                <a class="list-group-item">Top 10 Songs</a>
+                <a href="../albumcontroller/searchMostPopular" class="list-group-item">Top 10 Albums</a>
+                <a href="../singercontroller/searchMostPopular" class="list-group-item">Top 10 Singers</a>
                 <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
               </div>
             </div>
@@ -98,7 +98,7 @@
 
       <div class="col-xs-3" style="margin-top:20px; margin-left:880px;">
 
-      <form method="post" action="./songcontroller/search">  
+      <form method="post" action="../songcontroller/search">  
         <div style="font-size:18px;"><select name="search_option" id="search_option">
           <option>Search By..</option>
           <option>Song Title</option>

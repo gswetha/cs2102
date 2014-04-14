@@ -59,15 +59,37 @@ class Home extends CI_Controller {
 	}
 
 	public function songmenu() {
+		$data['title'] = "home page";
+		$data['username'] = "Guest";
+		$data['role'] = "guest";
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+		}
+		else
+			$data['logged_in'] = FALSE;
 		$this->load->view('_home_header_styles');
-		$this->load->view('songmenu');
+		$this->load->view('songmenu', $data);
 		$this->load->view('_home_footer_script');
 	}
 
 	public function albummenu()
 	{
+		$data['title'] = "home page";
+		$data['username'] = "Guest";
+		$data['role'] = "guest";
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+		}
+		else
+			$data['logged_in'] = FALSE;
 		$this->load->view('_home_header_styles');
-		$this->load->view('albummenu');
+		$this->load->view('albummenu', $data);
 		$this->load->view('_home_footer_script');
 	}
 
@@ -80,8 +102,19 @@ class Home extends CI_Controller {
 
 	public function singermenu()
 	{
+		$data['title'] = "home page";
+		$data['username'] = "Guest";
+		$data['role'] = "guest";
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+		}
+		else
+			$data['logged_in'] = FALSE;
 		$this->load->view('_home_header_styles');
-		$this->load->view('singermenu');
+		$this->load->view('singermenu', $data);
 		$this->load->view('_home_footer_script');
 	}
 
@@ -101,8 +134,19 @@ class Home extends CI_Controller {
 
 	public function composermenu()
 	{
+		$data['title'] = "home page";
+		$data['username'] = "Guest";
+		$data['role'] = "guest";
+		if ($this->isLoggedIn()) {
+			$data['logged_in'] = TRUE;
+			log_message('info','email of user is '.print_r($this->session->all_userdata(),TRUE));
+			$data['username'] = $this->session->userdata('name');
+			$data['role'] = $this->session->userdata('role');
+		}
+		else
+			$data['logged_in'] = FALSE;
 		$this->load->view('_home_header_styles');
-		$this->load->view('composermenu');
+		$this->load->view('composermenu', $data);
 		$this->load->view('_home_footer_script');
 	}
 

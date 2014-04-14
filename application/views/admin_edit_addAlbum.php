@@ -77,7 +77,7 @@
                   </h4>
               </div>
               <div class="list-group">
-               <a href="../songController/searchMostPopular" class="list-group-item">Top 10 Songs</a>
+               <a href="../songController/searchMostPopularSongs" class="list-group-item">Top 10 Songs</a>
                 <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
                 <a href="../singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
                 <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->

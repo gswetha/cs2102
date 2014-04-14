@@ -60,19 +60,13 @@
                   </h4>
               </div>
               <div class="list-group">
-<<<<<<< HEAD
+
                 <a href="./songController" class="list-group-item">All Songs</a>
                 <a href="./albumController" class="list-group-item">All Albums</a>
                 <a href="./singerController" class="list-group-item">All Singers</a>
                 <a href="./composerController" class="list-group-item">All Composers</a>
 <!--                 <a href="../home/genremenu" class="list-group-item">All Genres</a> -->
-=======
-                <a href="../songController" class="list-group-item">All Songs</a>
-                <a href="../albumController" class="list-group-item">All Albums</a>
-                <a href="../singerController" class="list-group-item">All Singers</a>
-                <a href="../composerController" class="list-group-item">All Composers</a>
-                <a href="../home/genremenu" class="list-group-item">All Genres</a>
->>>>>>> FETCH_HEAD
+
               </div>
             </div>
 
@@ -85,17 +79,11 @@
                   </h4>
               </div>
               <div class="list-group">
-<<<<<<< HEAD
-               <a href="./songController/searchMostPopular" class="list-group-item">Top 10 Songs</a>
-                <a href="./albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
-                <a href="./singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
-                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
-=======
                <a href="../songController/searchMostPopular" class="list-group-item">Top 10 Songs</a>
                 <a href="../albumController/searchMostPopular" class="list-group-item">Top 10 Albums</a>
                 <a href="../singerController/searchMostPopular" class="list-group-item">Top 10 Singers</a>
-                <a href="../home/top100" class="list-group-item">Top 100 of all Time</a>
->>>>>>> FETCH_HEAD
+                <!-- <a href="../home/top100" class="list-group-item">Top 100 of all Time</a> -->
+
               </div>
             </div>
 

@@ -122,3 +122,17 @@ SELECT p.transactionId, p.pAlbumTitle, p.pAlbumYear, p.pEmail, u.userName, p.tra
 
 CREATE VIEW PurchasesViewSong1 AS
 SELECT p.transactionId, p.pAlbumTitle, p.pAlbumYear, p.pSongTitle, p.pSongYear, p.pEmail, u.userName, p.transactionDate, p.amountPaid, p.purchaseType FROM purchases p, user u WHERE p.pEmail = u.email AND purchaseType='song';
+
+delimiter //
+create procedure searchSongbySinger 
+(IN name CHAR(64), OUT songTitle VARCHAR(100), OUT songLength DOUBLE, OUT songYear DATE, OUT songPrice DOUBLE, OUT songGenre VARCHAR(64), OUT songImg VARCHAR(96), OUT sAlbumYear DATE, OUT sAlbumTitle VARCHAR(100))
+begin
+	SELECT songTitle, songLength, songYear, songPrice,songGenre, songImg, sAlbumYear, sAlbumTitle FROM song
+	JOIN singersingssong s ON s.sssAlbumTitle = song.sAlbumTitle AND s.sssAlbumYear = song.sAlbumYear AND s.sssSongTitle = song.songTitle AND s.sssSongYear = song.songYear
+	WHERE ((LOWER(s.sssSingerFirstName) LIKE LOWER('%name%'))
+	OR (LOWER(s.sssSingerLastName) LIKE CONCAT('%',LOWER(name),'%') )
+	OR (LOWER(s.sssSingerStageName) LIKE CONCAT('%',LOWER(name),'%'))
+    OR CONCAT_WS(' ',LOWER(s.sssSingerFirstName), CONCAT('%',LOWER(name),'%')) );
+
+end //
+delimiter ;

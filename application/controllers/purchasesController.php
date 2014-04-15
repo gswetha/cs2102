@@ -64,7 +64,7 @@ class PurchasesController extends CI_Controller {
 					 	$insert_data['pEmail']		 	 = $user_info['paypalEmail'];
 					 	$insert_data['transactionDate']  = date('Y-m-d');
 					 	$insert_data['amountPaid'] 		 = $this->input->post('amountPaid');
-					 	$insert_data['purchaseType'] 	 = "song";
+					 	$insert_data['purchaseType'] 	 = "composer";
 					 	if ($this->purchase_model->purchaseSong($insert_data)){
 					 		$data['isPurchaseSuccessful'] = true;
 					 		// var_dump($insert_data);

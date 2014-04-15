@@ -140,17 +140,17 @@
                     <span class="text-muted">Justin Bieber</span>
                   </div>
                   <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
-                    <img data-src="http://img1.wikia.nocookie.net/__cb20140315161650/disney/images/1/13/2013-miley-cyrus.jpg" width="150" height="150">
+                    <img src="http://img1.wikia.nocookie.net/__cb20140315161650/disney/images/1/13/2013-miley-cyrus.jpg" width="150" height="150">
                     <h4>The Climb</h4>
                     <span class="text-muted">Miley Cyrus</span>
                   </div>
                   <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
-                    <img data-src="http://15pictures.com/wp-content/gallery/15-pictures-carly-rae-jepsen/carly-rae-jepsen-5.jpg" width="150" height="150">
+                    <img src="http://15pictures.com/wp-content/gallery/15-pictures-carly-rae-jepsen/carly-rae-jepsen-5.jpg" width="150" height="150">
                     <h4>Call Me Maybe</h4>
                     <span class="text-muted">Carly Rae Jepsen</span>
                   </div>
                   <div class="col-xs-6 col-sm-3" style="height: 250px; overflow: hidden;">
-                    <img data-src="http://img2.timeinc.net//ew/i/2013/03/11/Justin-Timberlake-20-20-Experience_510x510.jpg" width="150" height="150">
+                    <img src="http://img2.timeinc.net//ew/i/2013/03/11/Justin-Timberlake-20-20-Experience_510x510.jpg" width="150" height="150">
                     <h4>My Love</h4>
                     <span class="text-muted">Justin Timberlake</span>
                   </div>
